@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import dataAccess.DataAccess;
 import domain.Sale;
+import domain.Seller;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -106,6 +107,13 @@ public class BLFacadeImplementation  implements BLFacade {
         }
         return null;
     }
+    
+	@WebMethod public Seller isLogged(String log, String pass) {
+		dbManager.open();
+		Seller   s = dbManager.isLogged(log, pass);
+		dbManager.close();
+		return s;
+	}
 
     
 }
