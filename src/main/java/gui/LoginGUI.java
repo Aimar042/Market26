@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame {
@@ -55,12 +56,14 @@ public class LoginGUI extends JFrame {
 		textFieldLogin.setColumns(10);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(98, 60, 46, 14);
+		lblLogin.setBounds(98, 60, 81, 14);
 		contentPane.add(lblLogin);
+		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.UserName"));
 		
 		JLabel lblPass = new JLabel("Pass");
-		lblPass.setBounds(98, 140, 46, 14);
+		lblPass.setBounds(98, 140, 81, 14);
 		contentPane.add(lblPass);
+		lblPass.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Password"));
 		
 		textFieldPass = new JTextField();
 		textFieldPass.setBounds(221, 137, 86, 20);
