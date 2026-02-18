@@ -1,20 +1,19 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Seller;
-
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
-import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame {
 
@@ -49,27 +48,27 @@ public class LoginGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		textFieldLogin = new JTextField();
 		textFieldLogin.setBounds(221, 57, 86, 20);
 		contentPane.add(textFieldLogin);
 		textFieldLogin.setColumns(10);
-		
+
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(98, 60, 81, 14);
 		contentPane.add(lblLogin);
 		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.UserName"));
-		
+
 		JLabel lblPass = new JLabel("Pass");
 		lblPass.setBounds(98, 140, 81, 14);
 		contentPane.add(lblPass);
 		lblPass.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Password"));
-		
+
 		textFieldPass = new JTextField();
 		textFieldPass.setBounds(221, 137, 86, 20);
 		contentPane.add(textFieldPass);
 		textFieldPass.setColumns(10);
-		
+
 		JButton jButtonLoginEgin = new JButton("Login Egin");
 		jButtonLoginEgin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,7 +79,7 @@ public class LoginGUI extends JFrame {
 				}
 			}
 		});
-		jButtonLoginEgin.setBounds(176, 198, 89, 23);
+		jButtonLoginEgin.setBounds(150, 199, 157, 23);
 		contentPane.add(jButtonLoginEgin);
 
 	}
