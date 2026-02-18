@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -11,6 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.BLFacade;
+
 public class RegisterGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -18,6 +22,7 @@ public class RegisterGUI extends JFrame {
 	private JTextField textFieldRegister;
 	private JPasswordField passwordFieldPass1;
 	private JPasswordField passwordFieldPass2;
+	private JLabel lblWarning;
 
 	/**
 	 * Launch the application.
@@ -75,8 +80,24 @@ public class RegisterGUI extends JFrame {
 		contentPane.add(passwordFieldPass2);
 
 		JButton jButtonErregistratu = new JButton("New button");
+		jButtonErregistratu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+				if (facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString())) {
+					// Cambiar texto/Crear las etiquetas
+					textFieldRegister.setText("");
+					passwordFieldPass1.setText("");
+					passwordFieldPass2.setText("");
+				}
+			}
+		});
 		jButtonErregistratu.setBounds(175, 205, 114, 27);
 		contentPane.add(jButtonErregistratu);
+
+		lblWarning = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblWarning.setBounds(203, 164, 86, 17);
+		lblWarning.setVisible(false);
+		contentPane.add(lblWarning);
 
 	}
 }
