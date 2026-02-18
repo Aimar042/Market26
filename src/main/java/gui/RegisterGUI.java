@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Seller;
 
 public class RegisterGUI extends JFrame {
 
@@ -22,7 +23,7 @@ public class RegisterGUI extends JFrame {
 	private JTextField textFieldRegister;
 	private JPasswordField passwordFieldPass1;
 	private JPasswordField passwordFieldPass2;
-	private JLabel lblWarning;
+	private JLabel lblWarning = new JLabel();
 
 	/**
 	 * Launch the application.
@@ -52,52 +53,67 @@ public class RegisterGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblRegister = new JLabel("New label");
-		lblRegister.setBounds(33, 40, 120, 17);
+		lblRegister.setBounds(33, 40, 150, 17);
 		contentPane.add(lblRegister);
 		lblRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.NewUser"));
 
 		JLabel lblPass1 = new JLabel("New label");
-		lblPass1.setBounds(33, 80, 120, 17);
+		lblPass1.setBounds(33, 80, 150, 17);
 		contentPane.add(lblPass1);
 		lblPass1.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password1"));
 
 		JLabel lblPass2 = new JLabel("New label");
-		lblPass2.setBounds(33, 120, 120, 17);
+		lblPass2.setBounds(33, 120, 150, 17);
 		contentPane.add(lblPass2);
 		lblPass2.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password2"));
 
 		textFieldRegister = new JTextField();
-		textFieldRegister.setBounds(175, 40, 114, 21);
+		textFieldRegister.setBounds(201, 38, 114, 21);
 		contentPane.add(textFieldRegister);
 		textFieldRegister.setColumns(10);
 
 		passwordFieldPass1 = new JPasswordField();
-		passwordFieldPass1.setBounds(175, 80, 114, 21);
+		passwordFieldPass1.setBounds(201, 78, 114, 21);
 		contentPane.add(passwordFieldPass1);
 
 		passwordFieldPass2 = new JPasswordField();
-		passwordFieldPass2.setBounds(175, 120, 114, 21);
+		passwordFieldPass2.setBounds(201, 118, 114, 21);
 		contentPane.add(passwordFieldPass2);
+		
+		lblWarning = new JLabel();
+		lblWarning.setBounds(74, 164, 282, 17);
+		contentPane.add(lblWarning);
 
-		JButton jButtonErregistratu = new JButton("New button");
+		JButton jButtonErregistratu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonErregistratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				BLFacade facade = MainGUIErregistratua.getBusinessLogic();
-				if (facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString())) {
-					// Cambiar texto/Crear las etiquetas
-					textFieldRegister.setText("");
-					passwordFieldPass1.setText("");
-					passwordFieldPass2.setText("");
+				lblWarning.setText("");
+				String error = check_Field_Errors();
+				if (error != null) {
+					lblWarning.setText(error);
+				}else {
+					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+					Seller s = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
+					if (s == null) {
+						//No se como hacer para comprobar el porque es null. Es decir, que no se diferenciar por codigo si es null porque no existe en la base de datos o porque si que existe pero los datos son erroneos
+					}
 				}
 			}
 		});
 		jButtonErregistratu.setBounds(175, 205, 114, 27);
 		contentPane.add(jButtonErregistratu);
 
-		lblWarning = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblWarning.setBounds(203, 164, 86, 17);
-		lblWarning.setVisible(false);
-		contentPane.add(lblWarning);
+		
 
+	}
+
+	private String check_Field_Errors() {
+		if (textFieldRegister.getText().length() == 0 || passwordFieldPass1.getText().length() == 0 || passwordFieldPass2.getText().length() == 0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorEmpty");
+		}
+		if (!passwordFieldPass1.getText().equals(passwordFieldPass2.getText())) {
+			return ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.ErrorPass");
+		}
+		return null;
 	}
 }

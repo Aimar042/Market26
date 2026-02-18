@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
-import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,8 +19,8 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Seller;
 import domain.Sale;
+import domain.Seller;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -258,6 +257,11 @@ public void open(){
 		query.setParameter(2, pass);
 		if (!query.getResultList().isEmpty()) return query.getResultList().get(0);
 		else return null;
+	}
+	
+	public void register (String reg, String pass) {
+		db.getTransaction().begin();
+		Seller NSeller = new Seller(null, reg, pass);
 	}
 	
 	public void close(){

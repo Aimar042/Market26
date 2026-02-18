@@ -70,6 +70,9 @@ public interface BLFacade {
 	public Seller isLogged(String log, String pass);
 
 	@WebMethod
-	public boolean isRegister(String reg, String pass1);
+	public Seller isRegister(String reg, String pass1);
+	
+	@WebMethod
+	public void register(String reg, String pass);
 
 }

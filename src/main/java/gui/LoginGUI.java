@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -20,7 +21,7 @@ public class LoginGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldLogin;
-	private JTextField textFieldPass;
+	private JPasswordField passwordFieldPass;
 
 	/**
 	 * Launch the application.
@@ -60,27 +61,44 @@ public class LoginGUI extends JFrame {
 		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.UserName"));
 
 		JLabel lblPass = new JLabel("Pass");
-		lblPass.setBounds(98, 140, 81, 14);
+		lblPass.setBounds(98, 109, 81, 14);
 		contentPane.add(lblPass);
 		lblPass.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Password"));
 
-		textFieldPass = new JTextField();
-		textFieldPass.setBounds(221, 137, 86, 20);
-		contentPane.add(textFieldPass);
-		textFieldPass.setColumns(10);
+		passwordFieldPass = new JPasswordField();
+		passwordFieldPass.setBounds(221, 106, 86, 20);
+		contentPane.add(passwordFieldPass);
+		passwordFieldPass.setColumns(10);
+		
+		JLabel lblWarning = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
+		lblWarning.setBounds(128, 153, 209, 17);
+		contentPane.add(lblWarning);
 
-		JButton jButtonLoginEgin = new JButton("Login Egin");
+		JButton jButtonLoginEgin = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Login"));
 		jButtonLoginEgin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BLFacade facade = MainGUIErregistratua.getBusinessLogic();
-				Seller s = facade.isLogged(textFieldLogin.getText(), textFieldPass.getText());
-				if (s != null) {
-					new MainGUI(s.getEmail()).setVisible(true);
+				lblWarning.setText("");
+				String error = check_Field_Errors();
+				if (error != null) {
+					lblWarning.setText(error);
+				}else {
+					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+					Seller s = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
+					if (s != null) {
+						new MainGUIErregistratua(s.getEmail()).setVisible(true);
+					}
 				}
 			}
 		});
 		jButtonLoginEgin.setBounds(150, 199, 157, 23);
 		contentPane.add(jButtonLoginEgin);
 
+	}
+	
+	private String check_Field_Errors() {
+		if (textFieldLogin.getText().length()==0 || passwordFieldPass.getText().length()==0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.ErrorEmpty");
+		}
+		return null;
 	}
 }
