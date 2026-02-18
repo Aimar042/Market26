@@ -261,7 +261,16 @@ public void open(){
 	
 	public void register (String reg, String pass) {
 		db.getTransaction().begin();
+		// Try catch bat egin behar da geroago, Base datuan sartzeko
+		// TODO
 		Seller NSeller = new Seller(null, reg, pass);
+	}
+	
+	public Seller isRegistered(String user) {
+		TypedQuery<Seller> query = db.createQuery("SELECT s FROM Seller s WHERE s.name=?1", Seller.class);
+		query.setParameter(1, user);
+		if (!query.getResultList().isEmpty()) return query.getResultList().get(0);
+		else return null;
 	}
 	
 	public void close(){

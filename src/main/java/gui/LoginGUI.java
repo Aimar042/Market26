@@ -86,6 +86,7 @@ public class LoginGUI extends JFrame {
 					Seller s = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
 					if (s != null) {
 						new MainGUIErregistratua(s.getEmail()).setVisible(true);
+						// TODO beste leku batera eramatea
 					}
 				}
 			}

@@ -121,7 +121,7 @@ public class BLFacadeImplementation implements BLFacade {
 	@WebMethod
 	public Seller isRegister(String reg, String pass1) {
 		dbManager.open();
-		Seller s = dbManager.isLogged(reg, pass1);
+		Seller s = dbManager.isRegistered(reg);
 		dbManager.close();
 		return s;
 	}

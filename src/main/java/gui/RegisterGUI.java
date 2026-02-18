@@ -92,10 +92,15 @@ public class RegisterGUI extends JFrame {
 				if (error != null) {
 					lblWarning.setText(error);
 				}else {
+					
 					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
 					Seller s = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
 					if (s == null) {
-						//No se como hacer para comprobar el porque es null. Es decir, que no se diferenciar por codigo si es null porque no existe en la base de datos o porque si que existe pero los datos son erroneos
+						s = new Seller(null, "null", "null");
+						new MainGUIErregistratua(s.getEmail()).setVisible(true);
+						// TODO register() BLFacade klaseko funtzioari deitu erregistratzeko eta beste leku batera eramateko
+					}else {
+						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Exist"));
 					}
 				}
 			}
@@ -116,4 +121,7 @@ public class RegisterGUI extends JFrame {
 		}
 		return null;
 	}
+	
+	
+	//private boolean check
 }
