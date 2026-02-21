@@ -9,7 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import domain.Sale;
-import domain.Seller;
+import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -67,10 +67,10 @@ public interface BLFacade {
 	public Image downloadImage(String imageName);
 
 	@WebMethod
-	public Seller isLogged(String log, String pass);
+	public User isLogged(String log, String pass);
 
 	@WebMethod
-	public Seller isRegister(String reg, String pass1);
+	public User isRegister(String reg, String pass1);
 	
 	@WebMethod
 	public void register(String reg, String pass);

@@ -118,7 +118,7 @@ public class ShowSaleGUI extends JFrame {
 		getContentPane().add(labelStatus);
 		
 		
-		BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+		BLFacade facade = MainGUI.getBusinessLogic();
 		String file=sale.getFile();
 		if (file!=null) {
 			Image img=facade.downloadImage(file);

@@ -93,11 +93,11 @@ public class RegisterGUI extends JFrame {
 					lblWarning.setText(error);
 				}else {
 					
-					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+					BLFacade facade = MainGUI.getBusinessLogic();
 					Seller s = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
 					if (s == null) {
 						s = new Seller(null, "null", "null");
-						new MainGUIErregistratua(s.getEmail()).setVisible(true);
+						new MainGUI(s.getEmail()).setVisible(true);
 						// TODO register() BLFacade klaseko funtzioari deitu erregistratzeko eta beste leku batera eramateko
 					}else {
 						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Exist"));

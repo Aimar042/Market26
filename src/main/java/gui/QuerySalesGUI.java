@@ -90,7 +90,7 @@ public class QuerySalesGUI extends JFrame {
 					tableModelProducts.setDataVector(null, columnNamesProducts);
 					tableModelProducts.setColumnCount(4); // another column added to allocate product object
 
-					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
+					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
 					List<domain.Sale> sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);

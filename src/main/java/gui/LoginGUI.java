@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
-import domain.Seller;
+import domain.User;
 
 public class LoginGUI extends JFrame {
 
@@ -82,10 +82,10 @@ public class LoginGUI extends JFrame {
 				if (error != null) {
 					lblWarning.setText(error);
 				}else {
-					BLFacade facade = MainGUIErregistratua.getBusinessLogic();
-					Seller s = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
-					if (s != null) {
-						new MainGUIErregistratua(s.getEmail()).setVisible(true);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					User u = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
+					if (u != null) {
+						new MainGUIErregistratua(u.getEmail()).setVisible(true);
 						// TODO beste leku batera eramatea
 					}
 				}

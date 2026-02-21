@@ -14,33 +14,32 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Seller implements Serializable {
+public class User implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	/*
 	@XmlID
 	@Id 
 	private String email;
 	private String name; 
-	private String pass
-	*/
+	private String pass;
+	private Seller seller;
+	private boolean isSeller;
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Sale> sales=new ArrayList<Sale>();
 
-	public Seller() {
-		
+	public User() {
+		super();
 	}
 
-	/*
-	public Seller(String email, String name, String pass) {
+	public User(String email, String name, String pass) {
 		this.email = email;
 		this.name = name;
 		this.pass = pass;
+		this.seller = null;
 	}
 	
 	
@@ -60,13 +59,17 @@ public class Seller implements Serializable {
 		this.name = name;
 	}
 	
-
+	public Seller getSeller() {
+		return this.seller;
+	}
 	
+	public void setSeller() {
+		this.seller = new Seller();
+	}
 	
 	public String toString(){
 		return email+";"+name+sales;
 	}
-	*/
 	
 	/**
 	 * This method creates/adds a sale to a seller
@@ -80,14 +83,6 @@ public class Seller implements Serializable {
 	 */
 	
 	
-
-
-	public Sale addSale(String title, String description, int status, float price,  Date pubDate, File file)  {
-		
-		Sale sale=new Sale(title, description, status, price,  pubDate, file, this);
-        sales.add(sale);
-        return sale;
-	}
 	/**
 	 * This method checks if the ride already exists for that driver
 	 * 
@@ -102,8 +97,7 @@ public class Seller implements Serializable {
 			 return true;
 		return false;
 	}
-	
-	/*	
+		
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -112,12 +106,11 @@ public class Seller implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Seller other = (Seller) obj;
+		User other = (User) obj;
 		if (email != other.email)
 			return false;
 		return true;
 	}
-	*/
 
 	
 }
