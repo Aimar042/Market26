@@ -25,11 +25,9 @@ public class User implements Serializable {
 	private String email;
 	private String name; 
 	private String pass;
+	
+	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Seller seller;
-	private boolean isSeller;
-	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Sale> sales=new ArrayList<Sale>();
 
 	public User() {
 		super();
@@ -68,7 +66,7 @@ public class User implements Serializable {
 	}
 	
 	public String toString(){
-		return email+";"+name+sales;
+		return email+";"+name+this.seller.toString();
 	}
 	
 	/**
@@ -90,14 +88,15 @@ public class User implements Serializable {
 	 * @param to the destination location 
 	 * @param date the date of the ride 
 	 * @return true if the ride exists and false in other case
-	 */
+	 
 	public boolean doesSaleExist(String title)  {	
 		for (Sale s:sales)
 			if ( s.getTitle().compareTo(title)==0 )
 			 return true;
 		return false;
 	}
-		
+	*/
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

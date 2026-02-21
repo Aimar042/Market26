@@ -59,14 +59,13 @@ public class Seller implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	*/
 	
-
 	
 	
 	public String toString(){
-		return email+";"+name+sales;
+		return ";"+sales;
 	}
-	*/
 	
 	/**
 	 * This method creates/adds a sale to a seller

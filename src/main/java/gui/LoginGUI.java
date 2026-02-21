@@ -87,6 +87,8 @@ public class LoginGUI extends JFrame {
 					if (u != null) {
 						new MainGUIErregistratua(u.getEmail()).setVisible(true);
 						// TODO beste leku batera eramatea
+					}else {
+						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NotExist"));
 					}
 				}
 			}

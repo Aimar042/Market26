@@ -20,7 +20,6 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Sale;
-import domain.Seller;
 import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
@@ -146,18 +145,18 @@ public class DataAccess  {
 
 			db.getTransaction().begin();
 			
-			Seller seller = db.find(Seller.class, sellerEmail);
-			if (seller.doesSaleExist(title)) {
+			User userS = db.find(User.class, sellerEmail);
+			if (userS.getSeller().doesSaleExist(title)) {
 				db.getTransaction().commit();
 				throw new SaleAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.SaleAlreadyExist"));
 			}
 
-			Sale sale = seller.addSale(title, description, status, price, pubDate, file);
+			Sale sale = userS.getSeller().addSale(title, description, status, price, pubDate, file);
 			//next instruction can be obviated
 
-			db.persist(seller); 
+			db.persist(userS); 
 			db.getTransaction().commit();
-			 System.out.println("sale stored "+sale+ " "+seller);
+			 System.out.println("sale stored "+sale+ " "+userS);
 
 			
 
@@ -256,8 +255,8 @@ public void open(){
         return resizedImage;
     }
 	
-	public Seller isLogged(String log, String pass) {
-		TypedQuery<Seller> query = db.createQuery("SELECT s FROM Seller s WHERE s.name=?1 AND s.pass=?2",Seller.class);   
+	public User isLogged(String log, String pass) {
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1 AND u.pass=?2",User.class);   
 		query.setParameter(1, log);
 		query.setParameter(2, pass);
 		if (!query.getResultList().isEmpty()) return query.getResultList().get(0);
@@ -268,11 +267,11 @@ public void open(){
 		db.getTransaction().begin();
 		// Try catch bat egin behar da geroago, Base datuan sartzeko
 		// TODO
-		Seller NSeller = new Seller(null, reg, pass);
+		User NSeller = new User(null, reg, pass);
 	}
 	
-	public Seller isRegistered(String user) {
-		TypedQuery<Seller> query = db.createQuery("SELECT s FROM Seller s WHERE s.name=?1", Seller.class);
+	public User isRegistered(String user) {
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1", User.class);
 		query.setParameter(1, user);
 		if (!query.getResultList().isEmpty()) return query.getResultList().get(0);
 		else return null;
