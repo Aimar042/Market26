@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
-import domain.Seller;
 import domain.User;
 
 public class RegisterGUI extends JFrame {
@@ -46,7 +45,7 @@ public class RegisterGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public RegisterGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,35 +53,35 @@ public class RegisterGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblRegister = new JLabel("New label");
-		lblRegister.setBounds(33, 40, 150, 17);
+		lblRegister.setBounds(29, 14, 150, 17);
 		contentPane.add(lblRegister);
 		lblRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.NewUser"));
 
 		JLabel lblPass1 = new JLabel("New label");
-		lblPass1.setBounds(33, 80, 150, 17);
+		lblPass1.setBounds(29, 54, 150, 17);
 		contentPane.add(lblPass1);
 		lblPass1.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password1"));
 
 		JLabel lblPass2 = new JLabel("New label");
-		lblPass2.setBounds(33, 120, 150, 17);
+		lblPass2.setBounds(29, 94, 150, 17);
 		contentPane.add(lblPass2);
 		lblPass2.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password2"));
 
 		textFieldRegister = new JTextField();
-		textFieldRegister.setBounds(201, 38, 114, 21);
+		textFieldRegister.setBounds(197, 12, 114, 21);
 		contentPane.add(textFieldRegister);
 		textFieldRegister.setColumns(10);
 
 		passwordFieldPass1 = new JPasswordField();
-		passwordFieldPass1.setBounds(201, 78, 114, 21);
+		passwordFieldPass1.setBounds(197, 52, 114, 21);
 		contentPane.add(passwordFieldPass1);
 
 		passwordFieldPass2 = new JPasswordField();
-		passwordFieldPass2.setBounds(201, 118, 114, 21);
+		passwordFieldPass2.setBounds(197, 92, 114, 21);
 		contentPane.add(passwordFieldPass2);
 		
 		lblWarning = new JLabel();
-		lblWarning.setBounds(74, 164, 282, 17);
+		lblWarning.setBounds(74, 123, 282, 17);
 		contentPane.add(lblWarning);
 
 		JButton jButtonErregistratu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -106,8 +105,23 @@ public class RegisterGUI extends JFrame {
 				}
 			}
 		});
-		jButtonErregistratu.setBounds(175, 205, 114, 27);
+		jButtonErregistratu.setBounds(175, 221, 114, 27);
 		contentPane.add(jButtonErregistratu);
+		
+		JLabel lblAlready = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.AlreadyRegistered")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblAlready.setBounds(29, 176, 222, 17);
+		contentPane.add(lblAlready);
+		
+		JButton jButtonLogin = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Login")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new LoginGUI();
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jButtonLogin.setBounds(292, 171, 127, 27);
+		contentPane.add(jButtonLogin);
 
 		
 
@@ -122,7 +136,4 @@ public class RegisterGUI extends JFrame {
 		}
 		return null;
 	}
-	
-	
-	//private boolean check
 }

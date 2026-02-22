@@ -43,7 +43,7 @@ public class LoginGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,27 +51,27 @@ public class LoginGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		textFieldLogin = new JTextField();
-		textFieldLogin.setBounds(221, 57, 86, 20);
+		textFieldLogin.setBounds(220, 26, 86, 20);
 		contentPane.add(textFieldLogin);
 		textFieldLogin.setColumns(10);
 
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(98, 60, 81, 14);
+		lblLogin.setBounds(97, 29, 81, 14);
 		contentPane.add(lblLogin);
 		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.UserName"));
 
 		JLabel lblPass = new JLabel("Pass");
-		lblPass.setBounds(98, 109, 81, 14);
+		lblPass.setBounds(97, 78, 81, 14);
 		contentPane.add(lblPass);
 		lblPass.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Password"));
 
 		passwordFieldPass = new JPasswordField();
-		passwordFieldPass.setBounds(221, 106, 86, 20);
+		passwordFieldPass.setBounds(220, 75, 86, 20);
 		contentPane.add(passwordFieldPass);
 		passwordFieldPass.setColumns(10);
 		
 		JLabel lblWarning = new JLabel(""); //$NON-NLS-1$ //$NON-NLS-2$
-		lblWarning.setBounds(128, 153, 209, 17);
+		lblWarning.setBounds(127, 120, 209, 17);
 		contentPane.add(lblWarning);
 
 		JButton jButtonLoginEgin = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Login"));
@@ -95,6 +95,21 @@ public class LoginGUI extends JFrame {
 		});
 		jButtonLoginEgin.setBounds(150, 199, 157, 23);
 		contentPane.add(jButtonLoginEgin);
+		
+		JLabel lblAlready = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.LblRegister")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblAlready.setBounds(24, 154, 245, 17);
+		contentPane.add(lblAlready);
+		
+		JButton jButtonRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new RegisterGUI();
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jButtonRegister.setBounds(287, 149, 130, 27);
+		contentPane.add(jButtonRegister);
 
 	}
 	
