@@ -24,6 +24,7 @@ public class RegisterGUI extends JFrame {
 	private JPasswordField passwordFieldPass1;
 	private JPasswordField passwordFieldPass2;
 	private JLabel lblWarning = new JLabel();
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -53,31 +54,31 @@ public class RegisterGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblRegister = new JLabel("New label");
-		lblRegister.setBounds(29, 14, 150, 17);
+		lblRegister.setBounds(29, 69, 150, 17);
 		contentPane.add(lblRegister);
 		lblRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.NewUser"));
 
 		JLabel lblPass1 = new JLabel("New label");
-		lblPass1.setBounds(29, 54, 150, 17);
+		lblPass1.setBounds(29, 111, 150, 17);
 		contentPane.add(lblPass1);
 		lblPass1.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password1"));
 
 		JLabel lblPass2 = new JLabel("New label");
-		lblPass2.setBounds(29, 94, 150, 17);
+		lblPass2.setBounds(29, 140, 150, 17);
 		contentPane.add(lblPass2);
 		lblPass2.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password2"));
 
 		textFieldRegister = new JTextField();
-		textFieldRegister.setBounds(197, 12, 114, 21);
+		textFieldRegister.setBounds(197, 69, 114, 21);
 		contentPane.add(textFieldRegister);
 		textFieldRegister.setColumns(10);
 
 		passwordFieldPass1 = new JPasswordField();
-		passwordFieldPass1.setBounds(197, 52, 114, 21);
+		passwordFieldPass1.setBounds(197, 111, 114, 21);
 		contentPane.add(passwordFieldPass1);
 
 		passwordFieldPass2 = new JPasswordField();
-		passwordFieldPass2.setBounds(197, 92, 114, 21);
+		passwordFieldPass2.setBounds(197, 138, 114, 21);
 		contentPane.add(passwordFieldPass2);
 		
 		lblWarning = new JLabel();
@@ -122,6 +123,15 @@ public class RegisterGUI extends JFrame {
 		});
 		jButtonLogin.setBounds(292, 171, 127, 27);
 		contentPane.add(jButtonLogin);
+		
+		JLabel lblEmail = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblEmail.setBounds(29, 42, 150, 17);
+		contentPane.add(lblEmail);
+		
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(197, 42, 114, 21);
+		contentPane.add(txtEmail);
 
 		
 

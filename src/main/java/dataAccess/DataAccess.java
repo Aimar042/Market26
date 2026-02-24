@@ -265,9 +265,48 @@ public void open(){
 	
 	public void register (String reg, String pass) {
 		db.getTransaction().begin();
-		// Try catch bat egin behar da geroago, Base datuan sartzeko
 		// TODO
-		User NSeller = new User(null, reg, pass);
+		try { 
+		       
+		    //Create sellers 
+			User NUser = new User(null, reg, pass);
+			User user1=new User("seller1@gmail.com","Aitor Fernandez", "Bibi");
+			User user2=new User("seller22@gmail.com","Ane Gaztañaga", "Bibi");
+			User user3=new User("seller3@gmail.com","Test Seller", "Bibi");
+			
+			user1.setSeller();
+			user2.setSeller();
+			user3.setSeller();
+
+			
+			//Create products
+			Date today = UtilDate.trim(new Date());
+		
+			
+			user1.getSeller().addSale("futbol baloia", "oso polita, gutxi erabilita", 10, 2,  today, null);
+			user1.getSeller().addSale("salomon mendiko botak", "44 zenbakia, 3 ateraldi",20,  2,  today, null);
+			user1.getSeller().addSale("samsung 42\" telebista", "berria, erabili gabe", 175, 1,  today, null);
+
+
+			user2.getSeller().addSale("imac 27", "7 urte, dena ondo dabil", 1, 200,today, null);
+			user2.getSeller().addSale("iphone 17", "oso gutxi erabilita", 2, 400, today, null);
+			user2.getSeller().addSale("orbea mendiko bizikleta", "29\" 10 urte, mantenua behar du", 3,225, today, null);
+			user2.getSeller().addSale("polar kilor erlojua", "Vantage M, ondo dago", 3, 30, today, null);
+
+			user3.getSeller().addSale("sukaldeko mahaia", "1.8*0.8, 4 aulkiekin. Prezio finkoa", 3,45, today, null);
+
+			
+			db.persist(user1);
+			db.persist(user2);
+			db.persist(user3);
+
+	
+			db.getTransaction().commit();
+			System.out.println("Db initialized");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public User isRegistered(String user) {
