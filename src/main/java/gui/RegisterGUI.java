@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -25,15 +24,17 @@ public class RegisterGUI extends JFrame {
 	private JPasswordField passwordFieldPass2;
 	private JLabel lblWarning = new JLabel();
 	private JTextField txtEmail;
+	private JFrame jFather;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterGUI frame = new RegisterGUI();
+					RegisterGUI frame = new RegisterGUI(jFather);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,11 +42,12 @@ public class RegisterGUI extends JFrame {
 			}
 		});
 	}
-
+	 */
 	/**
 	 * Create the frame.
 	 */
-	public RegisterGUI() {
+	public RegisterGUI(JFrame jFather) {
+		this.jFather = jFather;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -54,35 +56,35 @@ public class RegisterGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblRegister = new JLabel("New label");
-		lblRegister.setBounds(29, 69, 150, 17);
+		lblRegister.setBounds(29, 39, 150, 17);
 		contentPane.add(lblRegister);
 		lblRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.NewUser"));
 
 		JLabel lblPass1 = new JLabel("New label");
-		lblPass1.setBounds(29, 111, 150, 17);
+		lblPass1.setBounds(29, 81, 150, 17);
 		contentPane.add(lblPass1);
 		lblPass1.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password1"));
 
 		JLabel lblPass2 = new JLabel("New label");
-		lblPass2.setBounds(29, 140, 150, 17);
+		lblPass2.setBounds(29, 110, 150, 17);
 		contentPane.add(lblPass2);
 		lblPass2.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Password2"));
 
 		textFieldRegister = new JTextField();
-		textFieldRegister.setBounds(197, 69, 114, 21);
+		textFieldRegister.setBounds(197, 39, 114, 21);
 		contentPane.add(textFieldRegister);
 		textFieldRegister.setColumns(10);
 
 		passwordFieldPass1 = new JPasswordField();
-		passwordFieldPass1.setBounds(197, 111, 114, 21);
+		passwordFieldPass1.setBounds(197, 81, 114, 21);
 		contentPane.add(passwordFieldPass1);
 
 		passwordFieldPass2 = new JPasswordField();
-		passwordFieldPass2.setBounds(197, 138, 114, 21);
+		passwordFieldPass2.setBounds(197, 108, 114, 21);
 		contentPane.add(passwordFieldPass2);
 		
 		lblWarning = new JLabel();
-		lblWarning.setBounds(74, 123, 282, 17);
+		lblWarning.setBounds(78, 192, 282, 17);
 		contentPane.add(lblWarning);
 
 		JButton jButtonErregistratu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -100,6 +102,8 @@ public class RegisterGUI extends JFrame {
 						u = new User(null, "null", "null");
 						new MainGUIErregistratua(u.getEmail()).setVisible(true);
 						// TODO register() BLFacade klaseko funtzioari deitu erregistratzeko eta beste leku batera eramateko
+						jFather.dispose();
+						dispose();
 					}else {
 						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Exist"));
 					}
@@ -110,28 +114,38 @@ public class RegisterGUI extends JFrame {
 		contentPane.add(jButtonErregistratu);
 		
 		JLabel lblAlready = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.AlreadyRegistered")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblAlready.setBounds(29, 176, 222, 17);
+		lblAlready.setBounds(29, 158, 222, 17);
 		contentPane.add(lblAlready);
 		
 		JButton jButtonLogin = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Login")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new LoginGUI();
+				JFrame a = new LoginGUI(jFather);
 				a.setVisible(true);
 				dispose();
 			}
 		});
-		jButtonLogin.setBounds(292, 171, 127, 27);
+		jButtonLogin.setBounds(292, 153, 127, 27);
 		contentPane.add(jButtonLogin);
 		
-		JLabel lblEmail = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblEmail.setBounds(29, 42, 150, 17);
+		JLabel lblEmail = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Email")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblEmail.setBounds(29, 12, 150, 17);
 		contentPane.add(lblEmail);
 		
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(197, 42, 114, 21);
+		txtEmail.setBounds(197, 12, 114, 21);
 		contentPane.add(txtEmail);
+		
+		JButton jButtonAtzera = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Back")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jFather.setVisible(true);
+				dispose();
+			}
+		});
+		jButtonAtzera.setBounds(12, 221, 105, 27);
+		contentPane.add(jButtonAtzera);
 
 		
 

@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -22,10 +21,12 @@ public class LoginGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldLogin;
 	private JPasswordField passwordFieldPass;
+	private JFrame jFather;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,11 +39,13 @@ public class LoginGUI extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
 	 */
-	public LoginGUI() {
+	public LoginGUI(JFrame jFather) {
+		this.jFather = jFather;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -87,13 +90,15 @@ public class LoginGUI extends JFrame {
 					if (u != null) {
 						new MainGUIErregistratua(u.getEmail()).setVisible(true);
 						// TODO beste leku batera eramatea
+						jFather.dispose();
+						dispose();
 					}else {
 						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NotExist"));
 					}
 				}
 			}
 		});
-		jButtonLoginEgin.setBounds(150, 199, 157, 23);
+		jButtonLoginEgin.setBounds(162, 200, 157, 23);
 		contentPane.add(jButtonLoginEgin);
 		
 		JLabel lblAlready = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.LblRegister")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -103,13 +108,23 @@ public class LoginGUI extends JFrame {
 		JButton jButtonRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new RegisterGUI();
+				JFrame a = new RegisterGUI(jFather);
 				a.setVisible(true);
 				dispose();
 			}
 		});
 		jButtonRegister.setBounds(287, 149, 130, 27);
 		contentPane.add(jButtonRegister);
+		
+		JButton jButtonAtzera = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Back")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jFather.setVisible(true);
+				dispose();
+			}
+		});
+		jButtonAtzera.setBounds(12, 218, 105, 27);
+		contentPane.add(jButtonAtzera);
 
 	}
 	

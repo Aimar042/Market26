@@ -1,24 +1,27 @@
 package gui;
 
-/**
- * @author Software Engineering teachers
- */
-
-
-import javax.swing.*;
-
-import businessLogic.BLFacade;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+/**
+ * @author Software Engineering teachers
+ */
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+
+import businessLogic.BLFacade;
 
 
 public class MainGUI extends JFrame {
@@ -96,7 +99,7 @@ public class MainGUI extends JFrame {
 		jButtonLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Login"));
 		jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new LoginGUI();
+				JFrame a = new LoginGUI(MainGUI.this);
 				a.setVisible(true);
 			}
 		});
@@ -105,7 +108,7 @@ public class MainGUI extends JFrame {
 		jButtonRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Register"));
 		jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new RegisterGUI();
+				JFrame a = new RegisterGUI(MainGUI.this);
 				a.setVisible(true);
 			}
 		});
