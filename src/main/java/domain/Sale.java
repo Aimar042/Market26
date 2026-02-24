@@ -28,7 +28,8 @@ public class Sale implements Serializable {
 	private Date pubDate;
 	private String fileName;
 	
-	private Seller seller;  
+	private Seller seller;
+	private Buyer buyer;
 	
 	public Sale(){
 		super();
@@ -59,6 +60,34 @@ public class Sale implements Serializable {
 		}
 
 		this.seller = seller;
+		
+	}
+	
+	public Sale(String title, String description, int status, float price, Date pubDate, File file, Buyer buyer) {
+		super();
+
+		this.title = title;
+		this.description = description;
+		this.status = status;
+		this.price=price;
+		this.pubDate=pubDate;
+		if (file!=null) {
+		    this.fileName=file.getName();
+			try {
+				BufferedImage img1 = ImageIO.read(file);
+
+				String path="src/main/resources/images/";
+				File outputfile = new File(path+file.getName());
+		    
+		    
+			   ImageIO.write(img1, "png", outputfile);  // ignore returned boolean
+
+			} catch(IOException ex) {
+				//System.out.println("Write error for " + outputfile.getPath()  ": " + ex.getMessage());
+		}
+		}
+
+		this.buyer = buyer;
 		
 	}
 	
@@ -194,6 +223,10 @@ public class Sale implements Serializable {
 	public Seller getSeller() {
 		return seller;
 	}
+	
+	public Buyer getBuyer() {
+		return buyer;
+	}
 
 	/**
 	 * Set the seller of a sale
@@ -202,6 +235,10 @@ public class Sale implements Serializable {
 	 */
 	public void setSeller(Seller seller) {
 		this.seller = seller;
+	}
+	
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
 	}
 
 	/**

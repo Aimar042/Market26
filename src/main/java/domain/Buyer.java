@@ -12,36 +12,37 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
+import domain.Sale;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class User implements Serializable {
+public class Buyer implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/*
 	@XmlID
 	@Id 
 	private String email;
 	private String name; 
-	private String pass;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Seller seller;
-	
-	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Buyer buyer;
+	private String pass
+	*/
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Sale> bought=new ArrayList<Sale>();
 
-	public User() {
-		super();
+	public Buyer() {
+		
 	}
 
-	public User(String email, String name, String pass) {
+	/*
+	public Seller(String email, String name, String pass) {
 		this.email = email;
 		this.name = name;
 		this.pass = pass;
-		this.seller = null;
-		this.buyer = null;
 	}
 	
 	
@@ -60,29 +61,16 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	*/
 	
-	public Seller getSeller() {
-		return this.seller;
-	}
 	
-	public void setSeller() {
-		this.seller = new Seller();
-	}
-	
-	public Buyer getBuyer() {
-		return this.buyer;
-	}
-	
-	public void setBuyer() {
-		this.buyer = new Buyer();
-	}
 	
 	public String toString(){
-		return email+";"+name+this.seller.toString();
+		return ";"+bought;
 	}
 	
 	/**
-	 * This method creates/adds a sale to a seller
+	 * This method creates/adds a sale to a Buyer
 	 * 
 	 * @param title of the sale
 	 * @param description of the sale
@@ -93,6 +81,14 @@ public class User implements Serializable {
 	 */
 	
 	
+
+
+	public Sale addSale(String title, String description, int status, float price,  Date pubDate, File file)  {
+		
+		Sale sale=new Sale(title, description, status, price,  pubDate, file, this);
+        bought.add(sale);
+        return sale;
+	}
 	/**
 	 * This method checks if the ride already exists for that driver
 	 * 
@@ -100,15 +96,15 @@ public class User implements Serializable {
 	 * @param to the destination location 
 	 * @param date the date of the ride 
 	 * @return true if the ride exists and false in other case
-	 
+	 */
 	public boolean doesSaleExist(String title)  {	
-		for (Sale s:sales)
+		for (Sale s:bought)
 			if ( s.getTitle().compareTo(title)==0 )
 			 return true;
 		return false;
 	}
-	*/
-
+	
+	/*	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -117,11 +113,12 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Seller other = (Seller) obj;
 		if (email != other.email)
 			return false;
 		return true;
 	}
+	*/
 
 	
 }
