@@ -24,14 +24,14 @@ import javax.swing.SwingConstants;
 import businessLogic.BLFacade;
 
 
-public class MainGUIErregistratua extends JFrame {
+public class MainGUISeller extends JFrame {
 	
     private String userMail;
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
 	private JButton jButtonCreateQuery = null;
-	private JButton jButtonQueryQueries = null;
+	private JButton jButtonChangeMode = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -52,13 +52,13 @@ public class MainGUIErregistratua extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUIErregistratua( String mail) {
+	public MainGUISeller( String mail) {
 		super();
 
 		this.userMail=mail;
 		
 		this.setSize(495, 290);
-		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
+		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Seller"));
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
@@ -102,13 +102,13 @@ public class MainGUIErregistratua extends JFrame {
 			}
 		});
 		
-		jButtonQueryQueries = new JButton();
-		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
-		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
+		jButtonChangeMode = new JButton();
+		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
+		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new QuerySalesGUI();
-
+				JFrame a = new MainGUIBuyer(userMail);
 				a.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -116,7 +116,7 @@ public class MainGUIErregistratua extends JFrame {
 		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
 		jContentPane.add(jLabelSelectOption);
 		jContentPane.add(jButtonCreateQuery);
-		jContentPane.add(jButtonQueryQueries);
+		jContentPane.add(jButtonChangeMode);
 		jContentPane.add(panel);
 		
 		
@@ -133,7 +133,7 @@ public class MainGUIErregistratua extends JFrame {
 	
 	private void paintAgain() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
-		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
+		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateSale"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}

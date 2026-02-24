@@ -1,14 +1,27 @@
 package gui;
 
-import java.util.*;
-
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.awt.image.BufferedImage;
+import java.util.ResourceBundle;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
 import domain.Sale;
@@ -44,6 +57,7 @@ public class ShowSaleGUI extends JFrame {
 	private JLabel jLabelError = new JLabel();
 	private JLabel statusField=new JLabel();
 	private JFrame thisFrame;
+	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	public ShowSaleGUI(Sale sale) { 
 		thisFrame=this; 
@@ -67,11 +81,19 @@ public class ShowSaleGUI extends JFrame {
 
 		
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
+		
 		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thisFrame.setVisible(false);			}
 		});
+		
+		jButtonBuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO Erosi implementatu behar da
+			}
+		});
+		jButtonBuy.setBounds(178, 268, 105, 31);
 
 		jLabelMsg.setBounds(new Rectangle(275, 214, 305, 20));
 		jLabelMsg.setForeground(Color.red);
@@ -84,6 +106,7 @@ public class ShowSaleGUI extends JFrame {
 		this.getContentPane().add(jLabelError, null);
 
 		this.getContentPane().add(jButtonClose, null);
+		this.getContentPane().add(jButtonBuy, null);
 		this.getContentPane().add(jLabelTitle, null);
 		
 		
@@ -130,6 +153,8 @@ public class ShowSaleGUI extends JFrame {
 		statusField = new JLabel(Utils.getStatus(sale.getStatus())); 
 		statusField.setBounds(137, 191, 92, 16);
 		getContentPane().add(statusField);
+		
+		
 		setVisible(true);
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)

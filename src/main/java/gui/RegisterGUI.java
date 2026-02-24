@@ -100,7 +100,7 @@ public class RegisterGUI extends JFrame {
 					User u = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
 					if (u == null) {
 						u = new User(null, "null", "null");
-						new MainGUIErregistratua(u.getEmail()).setVisible(true);
+						new MainGUISeller(u.getEmail()).setVisible(true);
 						// TODO register() BLFacade klaseko funtzioari deitu erregistratzeko eta beste leku batera eramateko
 						jFather.dispose();
 						dispose();
