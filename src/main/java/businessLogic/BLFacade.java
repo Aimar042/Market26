@@ -33,7 +33,7 @@ public interface BLFacade {
 	 */
 	@WebMethod
 	public Sale createSale(String title, String description, int status, float price, Date pubDate, String sellerEmail,
-			File file) throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
+			File file, boolean onSale) throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
 
 	/**
 	 * This method retrieves the products that contain desc

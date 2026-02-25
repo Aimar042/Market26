@@ -1,11 +1,15 @@
 package domain;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -27,6 +31,7 @@ public class Sale implements Serializable {
 	private float price;
 	private Date pubDate;
 	private String fileName;
+	private boolean onSale;
 	
 	private Seller seller;
 	private Buyer buyer;
@@ -35,7 +40,7 @@ public class Sale implements Serializable {
 		super();
 	}
 		
-	public Sale(String title, String description, int status, float price, Date pubDate, File file, Seller seller) {
+	public Sale(String title, String description, int status, float price, Date pubDate, File file, Seller seller, boolean onSale) {
 		super();
 
 		this.title = title;
@@ -60,10 +65,11 @@ public class Sale implements Serializable {
 		}
 
 		this.seller = seller;
+		this.onSale = onSale;
 		
 	}
 	
-	public Sale(String title, String description, int status, float price, Date pubDate, File file, Buyer buyer) {
+	public Sale(String title, String description, int status, float price, Date pubDate, File file, Buyer buyer, boolean onSale) {
 		super();
 
 		this.title = title;
@@ -88,6 +94,7 @@ public class Sale implements Serializable {
 		}
 
 		this.buyer = buyer;
+		this.onSale = onSale;
 		
 	}
 	
@@ -250,7 +257,13 @@ public class Sale implements Serializable {
 		return fileName;
 	}
 	
+	public boolean getOnSale() {
+		return onSale;
+	}
 	
+	public void setOnSale(boolean onSale) {
+		this.onSale = onSale;
+	}
 	public String toString(){
 		return saleNumber+";"+title+";"+price;  
 	}

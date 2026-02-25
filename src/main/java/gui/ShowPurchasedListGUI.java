@@ -1,12 +1,10 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,20 +14,20 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Sale;
-import domain.User;
 
+public class ShowPurchasedListGUI extends JFrame {
 
-public class QuerySalesGUI extends JFrame {
-	
 	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
 	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
@@ -49,9 +47,32 @@ public class QuerySalesGUI extends JFrame {
 
 	};
 	private JTextField jTextFieldSearch;
-	
 
-	public QuerySalesGUI(User u) {
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ShowPurchasedListGUI frame = new ShowPurchasedListGUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ShowPurchasedListGUI() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
 		tableProducts.setEnabled(false);
 		thisFrame=this;
 		this.getContentPane().setLayout(null);
@@ -106,19 +127,18 @@ public class QuerySalesGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					List<domain.Sale> sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);
+					List<domain.Sale> purchaseds=facade.getPublishedSales(jTextFieldSearch.getText(),today);
+					//TODO en vez de getPublishedSales o un nuevo metodo o directamente la lista
 
-					if (sales.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
+					if (purchaseds.isEmpty()) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
 					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
-					for (domain.Sale sale:sales){
+					for (domain.Sale purchased:purchaseds){
 						Vector<Object> row = new Vector<Object>();
-						if(sale.getOnSale()==true) {
-							row.add(sale.getTitle());
-							row.add(sale.getPrice());
-							row.add(new SimpleDateFormat("dd-MM-yyyy").format(sale.getPublicationDate()));
-							row.add(sale); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
-							tableModelProducts.addRow(row);
-						}
+						row.add(purchased.getTitle());
+						row.add(purchased.getPrice());
+						row.add(new SimpleDateFormat("dd-MM-yyyy").format(purchased.getPublicationDate()));
+						row.add(purchased); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
+						tableModelProducts.addRow(row);
 								
 					}
 				} catch (Exception e1) {
@@ -137,7 +157,7 @@ public class QuerySalesGUI extends JFrame {
 		getContentPane().add(jButtonSearch);
 		
 	    
-		tableProducts.addMouseListener(new MouseAdapter() {
+		/*tableProducts.addMouseListener(new MouseAdapter() {
 		        @Override
 		        public void mousePressed(MouseEvent mouseEvent) {
 		            
@@ -150,6 +170,8 @@ public class QuerySalesGUI extends JFrame {
 			            new ShowSaleGUI(s, u);
 		            }
 		        }
-		 });
+		 });*/
+
 	}
+
 }

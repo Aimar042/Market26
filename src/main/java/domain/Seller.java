@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -81,9 +83,9 @@ public class Seller implements Serializable {
 	
 
 
-	public Sale addSale(String title, String description, int status, float price,  Date pubDate, File file)  {
+	public Sale addSale(String title, String description, int status, float price,  Date pubDate, File file, boolean onSale)  {
 		
-		Sale sale=new Sale(title, description, status, price,  pubDate, file, this);
+		Sale sale=new Sale(title, description, status, price,  pubDate, file, this, onSale);
         sales.add(sale);
         return sale;
 	}

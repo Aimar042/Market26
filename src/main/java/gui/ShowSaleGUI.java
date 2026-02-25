@@ -99,6 +99,7 @@ public class ShowSaleGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(u != null) {
 					u.getBuyer().addSale(sale);
+					sale.setOnSale(false);
 					System.out.println("Sartu da:" + u.getBuyer().doesSaleExist(s.getTitle()));
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
