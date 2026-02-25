@@ -74,5 +74,7 @@ public interface BLFacade {
 	
 	@WebMethod
 	public void register(String email, String reg, String pass);
-
+	
+	@WebMethod
+	public Sale getExactSale(String title, Date pubDate);
 }

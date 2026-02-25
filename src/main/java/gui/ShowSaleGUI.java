@@ -89,8 +89,11 @@ public class ShowSaleGUI extends JFrame {
 		});
 		
 		jButtonBuy.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO Erosi implementatu behar da
+				// TODO Auto-generated method stub
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Sale sale = facade.getExactSale(jLabelTitle.getText(), labelStatus.getText());
 			}
 		});
 		jButtonBuy.setBounds(178, 268, 105, 31);
@@ -156,6 +159,10 @@ public class ShowSaleGUI extends JFrame {
 		
 		
 		setVisible(true);
+		
+		public Date getDate() {
+			return sale.getPublicationDate();
+		}
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)
     {

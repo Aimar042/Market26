@@ -288,4 +288,16 @@ public void open(){
 		System.out.println("DataAcess closed");
 	}
 	
+	public Sale getExactSale(String title, Date pubDate) {
+		System.out.println(">> DataAccess: getProduct=> from= "+title);
+
+		Sale sale;	
+		TypedQuery<Sale> query = db.createQuery("SELECT s FROM Sale s WHERE s.title LIKE ?1 AND s.pubDate <=?2",Sale.class);   
+		query.setParameter(1, title);
+		query.setParameter(2,pubDate);
+		
+		sale = query.getResultList().get(0);
+
+	 	return sale;
+	}
 }

@@ -132,5 +132,13 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.register(email, reg, pass);
 		dbManager.close();
 	}
+	
+	@WebMethod
+	public Sale getExactSale(String title, Date pubDate) {
+		dbManager.open();
+		Sale sale = dbManager.getExactSale(title, pubDate);
+		dbManager.close();
+		return sale;
+	}
 
 }
