@@ -99,8 +99,8 @@ public class RegisterGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
 					if (u == null) {
-						u = new User(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
-						facade.register(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
+						u = new User(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getText());
+						facade.register(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getText());
 						new MainGUIBuyer(u.getEmail()).setVisible(true);
 						jFather.dispose();
 						dispose();
