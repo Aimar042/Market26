@@ -83,9 +83,7 @@ public class Buyer implements Serializable {
 	
 
 
-	public Sale addSale(String title, String description, int status, float price,  Date pubDate, File file)  {
-		
-		Sale sale=new Sale(title, description, status, price,  pubDate, file, this);
+	public Sale addSale(Sale sale)  {
         bought.add(sale);
         return sale;
 	}

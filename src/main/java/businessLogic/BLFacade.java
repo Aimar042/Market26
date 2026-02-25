@@ -73,6 +73,6 @@ public interface BLFacade {
 	public User isRegister(String reg, String pass1);
 	
 	@WebMethod
-	public void register(String reg, String pass);
+	public void register(String email, String reg, String pass);
 
 }

@@ -88,9 +88,7 @@ public class LoginGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
 					if (u != null) {
-						new MainGUISeller(u.getEmail()).setVisible(true);
-						// TODO beste leku batera eramatea
-						//Egina dago jada goiko TODO-a?
+						new MainGUIBuyer(u.getEmail()).setVisible(true);
 						jFather.dispose();
 						dispose();
 					}else {

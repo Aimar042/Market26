@@ -40,8 +40,8 @@ public class User implements Serializable {
 		this.email = email;
 		this.name = name;
 		this.pass = pass;
-		this.seller = null;
-		this.buyer = null;
+		this.seller = new Seller();
+		this.buyer = new Buyer();
 	}
 	
 	

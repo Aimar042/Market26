@@ -127,9 +127,9 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 	
 	@WebMethod
-	public void register(String reg, String pass) {
+	public void register(String email, String reg, String pass) {
 		dbManager.open();
-		dbManager.register(reg, pass);
+		dbManager.register(email, reg, pass);
 		dbManager.close();
 	}
 

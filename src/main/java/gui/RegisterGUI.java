@@ -23,7 +23,7 @@ public class RegisterGUI extends JFrame {
 	private JPasswordField passwordFieldPass1;
 	private JPasswordField passwordFieldPass2;
 	private JLabel lblWarning = new JLabel();
-	private JTextField txtEmail;
+	private JTextField textFieldEmail;
 	private JFrame jFather;
 
 	/**
@@ -99,9 +99,9 @@ public class RegisterGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.isRegister(textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
 					if (u == null) {
-						u = new User(null, "null", "null");
-						new MainGUISeller(u.getEmail()).setVisible(true);
-						// TODO register() BLFacade klaseko funtzioari deitu erregistratzeko eta beste leku batera eramateko
+						u = new User(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
+						facade.register(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getPassword().toString());
+						new MainGUIBuyer(u.getEmail()).setVisible(true);
 						jFather.dispose();
 						dispose();
 					}else {
@@ -132,10 +132,10 @@ public class RegisterGUI extends JFrame {
 		lblEmail.setBounds(29, 12, 150, 17);
 		contentPane.add(lblEmail);
 		
-		txtEmail = new JTextField();
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(197, 12, 114, 21);
-		contentPane.add(txtEmail);
+		textFieldEmail = new JTextField();
+		textFieldEmail.setColumns(10);
+		textFieldEmail.setBounds(197, 12, 114, 21);
+		contentPane.add(textFieldEmail);
 		
 		JButton jButtonAtzera = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.Back")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonAtzera.addActionListener(new ActionListener() {
