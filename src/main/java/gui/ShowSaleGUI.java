@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
 import domain.Sale;
+import domain.User;
 
 
 public class ShowSaleGUI extends JFrame {
@@ -59,7 +61,11 @@ public class ShowSaleGUI extends JFrame {
 	private JFrame thisFrame;
 	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy")); //$NON-NLS-1$ //$NON-NLS-2$
 	
-	public ShowSaleGUI(Sale sale) { 
+	private Sale s;
+	private User u;
+	
+	public ShowSaleGUI(Sale sale, User u) { 
+		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
@@ -91,9 +97,12 @@ public class ShowSaleGUI extends JFrame {
 		jButtonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				BLFacade facade = MainGUI.getBusinessLogic();
-				Sale sale = facade.getExactSale(jLabelTitle.getText(), labelStatus.getText());
+				if(u != null) {
+					u.getBuyer().addSale(sale);
+					System.out.println("Sartu da:" + u.getBuyer().doesSaleExist(s.getTitle()));
+				}else {
+					System.out.println("Erregistratu edo Login egin mesedez");
+				}
 			}
 		});
 		jButtonBuy.setBounds(178, 268, 105, 31);
@@ -159,10 +168,6 @@ public class ShowSaleGUI extends JFrame {
 		
 		
 		setVisible(true);
-		
-		public Date getDate() {
-			return sale.getPublicationDate();
-		}
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)
     {
@@ -173,6 +178,9 @@ public class ShowSaleGUI extends JFrame {
         return resizedImage;
     }
 	
+	public Date getDate() {
+		return (Date) this.s.getPublicationDate();
+	}
 	
 }
 

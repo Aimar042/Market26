@@ -101,7 +101,7 @@ public class RegisterGUI extends JFrame {
 					if (u == null) {
 						u = new User(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getText());
 						facade.register(textFieldEmail.getText(), textFieldRegister.getText(), passwordFieldPass1.getText());
-						new MainGUIBuyer(u.getEmail()).setVisible(true);
+						new MainGUIBuyer(u.getEmail(), u).setVisible(true);
 						jFather.dispose();
 						dispose();
 					}else {

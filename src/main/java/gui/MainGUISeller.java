@@ -22,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import businessLogic.BLFacade;
+import domain.User;
 
 
 public class MainGUISeller extends JFrame {
@@ -52,7 +53,7 @@ public class MainGUISeller extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUISeller( String mail) {
+	public MainGUISeller(String mail, User u) {
 		super();
 
 		this.userMail=mail;
@@ -106,7 +107,7 @@ public class MainGUISeller extends JFrame {
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new MainGUIBuyer(userMail);
+				JFrame a = new MainGUIBuyer(userMail, u);
 				a.setVisible(true);
 				dispose();
 			}

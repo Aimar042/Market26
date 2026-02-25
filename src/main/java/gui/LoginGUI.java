@@ -88,7 +88,7 @@ public class LoginGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.isLogged(textFieldLogin.getText(), passwordFieldPass.getText());
 					if (u != null) {
-						new MainGUIBuyer(u.getEmail()).setVisible(true);
+						new MainGUIBuyer(u.getEmail(), u).setVisible(true);
 						jFather.dispose();
 						dispose();
 					}else {

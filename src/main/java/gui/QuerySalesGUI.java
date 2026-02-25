@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Sale;
+import domain.User;
 
 
 public class QuerySalesGUI extends JFrame {
@@ -50,7 +51,7 @@ public class QuerySalesGUI extends JFrame {
 	private JTextField jTextFieldSearch;
 	
 
-	public QuerySalesGUI() {
+	public QuerySalesGUI(User u) {
 		tableProducts.setEnabled(false);
 		thisFrame=this;
 		this.getContentPane().setLayout(null);
@@ -143,7 +144,7 @@ public class QuerySalesGUI extends JFrame {
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
-			            new ShowSaleGUI(s);
+			            new ShowSaleGUI(s, u);
 		            }
 		        }
 		 });

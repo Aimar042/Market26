@@ -22,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import businessLogic.BLFacade;
+import domain.User;
 
 
 public class MainGUIBuyer extends JFrame {
@@ -52,7 +53,7 @@ public class MainGUIBuyer extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUIBuyer( String mail) {
+	public MainGUIBuyer(String mail, User u) {
 		super();
 
 		this.userMail=mail;
@@ -97,7 +98,7 @@ public class MainGUIBuyer extends JFrame {
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
 		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new MainGUISeller(userMail);
+				JFrame a = new MainGUISeller(userMail, u);
 				a.setVisible(true);
 				dispose();
 			}
@@ -111,7 +112,7 @@ public class MainGUIBuyer extends JFrame {
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
 		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new QuerySalesGUI();
+				JFrame a = new QuerySalesGUI(u);
 
 				a.setVisible(true);
 			}
