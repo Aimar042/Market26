@@ -97,7 +97,7 @@ public class MainGUIBuyer extends JFrame {
 		jButtonShowPurchased = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonShowPurchased.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new ShowPurchasedListGUI();
+				JFrame a = new ShowPurchasedListGUI(u);
 				a.setVisible(true);
 			}
 		});

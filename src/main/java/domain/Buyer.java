@@ -63,6 +63,9 @@ public class Buyer implements Serializable {
 	}
 	*/
 	
+	public List<Sale> getBought(){
+		return this.bought;
+	}
 	
 	
 	public String toString(){

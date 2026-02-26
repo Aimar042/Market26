@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.User;
 
 public class ShowPurchasedListGUI extends JFrame {
 
@@ -51,6 +52,7 @@ public class ShowPurchasedListGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -63,11 +65,11 @@ public class ShowPurchasedListGUI extends JFrame {
 			}
 		});
 	}
-
+	*/
 	/**
 	 * Create the frame.
 	 */
-	public ShowPurchasedListGUI() {
+	public ShowPurchasedListGUI(User u) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -127,8 +129,10 @@ public class ShowPurchasedListGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					List<domain.Sale> purchaseds=facade.getPurchasedSales(jTextFieldSearch.getText(),today);
+					// List<domain.Sale> purchaseds=facade.getPurchasedSales(jTextFieldSearch.getText(),today);
 					//TODO en vez de getPublishedSales o un nuevo metodo o directamente la lista
+					
+					List<domain.Sale> purchaseds=u.getBuyer().getBought();
 
 					if (purchaseds.isEmpty()) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
 					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
@@ -150,6 +154,7 @@ public class ShowPurchasedListGUI extends JFrame {
 				tableProducts.getColumnModel().getColumn(1).setPreferredWidth(70);
 
 				tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
+		 		
 		 		
 		 	}
 		 });
