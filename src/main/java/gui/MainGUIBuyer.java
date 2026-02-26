@@ -49,6 +49,7 @@ public class MainGUIBuyer extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton jButtonShowPurchased;
 	
 	/**
 	 * This is the default constructor
@@ -63,6 +64,44 @@ public class MainGUIBuyer extends JFrame {
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		jButtonChangeMode = new JButton();
+		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
+		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				JFrame a = new MainGUISeller(userMail, u);
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		
+		jContentPane = new JPanel();
+		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
+		jContentPane.add(jLabelSelectOption);
+		
+		jButtonQueryQueries = new JButton();
+		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
+		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				JFrame a = new QuerySalesGUI(u);
+
+				a.setVisible(true);
+			}
+		});
+		jContentPane.add(jButtonQueryQueries);
+		jContentPane.add(jButtonChangeMode);
+		
+		
+		setContentPane(jContentPane);
+		
+		jButtonShowPurchased = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonShowPurchased.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new ShowPurchasedListGUI();
+				a.setVisible(true);
+			}
+		});
+		jContentPane.add(jButtonShowPurchased);
 		
 		rdbtnNewRadioButton = new JRadioButton("English");
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
@@ -88,41 +127,12 @@ public class MainGUIBuyer extends JFrame {
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_2);
-	
-		panel = new JPanel();
-		panel.add(rdbtnNewRadioButton_1);
-		panel.add(rdbtnNewRadioButton_2);
-		panel.add(rdbtnNewRadioButton);
 		
-		jButtonChangeMode = new JButton();
-		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
-		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new MainGUISeller(userMail, u);
-				a.setVisible(true);
-				dispose();
-			}
-		});
-		
-		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
-		jContentPane.add(jLabelSelectOption);
-		
-		jButtonQueryQueries = new JButton();
-		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
-		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new QuerySalesGUI(u);
-
-				a.setVisible(true);
-			}
-		});
-		jContentPane.add(jButtonQueryQueries);
-		jContentPane.add(jButtonChangeMode);
-		jContentPane.add(panel);
-		
-		
-		setContentPane(jContentPane);
+			panel = new JPanel();
+			panel.add(rdbtnNewRadioButton_1);
+			panel.add(rdbtnNewRadioButton_2);
+			panel.add(rdbtnNewRadioButton);
+			jContentPane.add(panel);
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") +": "+userMail);
 		
 		addWindowListener(new WindowAdapter() {

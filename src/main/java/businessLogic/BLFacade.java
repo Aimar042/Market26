@@ -77,4 +77,7 @@ public interface BLFacade {
 	
 	@WebMethod
 	public Sale getExactSale(String title, Date pubDate);
+	
+	@WebMethod
+	public List<Sale> getPurchasedSales(String desc, Date pubDate);
 }

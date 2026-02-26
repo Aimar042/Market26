@@ -68,7 +68,7 @@ public class ShowPurchasedListGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowPurchasedListGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +77,7 @@ public class ShowPurchasedListGUI extends JFrame {
 		thisFrame=this;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Title"));
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 
@@ -118,7 +118,7 @@ public class ShowPurchasedListGUI extends JFrame {
 		getContentPane().add(jTextFieldSearch);
 		jTextFieldSearch.setColumns(10);
 		
-		 jButtonSearch.addActionListener(new ActionListener() {
+		 jButtonSearch.addActionListener(new ActionListener() {//TODO no enseña nada, arreglar
 		 	public void actionPerformed(ActionEvent e) {
 		 		try {
 					tableModelProducts.setDataVector(null, columnNamesProducts);
@@ -127,7 +127,7 @@ public class ShowPurchasedListGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					List<domain.Sale> purchaseds=facade.getPublishedSales(jTextFieldSearch.getText(),today);
+					List<domain.Sale> purchaseds=facade.getPurchasedSales(jTextFieldSearch.getText(),today);
 					//TODO en vez de getPublishedSales o un nuevo metodo o directamente la lista
 
 					if (purchaseds.isEmpty()) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
