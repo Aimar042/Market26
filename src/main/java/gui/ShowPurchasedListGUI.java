@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,9 +28,9 @@ public class ShowPurchasedListGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
+	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Press")); 
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
+	private JButton jButtonShow = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Show")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -120,7 +119,7 @@ public class ShowPurchasedListGUI extends JFrame {
 		getContentPane().add(jTextFieldSearch);
 		jTextFieldSearch.setColumns(10);
 		
-		 jButtonSearch.addActionListener(new ActionListener() {//TODO no enseña nada, arreglar
+		 jButtonShow.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		try {
 					tableModelProducts.setDataVector(null, columnNamesProducts);
@@ -135,7 +134,7 @@ public class ShowPurchasedListGUI extends JFrame {
 					//List<domain.Sale> purchaseds=u.getBuyer().getBought();
 
 					if (purchaseds.isEmpty()) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
-					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
+					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Purchased"));
 					for (domain.Sale purchased:purchaseds){
 						Vector<Object> row = new Vector<Object>();
 						row.add(purchased.getTitle());
@@ -158,8 +157,8 @@ public class ShowPurchasedListGUI extends JFrame {
 		 		
 		 	}
 		 });
-		jButtonSearch.setBounds(427, 56, 117, 29);
-		getContentPane().add(jButtonSearch);
+		jButtonShow.setBounds(427, 56, 117, 29);
+		getContentPane().add(jButtonShow);
 		
 	    
 		/*tableProducts.addMouseListener(new MouseAdapter() {

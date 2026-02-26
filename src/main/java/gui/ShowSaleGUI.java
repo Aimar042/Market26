@@ -91,7 +91,9 @@ public class ShowSaleGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				thisFrame.setVisible(false);			}
+				//thisFrame.setVisible(false);	
+				dispose();
+			}
 		});
 		
 		jButtonBuy.addActionListener(new ActionListener() {
@@ -104,8 +106,10 @@ public class ShowSaleGUI extends JFrame {
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
 				}
+				jButtonBuy.setEnabled(false);
 			}
 		});
+		
 		jButtonBuy.setBounds(178, 268, 105, 31);
 
 		jLabelMsg.setBounds(new Rectangle(275, 214, 305, 20));
