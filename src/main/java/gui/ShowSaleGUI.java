@@ -98,8 +98,8 @@ public class ShowSaleGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(u != null) {
-					u.getBuyer().addSale(sale);
-					sale.setOnSale(false);
+					BLFacade facade = MainGUI.getBusinessLogic();
+					facade.addSaleToBuyer(u, sale);
 					System.out.println("Sartu da:" + u.getBuyer().doesSaleExist(s.getTitle()));
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");

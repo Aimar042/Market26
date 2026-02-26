@@ -129,10 +129,10 @@ public class ShowPurchasedListGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					// List<domain.Sale> purchaseds=facade.getPurchasedSales(jTextFieldSearch.getText(),today);
+					List<domain.Sale> purchaseds=facade.getPurchasedSales(u);
 					//TODO en vez de getPublishedSales o un nuevo metodo o directamente la lista
 					
-					List<domain.Sale> purchaseds=u.getBuyer().getBought();
+					//List<domain.Sale> purchaseds=u.getBuyer().getBought();
 
 					if (purchaseds.isEmpty()) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
 					else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));

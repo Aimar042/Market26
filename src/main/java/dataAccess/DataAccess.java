@@ -301,18 +301,34 @@ public void open(){
 	 	return sale;
 	}
 	
-	public List<Sale> getPurchasedSales(String desc, Date pubDate) {
-		System.out.println(">> DataAccess: getProducts=> from= "+desc);
+	public List<Sale> getPurchasedSales(User u) {
+		System.out.println(">> DataAccess: getProducts=> from= "+u.getName());
 
 		List<Sale> res = new ArrayList<Sale>();	
-		TypedQuery<Sale> query = db.createQuery("SELECT s FROM Sale s WHERE s.title LIKE ?1 AND s.pubDate <=?2 AND s.onSale=?3",Sale.class);   
-		query.setParameter(1, "%"+desc+"%");
-		query.setParameter(2,pubDate);
-		query.setParameter(3, false);
-		List<Sale> purchaseds = query.getResultList();
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1",User.class);   
+		query.setParameter(1, u.getName());
+		List<Sale> purchaseds = query.getResultList().get(0).getBuyer().getBought();
 	 	 for (Sale purchased:purchaseds){
 		   res.add(purchased);
 		  }
 	 	return res;
+	}
+	
+	public void addSaleToBuyer(User u, Sale s) {
+		try {
+			db.getTransaction().begin();
+
+		    Sale dbs = db.find(Sale.class, s.getSaleNumber());
+		    dbs.setOnSale(false);
+		    
+		    User dbu = db.find(User.class, u.getEmail());
+		    dbu.getBuyer().addSale(dbs);
+
+		    db.getTransaction().commit();		
+		}catch (NullPointerException e) {
+			   e.printStackTrace();
+			// TODO Auto-generated catch block
+			db.getTransaction().commit();
+		}
 	}
 }

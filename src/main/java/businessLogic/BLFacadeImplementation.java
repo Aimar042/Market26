@@ -145,11 +145,17 @@ public class BLFacadeImplementation implements BLFacade {
 	 * {@inheritDoc}
 	 */
 	@WebMethod
-	public List<Sale> getPurchasedSales(String desc, Date pubDate) {
+	public List<Sale> getPurchasedSales(User u) {
 		dbManager.open();
-		List<Sale> rides = dbManager.getPurchasedSales(desc, pubDate);
+		List<Sale> rides = dbManager.getPurchasedSales(u);
 		dbManager.close();
 		return rides;
+	}
+	
+	public void addSaleToBuyer(User u, Sale s) {
+		dbManager.open();
+		dbManager.addSaleToBuyer(u, s);
+		dbManager.close();
 	}
 
 }
