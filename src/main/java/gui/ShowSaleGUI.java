@@ -64,7 +64,7 @@ public class ShowSaleGUI extends JFrame {
 	private Sale s;
 	private User u;
 	
-	public ShowSaleGUI(Sale sale, User u) { 
+	public ShowSaleGUI(Sale sale, User u, QuerySalesGUI q) { 
 		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
@@ -101,6 +101,8 @@ public class ShowSaleGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.addSaleToBuyer(u, sale);
 					System.out.println("Sartu da:" + u.getBuyer().doesSaleExist(s.getTitle()));
+					jButtonBuy.setEnabled(false);
+					q.updateQuery();
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
 				}
