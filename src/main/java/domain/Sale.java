@@ -35,16 +35,13 @@ public class Sale implements Serializable {
 	private boolean onSale;
 	
 	@ManyToOne
-	private Seller seller;
-	
-	@ManyToOne
-	private Buyer buyer;
+	private User user;
 	
 	public Sale(){
 		super();
 	}
 		
-	public Sale(String title, String description, int status, float price, Date pubDate, File file, Seller seller, boolean onSale) {
+	public Sale(String title, String description, int status, float price, Date pubDate, File file, User user, boolean onSale) {
 		super();
 
 		this.title = title;
@@ -68,36 +65,7 @@ public class Sale implements Serializable {
 		}
 		}
 
-		this.seller = seller;
-		this.onSale = onSale;
-		
-	}
-	
-	public Sale(String title, String description, int status, float price, Date pubDate, File file, Buyer buyer, boolean onSale) {
-		super();
-
-		this.title = title;
-		this.description = description;
-		this.status = status;
-		this.price=price;
-		this.pubDate=pubDate;
-		if (file!=null) {
-		    this.fileName=file.getName();
-			try {
-				BufferedImage img1 = ImageIO.read(file);
-
-				String path="src/main/resources/images/";
-				File outputfile = new File(path+file.getName());
-		    
-		    
-			   ImageIO.write(img1, "png", outputfile);  // ignore returned boolean
-
-			} catch(IOException ex) {
-				//System.out.println("Write error for " + outputfile.getPath()  ": " + ex.getMessage());
-		}
-		}
-
-		this.buyer = buyer;
+		this.user = user;
 		this.onSale = onSale;
 		
 	}

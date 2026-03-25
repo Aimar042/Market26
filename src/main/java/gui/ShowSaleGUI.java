@@ -102,7 +102,7 @@ public class ShowSaleGUI extends JFrame {
 				if(u != null) {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.addSaleToBuyer(u, sale);
-					System.out.println("Sartu da:" + u.getBuyer().doesSaleExist(s.getTitle()));
+					System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 					jButtonBuy.setEnabled(false);
 					q.updateQuery();
 				}else {

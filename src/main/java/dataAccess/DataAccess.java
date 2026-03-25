@@ -86,17 +86,17 @@ public class DataAccess  {
 			Date today = UtilDate.trim(new Date());
 		
 			
-			user1.getSeller().addSale("futbol baloia", "oso polita, gutxi erabilita", 2, 10,  today, null,true);
-			user1.getSeller().addSale("salomon mendiko botak", "44 zenbakia, 3 ateraldi",2,  20,  today, null,true);
-			user1.getSeller().addSale("samsung 42\" telebista", "berria, erabili gabe", 1, 175,  today, null,true);
+			user1.addSale("futbol baloia", "oso polita, gutxi erabilita", 2, 10,  today, null,true);
+			user1.addSale("salomon mendiko botak", "44 zenbakia, 3 ateraldi",2,  20,  today, null,true);
+			user1.addSale("samsung 42\" telebista", "berria, erabili gabe", 1, 175,  today, null,true);
 
 
-			user2.getSeller().addSale("imac 27", "7 urte, dena ondo dabil", 1, 200,today, null,true);
-			user2.getSeller().addSale("iphone 17", "oso gutxi erabilita", 2, 400, today, null,true);
-			user2.getSeller().addSale("orbea mendiko bizikleta", "29\" 10 urte, mantenua behar du", 3,225, today, null,true);
-			user2.getSeller().addSale("polar kilor erlojua", "Vantage M, ondo dago", 3, 30, today, null,true);
+			user2.addSale("imac 27", "7 urte, dena ondo dabil", 1, 200,today, null,true);
+			user2.addSale("iphone 17", "oso gutxi erabilita", 2, 400, today, null,true);
+			user2.addSale("orbea mendiko bizikleta", "29\" 10 urte, mantenua behar du", 3,225, today, null,true);
+			user2.addSale("polar kilor erlojua", "Vantage M, ondo dago", 3, 30, today, null,true);
 
-			user3.getSeller().addSale("sukaldeko mahaia", "1.8*0.8, 4 aulkiekin. Prezio finkoa", 3,45, today, null,true);
+			user3.addSale("sukaldeko mahaia", "1.8*0.8, 4 aulkiekin. Prezio finkoa", 3,45, today, null,true);
 
 			
 			db.persist(user1);
@@ -141,12 +141,12 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			
 			User userS = db.find(User.class, sellerEmail);
-			if (userS.getSeller().doesSaleExist(title)) {
+			if (userS.doesSaleExist(title)) {
 				db.getTransaction().commit();
 				throw new SaleAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.SaleAlreadyExist"));
 			}
 
-			Sale sale = userS.getSeller().addSale(title, description, status, price, pubDate, file, true);
+			Sale sale = userS.addSale(title, description, status, price, pubDate, file, true);
 			//next instruction can be obviated
 
 			db.persist(userS); 
@@ -307,7 +307,7 @@ public void open(){
 		List<Sale> res = new ArrayList<Sale>();	
 		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1",User.class);   
 		query.setParameter(1, u.getName());
-		List<Sale> purchaseds = query.getResultList().get(0).getBuyer().getBought();
+		List<Sale> purchaseds = query.getResultList().get(0).getBought();
 	 	 for (Sale purchased:purchaseds){
 		   res.add(purchased);
 		  }
@@ -322,7 +322,7 @@ public void open(){
 		    dbs.setOnSale(false);
 		    
 		    User dbu = db.find(User.class, u.getEmail());
-		    dbu.getBuyer().addSale(dbs);
+		    dbu.addSale(dbs);
 
 		    db.getTransaction().commit();		
 		}catch (NullPointerException e) {
