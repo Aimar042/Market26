@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import businessLogic.BLFacade;
 import domain.Sale;
 import domain.User;
+import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 
 public class ShowSaleGUI extends JFrame {
@@ -62,9 +63,8 @@ public class ShowSaleGUI extends JFrame {
 	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	private Sale s;
-	private User u;
 	
-	public ShowSaleGUI(Sale sale, User u, QuerySalesGUI q) { 
+	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q) {
 		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
@@ -99,12 +99,20 @@ public class ShowSaleGUI extends JFrame {
 		jButtonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(u != null) {
+				if(name != null) {
+					// TODO (Mezua jartzea ez dagoela nahiko saldorik erosteko, 3 hizkuntzetan)
 					BLFacade facade = MainGUI.getBusinessLogic();
-					facade.addSaleToBuyer(u, sale);
-					System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
-					jButtonBuy.setEnabled(false);
-					q.updateQuery();
+					User u = facade.getUser(name);
+					System.out.println("Saldoa: " + u.getBalance());
+					if(u.getBalance() >= sale.getPrice()) {
+						facade.addSaleToBuyer(u, sale);
+						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
+						jButtonBuy.setEnabled(false);
+						q.updateQuery();
+						System.out.println("Kendu da");
+					}else {
+						System.out.println("Ez dago nahiko saldorik");
+					}
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
 				}

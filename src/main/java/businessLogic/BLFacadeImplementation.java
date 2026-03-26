@@ -158,4 +158,11 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 	}
 
+	public User getUser(String name) {
+		dbManager.open();
+		User u = dbManager.getUser(name);
+		dbManager.close();
+		return u;
+	}
+
 }

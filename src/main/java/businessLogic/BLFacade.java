@@ -83,4 +83,7 @@ public interface BLFacade {
 	
 	@WebMethod
 	public void addSaleToBuyer(User u, Sale s);
+
+	@WebMethod
+	public User getUser(String name);
 }

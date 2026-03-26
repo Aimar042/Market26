@@ -305,7 +305,7 @@ public void open(){
 		System.out.println(">> DataAccess: getProducts=> from= "+u.getName());
 
 		List<Sale> res = new ArrayList<Sale>();	
-		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1",User.class);   
+		TypedQuery<User> query = db.createQuery("SELECT u FROM User u WHERE u.name=?1",User.class);
 		query.setParameter(1, u.getName());
 		List<Sale> purchaseds = query.getResultList().get(0).getBought();
 	 	 for (Sale purchased:purchaseds){
@@ -321,14 +321,28 @@ public void open(){
 		    Sale dbs = db.find(Sale.class, s.getSaleNumber());
 		    dbs.setOnSale(false);
 		    
-		    User dbu = db.find(User.class, u.getEmail());
+		    User dbu = db.find(User.class, u.getName());
 		    dbu.addSale(dbs);
+			dbu.setBalance(dbu.getBalance() - dbs.getPrice());
 
 		    db.getTransaction().commit();		
 		}catch (NullPointerException e) {
 			   e.printStackTrace();
-			// TODO Auto-generated catch block
 			db.getTransaction().commit();
 		}
+	}
+
+	public User getUser(String name) {
+		try {
+			db.getTransaction().begin();;
+
+			User dbu = db.find(User.class, name);
+			return dbu;
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		return null;
 	}
 }

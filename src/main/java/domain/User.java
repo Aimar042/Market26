@@ -20,11 +20,12 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String email;
 	@XmlID
 	@Id
-	private String email;
 	private String name;
 	private String pass;
+	private float balance = 20;
 
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -70,6 +71,14 @@ public class User implements Serializable {
 	
 	public String toString() {
 		return email + ";" + name + ";" + sales;
+	}
+
+	public float getBalance() {
+		return this.balance;
+	}
+
+	public void setBalance(float balance) {
+		this.balance = balance;
 	}
 
 	/**
