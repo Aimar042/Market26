@@ -50,6 +50,7 @@ public class MainGUIBuyer extends JFrame {
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton jButtonShowPurchased;
+	private JButton jManageBalance;
 	
 	/**
 	 * This is the default constructor
@@ -76,7 +77,7 @@ public class MainGUIBuyer extends JFrame {
 		});
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
+		jContentPane.setLayout(new GridLayout(6, 1, 0, 0));
 		jContentPane.add(jLabelSelectOption);
 		
 		jButtonQueryQueries = new JButton();
@@ -126,6 +127,17 @@ public class MainGUIBuyer extends JFrame {
 				paintAgain();
 			}
 		});
+		
+		jManageBalance = new JButton();
+		jManageBalance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new BalanceManagerGUI(MainGUIBuyer.this, u.getEmail());
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jManageBalance.setText("Dirua Kudeatu");
+		jContentPane.add(jManageBalance);
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		
 			panel = new JPanel();
