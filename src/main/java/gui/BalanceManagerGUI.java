@@ -30,7 +30,7 @@ public class BalanceManagerGUI extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public BalanceManagerGUI(JFrame jFather, String email) {
+	public BalanceManagerGUI(JFrame jFather, String email, String name) {
 		super();
 		
 		this.userMail = email;
@@ -40,8 +40,10 @@ public class BalanceManagerGUI extends JFrame {
 		
 		jInsert = new JButton();
 		jInsert.setText("Sartu Dirua");
-		jInsert.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+		jInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new InsertMoneyGUI(name);
+				a.setVisible(true);
 			}
 		});
 		
@@ -50,14 +52,15 @@ public class BalanceManagerGUI extends JFrame {
 		
 		jWithDraw = new JButton();
 		jWithDraw.setText("Atera Dirua");
-		jWithDraw.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+		jWithDraw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new WithdrawMoneyGUI(name);
+				a.setVisible(true);
 			}
 		});
 		jContentPane.add(jWithDraw);
 		jContentPane.add(jInsert);
-		
-		
+
 		setContentPane(jContentPane);
 		
 		JButton jAtzeraEgin = new JButton();

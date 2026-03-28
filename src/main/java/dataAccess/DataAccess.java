@@ -345,4 +345,24 @@ public void open(){
 		}
 		return null;
 	}
+
+	public float changeBalance(String name, boolean isInsert, float amount) {
+		try {
+			db.getTransaction().begin();;
+
+			User dbu = db.find(User.class, name);
+			if(isInsert) {
+				dbu.setBalance(dbu.getBalance() + amount);
+			}else {
+				dbu.setBalance(dbu.getBalance() - amount);
+			}
+
+			return dbu.getBalance();
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		return Float.MIN_VALUE;
+	}
 }

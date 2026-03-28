@@ -72,7 +72,6 @@ public class MainGUIBuyer extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				JFrame a = new MainGUISeller(userMail, u);
 				a.setVisible(true);
-				dispose();
 			}
 		});
 		
@@ -82,11 +81,11 @@ public class MainGUIBuyer extends JFrame {
 		
 		jButtonQueryQueries = new JButton();
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
-		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+		jButtonQueryQueries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				JFrame a = new QuerySalesGUI(u);
-
 				a.setVisible(true);
+				dispose();
 			}
 		});
 		jContentPane.add(jButtonQueryQueries);
@@ -131,7 +130,7 @@ public class MainGUIBuyer extends JFrame {
 		jManageBalance = new JButton();
 		jManageBalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new BalanceManagerGUI(MainGUIBuyer.this, u.getEmail());
+				JFrame a = new BalanceManagerGUI(MainGUIBuyer.this, u.getEmail(), u.getName());
 				a.setVisible(true);
 				dispose();
 			}

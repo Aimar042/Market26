@@ -40,7 +40,7 @@ public class QuerySalesGUI extends JFrame {
 
 	private DefaultTableModel tableModelProducts;
 
-	private JFrame thisFrame; 
+	private JFrame jFather;
 
 	private String[] columnNamesProducts = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"), 
@@ -53,7 +53,7 @@ public class QuerySalesGUI extends JFrame {
 
 	public QuerySalesGUI(User u) {
 		tableProducts.setEnabled(false);
-		thisFrame=this;
+		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
@@ -66,8 +66,8 @@ public class QuerySalesGUI extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				thisFrame.setVisible(false);
-
+				jFather.setVisible(true);
+				dispose();
 			}
 		});		
 		

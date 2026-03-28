@@ -86,4 +86,7 @@ public interface BLFacade {
 
 	@WebMethod
 	public User getUser(String name);
+
+	@WebMethod
+	public float changeBalance(String name, boolean isInsert, float amount);
 }

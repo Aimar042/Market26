@@ -151,18 +151,28 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return rides;
 	}
-	
+
+	@WebMethod
 	public void addSaleToBuyer(User u, Sale s) {
 		dbManager.open();
 		dbManager.addSaleToBuyer(u, s);
 		dbManager.close();
 	}
 
+	@WebMethod
 	public User getUser(String name) {
 		dbManager.open();
 		User u = dbManager.getUser(name);
 		dbManager.close();
 		return u;
+	}
+
+	@Override
+	public float changeBalance(String name, boolean isInsert, float amount) {
+		dbManager.open();
+		float balance = dbManager.changeBalance(name, isInsert, amount);
+		dbManager.close();
+		return balance;
 	}
 
 }
