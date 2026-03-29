@@ -72,6 +72,7 @@ public class MainGUIBuyer extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				JFrame a = new MainGUISeller(userMail, u);
 				a.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -83,7 +84,7 @@ public class MainGUIBuyer extends JFrame {
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
 		jButtonQueryQueries.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new QuerySalesGUI(u);
+				JFrame a = new QuerySalesGUI(MainGUIBuyer.this,u);
 				a.setVisible(true);
 				dispose();
 			}
@@ -94,14 +95,27 @@ public class MainGUIBuyer extends JFrame {
 		
 		setContentPane(jContentPane);
 		
-		jButtonShowPurchased = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonShowPurchased = new JButton();
+		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
 		jButtonShowPurchased.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new ShowPurchasedListGUI(u);
+				JFrame a = new ShowPurchasedListGUI(MainGUIBuyer.this,u);
 				a.setVisible(true);
+				dispose();	
 			}
 		});
 		jContentPane.add(jButtonShowPurchased);
+		
+		jManageBalance = new JButton();
+		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
+		jManageBalance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new BalanceManagerGUI(MainGUIBuyer.this, u.getEmail(), u.getName());
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jContentPane.add(jManageBalance);
 		
 		rdbtnNewRadioButton = new JRadioButton("English");
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
@@ -126,17 +140,6 @@ public class MainGUIBuyer extends JFrame {
 				paintAgain();
 			}
 		});
-		
-		jManageBalance = new JButton();
-		jManageBalance.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new BalanceManagerGUI(MainGUIBuyer.this, u.getEmail(), u.getName());
-				a.setVisible(true);
-				dispose();
-			}
-		});
-		jManageBalance.setText("Dirua Kudeatu");
-		jContentPane.add(jManageBalance);
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		
 			panel = new JPanel();
@@ -158,6 +161,8 @@ public class MainGUIBuyer extends JFrame {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
+		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
+		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}
 	

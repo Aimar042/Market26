@@ -51,7 +51,7 @@ public class QuerySalesGUI extends JFrame {
 	private JTextField jTextFieldSearch;
 	
 
-	public QuerySalesGUI(User u) {
+	public QuerySalesGUI(JFrame jFather, User u) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);

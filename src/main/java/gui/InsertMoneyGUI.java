@@ -1,18 +1,17 @@
 package gui;
 
-import businessLogic.BLFacade;
-import domain.User;
-
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
 
 public class InsertMoneyGUI extends JFrame {
 
@@ -21,6 +20,7 @@ public class InsertMoneyGUI extends JFrame {
 	private JTextField textFieldNumber;
 	private JTextField textFieldAmount;
 	private JButton btnInsert;
+	private JFrame jFather;
 
 	/**
 	 * Launch the application.
@@ -42,26 +42,27 @@ public class InsertMoneyGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InsertMoneyGUI(String name) {
+	public InsertMoneyGUI(JFrame jFather, String name) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.jFather = jFather;
 		
 		JLabel lblAccountNumber = new JLabel();
-		lblAccountNumber.setBounds(30, 34, 153, 17);
-		lblAccountNumber.setText("Sartu kontu zenbakia:");
+		lblAccountNumber.setBounds(30, 34, 176, 17);
+		lblAccountNumber.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.CreditCard"));
 		contentPane.add(lblAccountNumber);
 		
 		JLabel lblAmount = new JLabel();
-		lblAmount.setBounds(30, 82, 153, 17);
-		lblAmount.setText("Zenbat sartu nahi duzu?");
+		lblAmount.setBounds(30, 82, 159, 17);
+		lblAmount.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.Amount"));
 		contentPane.add(lblAmount);
 		
 		textFieldNumber = new JTextField();
-		textFieldNumber.setBounds(201, 32, 114, 21);
+		textFieldNumber.setBounds(224, 32, 114, 21);
 		contentPane.add(textFieldNumber);
 		textFieldNumber.setColumns(10);
 		
@@ -70,9 +71,9 @@ public class InsertMoneyGUI extends JFrame {
 		textFieldAmount.setBounds(201, 80, 57, 21);
 		contentPane.add(textFieldAmount);
 		
-		btnInsert = new JButton("New button");
-		btnInsert.setBounds(172, 141, 106, 27);
-		btnInsert.setText("Sartu");
+		btnInsert = new JButton();
+		btnInsert.setBounds(125, 141, 190, 27);
+		btnInsert.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.Insert"));
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO (Zenbaki bat dela ziurtatzea eta float-aren castin-a egin)
@@ -83,12 +84,13 @@ public class InsertMoneyGUI extends JFrame {
 		});
 		contentPane.add(btnInsert);
 		
-		JButton btnGoBack = new JButton("New button");
+		JButton btnGoBack = new JButton();
 		btnGoBack.setBounds(30, 202, 106, 27);
-		btnGoBack.setText("Itzuli");
+		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.Close"));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				setEnabled(false);
+				jFather.setVisible(true);
 				dispose();
 			}
 		});

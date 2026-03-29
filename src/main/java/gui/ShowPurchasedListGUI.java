@@ -39,6 +39,7 @@ public class ShowPurchasedListGUI extends JFrame {
 	private DefaultTableModel tableModelProducts;
 
 	private JFrame thisFrame; 
+	private JFrame jFather;
 
 	private String[] columnNamesProducts = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"), 
@@ -68,7 +69,7 @@ public class ShowPurchasedListGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowPurchasedListGUI(User u) {
+	public ShowPurchasedListGUI(JFrame jFather, User u) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -76,6 +77,7 @@ public class ShowPurchasedListGUI extends JFrame {
 		setContentPane(contentPane);
 		tableProducts.setEnabled(false);
 		thisFrame=this;
+		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Title"));
@@ -88,7 +90,8 @@ public class ShowPurchasedListGUI extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				thisFrame.setVisible(false);
+				jFather.setVisible(true);
+				dispose();
 
 			}
 		});		

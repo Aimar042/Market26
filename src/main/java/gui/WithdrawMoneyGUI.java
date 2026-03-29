@@ -1,12 +1,18 @@
 package gui;
 
-import businessLogic.BLFacade;
-import domain.User;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.User;
 
 public class WithdrawMoneyGUI extends JFrame {
 
@@ -14,8 +20,9 @@ public class WithdrawMoneyGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNumber;
 	private JTextField textFieldAmount;
-	private JButton btnInsert;
+	private JButton btnWithdraw;
 	private JLabel lblWarning;
+	private JFrame jFather;
 
 	/**
 	 * Launch the application.
@@ -37,26 +44,27 @@ public class WithdrawMoneyGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WithdrawMoneyGUI(String name) {
+	public WithdrawMoneyGUI(JFrame jFather, String name) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.jFather = jFather;
 		
 		JLabel lblAccountNumber = new JLabel();
-		lblAccountNumber.setBounds(30, 34, 153, 17);
-		lblAccountNumber.setText("Sartu kontu zenbakia:");
+		lblAccountNumber.setBounds(30, 34, 176, 17);
+		lblAccountNumber.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.CreditCard"));
 		contentPane.add(lblAccountNumber);
 		
 		JLabel lblAmount = new JLabel();
 		lblAmount.setBounds(30, 82, 153, 17);
-		lblAmount.setText("Zenbat atera nahi duzu?");
+		lblAmount.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.Amount"));
 		contentPane.add(lblAmount);
 		
 		textFieldNumber = new JTextField();
-		textFieldNumber.setBounds(201, 32, 114, 21);
+		textFieldNumber.setBounds(224, 32, 114, 21);
 		contentPane.add(textFieldNumber);
 		textFieldNumber.setColumns(10);
 		
@@ -65,10 +73,10 @@ public class WithdrawMoneyGUI extends JFrame {
 		textFieldAmount.setBounds(201, 80, 57, 21);
 		contentPane.add(textFieldAmount);
 		
-		btnInsert = new JButton("New button");
-		btnInsert.setBounds(172, 141, 106, 27);
-		btnInsert.setText("Atera");
-		btnInsert.addActionListener(new ActionListener() {
+		btnWithdraw = new JButton();
+		btnWithdraw.setBounds(125, 141, 190, 27);
+		btnWithdraw.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.Withdraw"));
+		btnWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				// TODO (Zenbaki bat dela ziurtatzea eta float-aren castin-a egin)
 				BLFacade facade = MainGUI.getBusinessLogic();
@@ -85,14 +93,15 @@ public class WithdrawMoneyGUI extends JFrame {
 		lblWarning = new JLabel("");
 		lblWarning.setBounds(116, 112, 209, 17);
 		contentPane.add(lblWarning);
-		contentPane.add(btnInsert);
+		contentPane.add(btnWithdraw);
 		
 		JButton btnGoBack = new JButton("New button");
 		btnGoBack.setBounds(30, 202, 106, 27);
-		btnGoBack.setText("Itzuli");
+		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.Close"));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				setEnabled(false);
+				jFather.setVisible(true);
 				dispose();
 			}
 		});
