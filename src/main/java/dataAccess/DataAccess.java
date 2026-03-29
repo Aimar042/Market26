@@ -20,6 +20,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Sale;
+import domain.Transaction;
 import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
@@ -325,6 +326,9 @@ public void open(){
 		    dbu.addSale(dbs);
 			dbu.setBalance(dbu.getBalance() - dbs.getPrice());
 
+			Transaction tran = addTransactions(dbu.getName(), dbs, dbs.getPrice(), false);
+			dbu.addTransaction(tran);
+
 		    db.getTransaction().commit();		
 		}catch (NullPointerException e) {
 			   e.printStackTrace();
@@ -356,6 +360,8 @@ public void open(){
 			}else {
 				dbu.setBalance(dbu.getBalance() - amount);
 			}
+			Transaction tran = addTransactions(name, null, amount, isInsert);
+			dbu.addTransaction(tran);
 
 			return dbu.getBalance();
 		}catch (NullPointerException e) {
@@ -363,6 +369,23 @@ public void open(){
 		}finally {
 			db.getTransaction().commit();
 		}
+
 		return Float.MIN_VALUE;
+	}
+
+	public Transaction addTransactions(String name, Sale s, float amount, boolean isInsert) {
+		String tran = name + "\n";
+		if(s != null) {
+			tran += s.getSaleNumber() + "\n";
+			tran += s.getTitle() + "\n";
+		}else {
+			if(isInsert) {
+				tran += "Money Inserted\n";
+			}else {
+				tran += "Money Withdrawed\n";
+			}
+		}
+
+		return new Transaction(tran, amount);
 	}
 }

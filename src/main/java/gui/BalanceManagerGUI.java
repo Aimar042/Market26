@@ -19,6 +19,7 @@ public class BalanceManagerGUI extends JFrame {
 	private JPanel jContentPane = null;
 	private JButton jInsert = null;
 	private JButton jWithDraw = null;
+	private JButton jTransaction;
 
 	protected JLabel jLabelSelectOption;
 
@@ -48,7 +49,7 @@ public class BalanceManagerGUI extends JFrame {
 		});
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(3, 1, 0, 0));
+		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
 		
 		jWithDraw = new JButton();
 		jWithDraw.setText(ResourceBundle.getBundle("Etiquetas").getString("BalanceManagerGUI.Withdraw"));
@@ -72,6 +73,23 @@ public class BalanceManagerGUI extends JFrame {
 				dispose();
 		  }
 	    });
+		
+		// TODO Hizkuntza aldatzea
+		jTransaction = new JButton();
+		jTransaction.setText("Transakzioak Ikusi");
+		jTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					JFrame a = new TransactionGUI(BalanceManagerGUI.this, name);
+					a.setVisible(true);
+					dispose();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		jContentPane.add(jTransaction);
 		jContentPane.add(jAtzeraEgin);
 
 		setTitle(userMail);

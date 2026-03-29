@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
+import domain.Transaction;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class User implements Serializable {
@@ -34,6 +36,10 @@ public class User implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Sale> bought=new ArrayList<Sale>();
+
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Transaction> transactions = new ArrayList<Transaction>();
 
 	public User() {
 		super();
@@ -81,6 +87,10 @@ public class User implements Serializable {
 		this.balance = balance;
 	}
 
+	public List<Transaction> geTransactions() {
+		return transactions;
+	}
+
 	/**
 	 * This method creates/adds a sale to a seller
 	 * 
@@ -97,6 +107,10 @@ public class User implements Serializable {
 		Sale sale = new Sale(title, description, status, price, pubDate, file, this, onSale);
 		sales.add(sale);
 		return sale;
+	}
+
+	public void addTransaction(Transaction tran) {
+		transactions.add(tran);
 	}
 
 	/**
@@ -132,5 +146,4 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-
 }
