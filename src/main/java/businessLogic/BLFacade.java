@@ -89,4 +89,7 @@ public interface BLFacade {
 
 	@WebMethod
 	public float changeBalance(String name, boolean isInsert, float amount);
+	
+	@WebMethod
+	public Sale addReport(String header, String description, Sale s);
 }

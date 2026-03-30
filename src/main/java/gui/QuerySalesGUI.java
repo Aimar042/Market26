@@ -59,6 +59,7 @@ public class QuerySalesGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		jButtonClose.setBounds(new Rectangle(220, 379, 130, 30));
 
@@ -116,7 +117,11 @@ public class QuerySalesGUI extends JFrame {
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
-			            new ShowSaleGUI(s, u.getName(), getQuerySalesGUI());
+		            	if(u != null) {
+		            		new ShowSaleGUI(s, u.getName(), getQuerySalesGUI());
+		            	}else {
+		            		new ShowSaleGUI(s, null, getQuerySalesGUI());
+		            	}
 		            }
 		        }
 		 });

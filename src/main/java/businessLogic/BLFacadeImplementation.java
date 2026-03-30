@@ -174,5 +174,13 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return balance;
 	}
+	
+	@WebMethod
+	public Sale addReport(String header, String description, Sale s) {
+		dbManager.open();
+		Sale sale = dbManager.addReport(header, description, s);
+		dbManager.close();
+		return sale;
+	}
 
 }

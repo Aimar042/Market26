@@ -20,7 +20,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -60,6 +62,10 @@ public class ShowSaleGUI extends JFrame {
 	private JLabel jLabelError = new JLabel();
 	private JLabel statusField=new JLabel();
 	private JFrame thisFrame;
+	private JPopupMenu popupMenu;
+	private JButton btnOptions;
+	private JMenuItem JMenuReport;
+	// private JMenuItem JMenuReclamation;
 	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	private Sale s;
@@ -183,6 +189,38 @@ public class ShowSaleGUI extends JFrame {
 		
 		
 		setVisible(true);
+		
+		// TODO Hemen Hizkuntza Aldatzea flata da
+		btnOptions = new JButton("\u22EE");
+		btnOptions.setBounds(555, 12, 37, 36);
+		
+		JMenuReport = new JMenuItem("Report");
+		// JMenuReclamation = new JMenuItem("Reclamation");  Ez da beharrezkoa??? Erositakoetan jartzea????
+		
+		popupMenu = new JPopupMenu();
+		popupMenu.add(JMenuReport);
+		// popupMenu.add(JMenuReclamation); Ez da beharrezkoa??? Erositakoetan jartzea????
+		
+		JMenuReport.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JFrame a = new ReportGUI(name, s);
+		        a.setVisible(true);
+		    }
+		});
+
+		btnOptions.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        popupMenu.show(btnOptions, 0, btnOptions.getHeight()); // aparece debajo del botón
+		    }
+		});
+		
+		if(name == null) {
+			btnOptions.setEnabled(false);
+			jButtonBuy.setEnabled(false);
+		}
+		
+		getContentPane().add(btnOptions);
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)
     {
@@ -196,6 +234,5 @@ public class ShowSaleGUI extends JFrame {
 	public Date getDate() {
 		return (Date) this.s.getPublicationDate();
 	}
-	
 }
 

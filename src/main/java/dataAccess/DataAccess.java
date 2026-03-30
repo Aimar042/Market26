@@ -326,7 +326,7 @@ public void open(){
 		    dbu.addSale(dbs);
 			dbu.setBalance(dbu.getBalance() - dbs.getPrice());
 
-			Transaction tran = addTransactions(dbu.getName(), dbs, dbs.getPrice(), false);
+			Transaction tran = createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
 			dbu.addTransaction(tran);
 
 		    db.getTransaction().commit();		
@@ -337,20 +337,22 @@ public void open(){
 	}
 
 	public User getUser(String name) {
+		User dbu = null;
 		try {
 			db.getTransaction().begin();;
 
-			User dbu = db.find(User.class, name);
+			dbu = db.find(User.class, name);
 			return dbu;
 		}catch (NullPointerException e) {
 			e.printStackTrace();
 		}finally {
 			db.getTransaction().commit();
 		}
-		return null;
+		return dbu;
 	}
 
 	public float changeBalance(String name, boolean isInsert, float amount) {
+		float ema = Float.MIN_VALUE;
 		try {
 			db.getTransaction().begin();;
 
@@ -360,20 +362,21 @@ public void open(){
 			}else {
 				dbu.setBalance(dbu.getBalance() - amount);
 			}
-			Transaction tran = addTransactions(name, null, amount, isInsert);
+			Transaction tran = createTransaction(name, null, amount, isInsert);
 			dbu.addTransaction(tran);
 
-			return dbu.getBalance();
+			ema = dbu.getBalance();
+			
 		}catch (NullPointerException e) {
 			e.printStackTrace();
 		}finally {
 			db.getTransaction().commit();
 		}
 
-		return Float.MIN_VALUE;
+		return ema;
 	}
 
-	public Transaction addTransactions(String name, Sale s, float amount, boolean isInsert) {
+	public Transaction createTransaction(String name, Sale s, float amount, boolean isInsert) {
 		String tran = name + "\n";
 		if(s != null) {
 			tran += s.getSaleNumber() + "\n";
@@ -387,5 +390,24 @@ public void open(){
 		}
 
 		return new Transaction(tran, amount);
+	}
+	
+	public Sale addReport(String header, String description, Sale s) {
+		Sale dbs = null;
+		try {
+			db.getTransaction().begin();;
+
+			dbs = db.find(Sale.class, s.getSaleNumber());
+			dbs.addRport(header, description);
+			
+			System.out.println("Ezarri da Report-a");
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		
+		return dbs;
 	}
 }
