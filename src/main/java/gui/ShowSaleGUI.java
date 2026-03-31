@@ -63,12 +63,12 @@ public class ShowSaleGUI extends JFrame {
 	private JPopupMenu popupMenu;
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
-	// private JMenuItem JMenuReclamation;
+	private JMenuItem JMenuReclamation;
 	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Sale s;
 	
-	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q) {
+	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q, boolean isBought) {
 		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
@@ -187,16 +187,24 @@ public class ShowSaleGUI extends JFrame {
 		btnOptions.setBounds(555, 12, 37, 36);
 		
 		JMenuReport = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.MenuReport"));
-		// JMenuReclamation = new JMenuItem("Reclamation");  Ez da beharrezkoa??? Erositakoetan jartzea????
+		JMenuReclamation = new JMenuItem("Reclamation");
 		
 		popupMenu = new JPopupMenu();
 		popupMenu.add(JMenuReport);
-		// popupMenu.add(JMenuReclamation); Ez da beharrezkoa??? Erositakoetan jartzea????
+		popupMenu.add(JMenuReclamation);
 		
 		JMenuReport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		        JFrame a = new ReportGUI(name, s);
+		        a.setVisible(true);
+		    }
+		});
+		
+		JMenuReclamation.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JFrame a = new ReclamationGUI(name, s);
 		        a.setVisible(true);
 		    }
 		});
@@ -210,6 +218,13 @@ public class ShowSaleGUI extends JFrame {
 		if(name == null) {
 			btnOptions.setEnabled(false);
 			jButtonBuy.setEnabled(false);
+		}
+		
+		if(isBought) {
+			jButtonBuy.setVisible(false);
+			JMenuReport.setVisible(false);;
+		}else {
+			JMenuReclamation.setVisible(false);
 		}
 		
 		getContentPane().add(btnOptions);

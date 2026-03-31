@@ -8,17 +8,19 @@ import java.io.Serializable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Report implements Serializable{
+public class Reclamation implements Serializable{
 	private String description;
 	private String header;
+	private boolean status;
 
-	public Report() {
+	public Reclamation() {
 		super();
 	}
 
-	public Report(String description, String amount) {
+	public Reclamation(String description, String amount, boolean status) {
 		this.description = description;
 		this.header = amount;
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -28,7 +30,7 @@ public class Report implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getHeader() {
 		return header;
 	}
@@ -37,6 +39,14 @@ public class Report implements Serializable{
 		this.header = header;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 	public String toString() {
 		return description + "\n" + header;
 	}

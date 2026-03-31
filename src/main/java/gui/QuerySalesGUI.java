@@ -118,9 +118,9 @@ public class QuerySalesGUI extends JFrame {
 				        int row = table.rowAtPoint(point);
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
 		            	if(u != null) {
-		            		new ShowSaleGUI(s, u.getName(), getQuerySalesGUI());
+		            		new ShowSaleGUI(s, u.getName(), getQuerySalesGUI(), false);
 		            	}else {
-		            		new ShowSaleGUI(s, null, getQuerySalesGUI());
+		            		new ShowSaleGUI(s, null, getQuerySalesGUI(), false);
 		            	}
 		            }
 		        }
