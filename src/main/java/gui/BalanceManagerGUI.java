@@ -74,9 +74,8 @@ public class BalanceManagerGUI extends JFrame {
 		  }
 	    });
 		
-		// TODO Hizkuntza aldatzea
 		jTransaction = new JButton();
-		jTransaction.setText("Transakzioak Ikusi");
+		jTransaction.setText(ResourceBundle.getBundle("Etiquetas").getString("BalanceManagerGUI.ShowTransactions"));
 		jTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {

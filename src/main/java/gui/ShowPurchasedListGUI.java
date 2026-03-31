@@ -132,7 +132,6 @@ public class ShowPurchasedListGUI extends JFrame {
 					Date today = UtilDate.trim(new Date());
 
 					List<domain.Sale> purchaseds=facade.getPurchasedSales(u);
-					//TODO en vez de getPublishedSales o un nuevo metodo o directamente la lista
 					
 					//List<domain.Sale> purchaseds=u.getBuyer().getBought();
 

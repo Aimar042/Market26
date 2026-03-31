@@ -29,7 +29,6 @@ import javax.swing.JTextField;
 import businessLogic.BLFacade;
 import domain.Sale;
 import domain.User;
-import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 
 public class ShowSaleGUI extends JFrame {
@@ -58,7 +57,6 @@ public class ShowSaleGUI extends JFrame {
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 	DefaultComboBoxModel<String> statusOptions = new DefaultComboBoxModel<String>();
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 	private JLabel statusField=new JLabel();
 	private JFrame thisFrame;
@@ -66,7 +64,7 @@ public class ShowSaleGUI extends JFrame {
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
 	// private JMenuItem JMenuReclamation;
-	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy")); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Sale s;
 	
@@ -85,7 +83,7 @@ public class ShowSaleGUI extends JFrame {
 		
 		labelStatus.setText(new SimpleDateFormat("dd-MM-yyyy").format(sale.getPublicationDate()));
 		
-		jLabelTitle.setBounds(new Rectangle(6, 56, 92, 20));
+		jLabelTitle.setBounds(new Rectangle(6, 56, 140, 20));
 		
 		jLabelPrice.setBounds(new Rectangle(6, 166, 101, 20));
 		fieldPrice.setEditable(false);
@@ -106,7 +104,6 @@ public class ShowSaleGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(name != null) {
-					// TODO (Mezua jartzea ez dagoela nahiko saldorik erosteko, 3 hizkuntzetan)
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.getUser(name);
 					System.out.println("Saldoa: " + u.getBalance());
@@ -117,7 +114,7 @@ public class ShowSaleGUI extends JFrame {
 						q.updateQuery();
 						System.out.println("Kendu da");
 					}else {
-						System.out.println("Ez dago nahiko saldorik");
+						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
 					}
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
@@ -128,14 +125,10 @@ public class ShowSaleGUI extends JFrame {
 		
 		jButtonBuy.setBounds(178, 268, 105, 31);
 
-		jLabelMsg.setBounds(new Rectangle(275, 214, 305, 20));
-		jLabelMsg.setForeground(Color.red);
-
-		jLabelError.setBounds(new Rectangle(6, 231, 320, 20));
+		jLabelError.setBounds(new Rectangle(16, 236, 299, 20));
 		jLabelError.setForeground(Color.red);
 		
 
-		this.getContentPane().add(jLabelMsg, null);
 		this.getContentPane().add(jLabelError, null);
 
 		this.getContentPane().add(jButtonClose, null);
@@ -150,18 +143,18 @@ public class ShowSaleGUI extends JFrame {
 		jLabelProductStatus.setBounds(6, 187, 140, 25);
 		getContentPane().add(jLabelProductStatus);
 		
-		jLabelDescription.setBounds(6, 81, 109, 16);
+		jLabelDescription.setBounds(6, 81, 140, 16);
 		getContentPane().add(jLabelDescription);
 		fieldTitle.setEditable(false);
 		
 		
-		fieldTitle.setBounds(128, 53, 370, 26);
+		fieldTitle.setBounds(163, 54, 370, 26);
 		getContentPane().add(fieldTitle);
 		fieldTitle.setColumns(10);
 		fieldDescription.setEditable(false);
 		
 		
-		fieldDescription.setBounds(127, 81, 371, 73);
+		fieldDescription.setBounds(163, 81, 371, 73);
 		getContentPane().add(fieldDescription);
 		fieldDescription.setColumns(10);
 		
@@ -170,7 +163,7 @@ public class ShowSaleGUI extends JFrame {
 		getContentPane().add(panel_1);
 		
 		labelStatus.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		labelStatus.setBounds(37, 231, 289, 16);
+		labelStatus.setBounds(6, 218, 289, 16);
 		getContentPane().add(labelStatus);
 		
 		
@@ -190,11 +183,10 @@ public class ShowSaleGUI extends JFrame {
 		
 		setVisible(true);
 		
-		// TODO Hemen Hizkuntza Aldatzea flata da
 		btnOptions = new JButton("\u22EE");
 		btnOptions.setBounds(555, 12, 37, 36);
 		
-		JMenuReport = new JMenuItem("Report");
+		JMenuReport = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.MenuReport"));
 		// JMenuReclamation = new JMenuItem("Reclamation");  Ez da beharrezkoa??? Erositakoetan jartzea????
 		
 		popupMenu = new JPopupMenu();

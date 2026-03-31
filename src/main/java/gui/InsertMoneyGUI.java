@@ -71,21 +71,31 @@ public class InsertMoneyGUI extends JFrame {
 		textFieldAmount.setBounds(201, 80, 57, 21);
 		contentPane.add(textFieldAmount);
 		
+		JLabel lblWarning = new JLabel();
+		lblWarning.setText("");
+		lblWarning.setBounds(61, 134, 333, 17);
+		contentPane.add(lblWarning);
+		
 		btnInsert = new JButton();
-		btnInsert.setBounds(125, 141, 190, 27);
+		btnInsert.setBounds(126, 163, 190, 27);
 		btnInsert.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.Insert"));
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				// TODO (Zenbaki bat dela ziurtatzea eta float-aren castin-a egin)
-				BLFacade facade = MainGUI.getBusinessLogic();
-				float balance = facade.changeBalance(name, true, Float.parseFloat(textFieldAmount.getText()));
-				System.out.println("Balance berria: " + balance);
+				lblWarning.setText("");
+				String error = check_Field_Errors();
+				if (error != null) {
+					lblWarning.setText(error);
+				}else {
+					BLFacade facade = MainGUI.getBusinessLogic();
+					float balance = facade.changeBalance(name, true, Float.parseFloat(textFieldAmount.getText()));
+					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.AllGood") + " " + balance);
+				}
 			}
 		});
 		contentPane.add(btnInsert);
 		
 		JButton btnGoBack = new JButton();
-		btnGoBack.setBounds(30, 202, 106, 27);
+		btnGoBack.setBounds(30, 233, 106, 27);
 		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.Close"));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -95,6 +105,24 @@ public class InsertMoneyGUI extends JFrame {
 			}
 		});
 		contentPane.add(btnGoBack);
+		
+		
 
+	}
+	
+	private String check_Field_Errors() {
+		if (textFieldNumber.getText().length() == 0 || textFieldAmount.getText().length()==0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.EmptyError");
+		}else if(textFieldNumber.getText().length() != 16) {
+			return ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.NumberError");	
+		}else {
+			try {
+				Float num = Float.parseFloat(textFieldNumber.getText());
+				Float am = Float.parseFloat(textFieldAmount.getText());
+			}catch(java.lang.NumberFormatException e) {
+				return ResourceBundle.getBundle("Etiquetas").getString("InsertMoneyGUI.FormatError");	
+			}
+		}
+		return null;
 	}
 }

@@ -73,30 +73,36 @@ public class WithdrawMoneyGUI extends JFrame {
 		textFieldAmount.setBounds(201, 80, 57, 21);
 		contentPane.add(textFieldAmount);
 		
+		lblWarning = new JLabel();
+		lblWarning.setBounds(61, 134, 333, 17);
+		lblWarning.setText("");
+		contentPane.add(lblWarning);
+		
 		btnWithdraw = new JButton();
-		btnWithdraw.setBounds(125, 141, 190, 27);
+		btnWithdraw.setBounds(126, 163, 190, 27);
 		btnWithdraw.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.Withdraw"));
 		btnWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				// TODO (Zenbaki bat dela ziurtatzea eta float-aren castin-a egin)
-				BLFacade facade = MainGUI.getBusinessLogic();
-				User z = facade.getUser(name);
-				if(Float.parseFloat(textFieldAmount.getText()) <= z.getBalance()) {
-					float balance = facade.changeBalance(name, false, Float.parseFloat(textFieldAmount.getText()));
-					System.out.println("Balance berria: " + balance);
+				lblWarning.setText("");
+				String error = check_Field_Errors();
+				if (error != null) {
+					lblWarning.setText(error);
 				}else {
-					System.out.println("Ez dago saldo nahikorik, dagoena: " + z.getBalance());
+					BLFacade facade = MainGUI.getBusinessLogic();
+					User z = facade.getUser(name);
+					if(Float.parseFloat(textFieldAmount.getText()) <= z.getBalance()) {
+						float balance = facade.changeBalance(name, false, Float.parseFloat(textFieldAmount.getText()));
+						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.AllGood") + " " + balance);
+					}else {
+						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.BalanceError") + " " + z.getBalance());
+					}
 				}
 			}
 		});
-		
-		lblWarning = new JLabel("");
-		lblWarning.setBounds(116, 112, 209, 17);
-		contentPane.add(lblWarning);
 		contentPane.add(btnWithdraw);
 		
 		JButton btnGoBack = new JButton("New button");
-		btnGoBack.setBounds(30, 202, 106, 27);
+		btnGoBack.setBounds(30, 233, 106, 27);
 		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.Close"));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -107,5 +113,21 @@ public class WithdrawMoneyGUI extends JFrame {
 		});
 		contentPane.add(btnGoBack);
 
+	}
+	
+	private String check_Field_Errors() {
+		if (textFieldNumber.getText().length() == 0 || textFieldAmount.getText().length()==0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.EmptyError");
+		}else if(textFieldNumber.getText().length() != 16) {
+			return ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.NumberError");	
+		}else {
+			try {
+				Float num = Float.parseFloat(textFieldNumber.getText());
+				Float am = Float.parseFloat(textFieldAmount.getText());
+			}catch(java.lang.NumberFormatException e) {
+				return ResourceBundle.getBundle("Etiquetas").getString("WithdrawMoneyGUI.FormatError");	
+			}
+		}
+		return null;
 	}
 }

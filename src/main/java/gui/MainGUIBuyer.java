@@ -61,10 +61,9 @@ public class MainGUIBuyer extends JFrame {
 		this.userMail=mail;
 		
 		this.setSize(495, 290);
-		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Buyer"));
-		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
-		jLabelSelectOption.setForeground(Color.BLACK);
-		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		jContentPane = new JPanel();
+		jContentPane.setLayout(new GridLayout(6, 1, 0, 0));
 		
 		jButtonChangeMode = new JButton();
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
@@ -75,10 +74,12 @@ public class MainGUIBuyer extends JFrame {
 				dispose();
 			}
 		});
-		
-		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(6, 1, 0, 0));
+		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Buyer"));
+		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
+		jLabelSelectOption.setForeground(Color.BLACK);
+		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		jContentPane.add(jLabelSelectOption);
+		jContentPane.add(jButtonChangeMode);
 		
 		jButtonQueryQueries = new JButton();
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
@@ -90,7 +91,6 @@ public class MainGUIBuyer extends JFrame {
 			}
 		});
 		jContentPane.add(jButtonQueryQueries);
-		jContentPane.add(jButtonChangeMode);
 		
 		
 		setContentPane(jContentPane);

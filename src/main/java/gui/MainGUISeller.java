@@ -103,6 +103,10 @@ public class MainGUISeller extends JFrame {
 			}
 		});
 		
+		jContentPane = new JPanel();
+		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+		jContentPane.add(jLabelSelectOption);
+		
 		jButtonChangeMode = new JButton();
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +116,8 @@ public class MainGUISeller extends JFrame {
 				dispose();
 			}
 		});
-		
-		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
-		jContentPane.add(jLabelSelectOption);
-		jContentPane.add(jButtonCreateQuery);
 		jContentPane.add(jButtonChangeMode);
+		jContentPane.add(jButtonCreateQuery);
 		jContentPane.add(panel);
 		
 		
