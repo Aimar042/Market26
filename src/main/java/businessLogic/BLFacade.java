@@ -92,4 +92,7 @@ public interface BLFacade {
 	
 	@WebMethod
 	public Sale addReport(String header, String description, Sale s);
+	
+	@WebMethod
+	public Sale addReclamation(String header, String description, Sale s,boolean status);
 }

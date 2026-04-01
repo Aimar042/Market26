@@ -47,6 +47,10 @@ public class Sale implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Report> reports = new ArrayList<Report>();
 	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Reclamation> reclamations = new ArrayList<Reclamation>();
+	
 	public Sale(){
 		super();
 	}
@@ -244,6 +248,11 @@ public class Sale implements Serializable {
 		reports.add(new Report(header, description));
 	}
 
-
+	public void addReclamation(String header, String description, boolean status) {
+		reclamations.add(new Reclamation(header, description, status));
+	}
 	
+	public List<Reclamation> getReclamations(){
+		return this.reclamations;
+	}
 }

@@ -182,5 +182,13 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return sale;
 	}
+	
+	@WebMethod
+	public Sale addReclamation(String header, String description, Sale s,boolean status) {
+		dbManager.open();
+		Sale sale = dbManager.addReclamation(header, description, s, status);
+		dbManager.close();
+		return sale;
+	}
 
 }

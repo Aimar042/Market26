@@ -410,4 +410,23 @@ public void open(){
 		
 		return dbs;
 	}
+
+	public Sale addReclamation(String header, String description, Sale s,boolean status) {
+		Sale dbs = null;
+		try {
+			db.getTransaction().begin();;
+
+			dbs = db.find(Sale.class, s.getSaleNumber());
+			dbs.addReclamation(header, description, status);
+			
+			System.out.println("Ezarri da Report-a");
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		
+		return dbs;
+	}
 }

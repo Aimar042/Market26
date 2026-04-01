@@ -184,7 +184,7 @@ public class ShowSaleGUI extends JFrame {
 		setVisible(true);
 		
 		btnOptions = new JButton("\u22EE");
-		btnOptions.setBounds(555, 12, 37, 36);
+		btnOptions.setBounds(555, 24, 37, 36);
 		
 		JMenuReport = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.MenuReport"));
 		JMenuReclamation = new JMenuItem("Reclamation");

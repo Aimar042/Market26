@@ -21,11 +21,11 @@ public class ReclamationGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextArea textReport;
+	private JTextArea textReclamation;
 	private JScrollPane scrollPane;
 	private JLabel lblTitle;
 	private JTextArea textAreaTitle;
-	private JButton btnReport;
+	private JButton btnReclamation;
 	private JLabel lblWarning;
 
 	/**
@@ -77,10 +77,10 @@ public class ReclamationGUI extends JFrame {
 		contentPane.add(lblTitle);
 		contentPane.add(btnGoBack);
 		
-		textReport = new JTextArea();
-		textReport.setEditable(true);
+		textReclamation = new JTextArea();
+		textReclamation.setEditable(true);
 
-		scrollPane = new JScrollPane(textReport);
+		scrollPane = new JScrollPane(textReclamation);
 		scrollPane.setBounds(195, 45, 240, 100);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		contentPane.add(scrollPane); 
@@ -95,27 +95,27 @@ public class ReclamationGUI extends JFrame {
 		lblWarning.setBounds(154, 207, 281, 17);
 		contentPane.add(lblWarning);
 		
-		btnReport = new JButton(); 
-		btnReport.setBounds(263, 157, 106, 27);
-		btnReport.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Report"));
-		btnReport.addActionListener(new ActionListener() {
+		btnReclamation = new JButton(); 
+		btnReclamation.setBounds(263, 157, 106, 27);
+		btnReclamation.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Report"));
+		btnReclamation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String error = check_Field_Errors();
 				if (error != null) {
 					lblWarning.setText(error);
 				}else {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					Sale sale = facade.addReport(textAreaTitle.getText(), textReport.getText(), s);
+					Sale sale = facade.addReclamation(textAreaTitle.getText(), textReclamation.getText(), s, false);
 					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
-					System.out.println(sale.getRports().size());
+					System.out.println(sale.getReclamations().size());
 				}
 			}
 		});
-		contentPane.add(btnReport);
+		contentPane.add(btnReclamation);
 	}
 	
 	private String check_Field_Errors() {
-		if (textAreaTitle.getText().length() == 0 || textReport.getText().length()==0) {
+		if (textAreaTitle.getText().length() == 0 || textReclamation.getText().length()==0) {
 			return ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.EmptyError");
 		}
 		return null;
