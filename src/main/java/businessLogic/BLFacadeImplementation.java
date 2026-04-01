@@ -12,6 +12,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import dataAccess.DataAccess;
+import domain.Admin;
+import domain.Report;
 import domain.Sale;
 import domain.User;
 import exceptions.FileNotUploadedException;
@@ -176,9 +178,9 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 	
 	@WebMethod
-	public Sale addReport(String header, String description, Sale s) {
+	public Sale addReport(String header, String description, Sale s, String userName) {
 		dbManager.open();
-		Sale sale = dbManager.addReport(header, description, s);
+		Sale sale = dbManager.addReport(header, description, s, userName);
 		dbManager.close();
 		return sale;
 	}
@@ -189,6 +191,29 @@ public class BLFacadeImplementation implements BLFacade {
 		Sale sale = dbManager.addReclamation(header, description, s, status);
 		dbManager.close();
 		return sale;
+	}
+	
+	@WebMethod
+	public Admin isAdmin(String log, String pass) {
+		dbManager.open();
+		Admin a = dbManager.isAdmin(log, pass);
+		dbManager.close();
+		return a;
+	}
+	
+	@WebMethod
+	public List<Report> getAllReports() {
+		dbManager.open();
+		List<Report> r = dbManager.getAllReports();
+		dbManager.close();
+		return r;
+	}
+	
+	@WebMethod
+	public void removeReport(int saleNumber, int reportNumber) {
+		dbManager.open();
+		dbManager.removeReport(saleNumber, reportNumber);
+		dbManager.close();
 	}
 
 }

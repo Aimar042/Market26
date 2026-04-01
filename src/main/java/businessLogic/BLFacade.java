@@ -8,6 +8,8 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import domain.Admin;
+import domain.Report;
 import domain.Sale;
 import domain.User;
 import exceptions.FileNotUploadedException;
@@ -91,8 +93,17 @@ public interface BLFacade {
 	public float changeBalance(String name, boolean isInsert, float amount);
 	
 	@WebMethod
-	public Sale addReport(String header, String description, Sale s);
+	public Sale addReport(String header, String description, Sale s, String userName);
 	
 	@WebMethod
 	public Sale addReclamation(String header, String description, Sale s,boolean status);
+	
+	@WebMethod
+	public Admin isAdmin(String log, String pass);
+	
+	@WebMethod
+	public List<Report> getAllReports();
+	
+	@WebMethod
+	public void removeReport(int saleNumber, int reportNumber);
 }

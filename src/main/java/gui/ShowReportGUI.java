@@ -15,9 +15,10 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Report;
 import domain.Sale;
 
-public class ReportGUI extends JFrame {
+public class ShowReportGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,7 +26,7 @@ public class ReportGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JLabel lblTitle;
 	private JTextArea textAreaTitle;
-	private JButton btnReport;
+	private JButton btnRemove;
 	private JLabel lblWarning;
 
 	/**
@@ -48,7 +49,8 @@ public class ReportGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReportGUI(String name, Sale s) {
+	public ShowReportGUI(Report r, QueryReportsGUI q) {
+		// TODO Etiketak Jartzea
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -57,7 +59,7 @@ public class ReportGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblReason = new JLabel();
-		lblReason.setBounds(30, 45, 167, 17);
+		lblReason.setBounds(30, 67, 167, 17);
 		lblReason.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Reason")); //$NON-NLS-1$ //$NON-NLS-2$
 		contentPane.add(lblReason);
 		
@@ -70,53 +72,64 @@ public class ReportGUI extends JFrame {
 			}
 		});
 		
+		JTextArea textAreaName = new JTextArea();
+		textAreaName.setEditable(false);
+		textAreaName.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+		textAreaName.setBounds(195, 9, 239, 17);
+		textAreaName.setText(r.getUserName());
+		contentPane.add(textAreaName);
+		
 		lblTitle = new JLabel();
 		lblTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Header")); 
-		lblTitle.setBounds(30, 12, 167, 17);
+		lblTitle.setBounds(30, 38, 167, 17);
 		contentPane.add(lblTitle);
 		contentPane.add(btnGoBack);
 		
 		textReport = new JTextArea();
-		textReport.setEditable(true);
+		textReport.setText(r.getDescription());
+		textReport.setEditable(false);
 
 		scrollPane = new JScrollPane(textReport);
-		scrollPane.setBounds(195, 45, 240, 100);
+		scrollPane.setBounds(195, 67, 240, 80);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		contentPane.add(scrollPane); 
 		
 		textAreaTitle = new JTextArea();
-		textAreaTitle.setEditable(true);
-		textAreaTitle.setBounds(196, 12, 239, 17);
+		textAreaTitle.setEditable(false);
+		textAreaTitle.setBounds(196, 38, 239, 17);
 		textAreaTitle.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+		textAreaTitle.setText(r.getHeader());
 		contentPane.add(textAreaTitle);
 		
 		lblWarning = new JLabel();
 		lblWarning.setBounds(154, 207, 281, 17);
 		contentPane.add(lblWarning);
 		
-		btnReport = new JButton(); 
-		btnReport.setBounds(263, 157, 106, 27);
-		btnReport.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Report"));
-		btnReport.addActionListener(new ActionListener() {
+		btnRemove = new JButton(); 
+		btnRemove.setBounds(263, 168, 106, 27);
+		btnRemove.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Report"));
+		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				String error = check_Field_Errors();
-				if (error != null) {
-					lblWarning.setText(error);
-				}else {
-					BLFacade facade = MainGUI.getBusinessLogic();
-					Sale sale = facade.addReport(textAreaTitle.getText(), textReport.getText(), s, name);
-					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
-					System.out.println(sale.getRports().size());
-				}
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.removeReport(r.getSaleNumber(), r.getReportNumber());;
+				lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
+				System.out.println("Kendu Da");
+				q.updateQuery();
 			}
 		});
-		contentPane.add(btnReport);
+		contentPane.add(btnRemove);
+		
+		JLabel lblName = new JLabel("Name:"); //$NON-NLS-1$ //$NON-NLS-2$
+		lblName.setBounds(30, 9, 167, 17);
+		contentPane.add(lblName);
 	}
 	
+	/*
 	private String check_Field_Errors() {
 		if (textAreaTitle.getText().length() == 0 || textReport.getText().length()==0) {
 			return ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.EmptyError");
 		}
 		return null;
 	}
+	*/
 }

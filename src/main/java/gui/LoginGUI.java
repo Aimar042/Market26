@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Admin;
 import domain.User;
 
 public class LoginGUI extends JFrame {
@@ -92,6 +93,13 @@ public class LoginGUI extends JFrame {
 						jFather.dispose();
 						dispose();
 					}else {
+						Admin a = facade.isAdmin(textFieldLogin.getText(), passwordFieldPass.getText());
+						if(a != null) {
+							JFrame f = new AdminGUI(a.getEmail(), a.getName());
+							f.setVisible(true);
+							jFather.dispose();
+							dispose();
+						}
 						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NotExist"));
 					}
 				}

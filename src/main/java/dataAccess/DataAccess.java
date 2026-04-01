@@ -19,6 +19,8 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Admin;
+import domain.Report;
 import domain.Sale;
 import domain.Transaction;
 import domain.User;
@@ -78,6 +80,8 @@ public class DataAccess  {
 
 		try { 
 	       
+			Admin admin1 = new Admin("a", "a", "a");
+			
 		    //Create sellers 
 			User user1=new User("seller1@gmail.com","Aitor Fernandez", "Bibi");
 			User user2=new User("seller22@gmail.com","Ane Gaztañaga", "Bibi");
@@ -99,12 +103,13 @@ public class DataAccess  {
 
 			user3.addSale("sukaldeko mahaia", "1.8*0.8, 4 aulkiekin. Prezio finkoa", 3,45, today, null,true);
 
-			
+		
 			db.persist(user1);
 			db.persist(user2);
 			db.persist(user3);
 
-	
+			db.persist(admin1);
+			
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
 		}
@@ -259,6 +264,14 @@ public void open(){
 		else return null;
 	}
 	
+	public Admin isAdmin(String log, String pass) {
+		TypedQuery<Admin> query = db.createQuery("SELECT a FROM Admin a WHERE a.name=?1 AND a.pass=?2",Admin.class);   
+		query.setParameter(1, log);
+		query.setParameter(2, pass);
+		if (!query.getResultList().isEmpty()) return query.getResultList().get(0);
+		else return null;
+	}
+	
 	public void register (String email, String reg, String pass) {
 		db.getTransaction().begin();
 		// TODO
@@ -392,13 +405,13 @@ public void open(){
 		return new Transaction(tran, amount);
 	}
 	
-	public Sale addReport(String header, String description, Sale s) {
+	public Sale addReport(String header, String description, Sale s, String userName) {
 		Sale dbs = null;
 		try {
 			db.getTransaction().begin();;
 
 			dbs = db.find(Sale.class, s.getSaleNumber());
-			dbs.addRport(header, description);
+			dbs.addRport(header, description, userName, s.getSaleNumber());
 			
 			System.out.println("Ezarri da Report-a");
 			
@@ -429,4 +442,30 @@ public void open(){
 		
 		return dbs;
 	}
+	
+	public List<Report> getAllReports() {
+	    TypedQuery<Report> query = db.createQuery("SELECT r FROM Report r", Report.class);
+	    if(!query.getResultList().isEmpty()) return query.getResultList();
+	    return null;
+	}
+	
+	public void removeReport(int saleNumber, int reportNumber) {
+		try {
+			db.getTransaction().begin();;
+
+			Sale dbs = db.find(Sale.class, saleNumber);
+			Report dbr = db.find(Report.class, reportNumber);
+			
+			dbs.getRports().remove(dbr);
+			db.remove(dbr);
+			
+			System.out.println("Kendu da Report-a");
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+	}
+	
 }

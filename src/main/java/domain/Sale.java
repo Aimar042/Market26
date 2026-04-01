@@ -244,8 +244,8 @@ public class Sale implements Serializable {
 		return this.reports;
 	}
 
-	public void addRport(String header, String description) {
-		reports.add(new Report(header, description));
+	public void addRport(String header, String description, String userName, int saleNumber) {
+		reports.add(new Report(header, description, userName, saleNumber));
 	}
 
 	public void addReclamation(String header, String description, boolean status) {
