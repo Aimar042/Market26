@@ -95,7 +95,7 @@ public class ReclamationGUI extends JFrame {
 		contentPane.add(lblWarning);
 		
 		btnReclamation = new JButton(); 
-		btnReclamation.setBounds(263, 157, 106, 27);
+		btnReclamation.setBounds(248, 156, 128, 27);
 		btnReclamation.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.Reclamation"));
 		btnReclamation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
