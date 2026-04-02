@@ -49,7 +49,6 @@ public class ReclamationGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ReclamationGUI(String name, Sale s) {
-		// TODO Etiketak aldatzea eta ikusta ea beharrezkoa den description edo reason (header-ekin aldatuz, Reclamation klasean ere)
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,12 +58,12 @@ public class ReclamationGUI extends JFrame {
 		
 		JLabel lblReason = new JLabel();
 		lblReason.setBounds(30, 45, 167, 17);
-		lblReason.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Reason")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblReason.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.Reason"));
 		contentPane.add(lblReason);
 		
 		JButton btnGoBack = new JButton();
 		btnGoBack.setBounds(30, 202, 106, 27);
-		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Close"));
+		btnGoBack.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.Close"));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				dispose();
@@ -72,7 +71,7 @@ public class ReclamationGUI extends JFrame {
 		});
 		
 		lblTitle = new JLabel();
-		lblTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Header")); 
+		lblTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.Header")); 
 		lblTitle.setBounds(30, 12, 167, 17);
 		contentPane.add(lblTitle);
 		contentPane.add(btnGoBack);
@@ -97,7 +96,7 @@ public class ReclamationGUI extends JFrame {
 		
 		btnReclamation = new JButton(); 
 		btnReclamation.setBounds(263, 157, 106, 27);
-		btnReclamation.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Report"));
+		btnReclamation.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.Reclamation"));
 		btnReclamation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String error = check_Field_Errors();
@@ -106,7 +105,7 @@ public class ReclamationGUI extends JFrame {
 				}else {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Sale sale = facade.addReclamation(textAreaTitle.getText(), textReclamation.getText(), s, false);
-					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
+					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.AllGood"));
 					System.out.println(sale.getReclamations().size());
 				}
 			}
@@ -116,7 +115,7 @@ public class ReclamationGUI extends JFrame {
 	
 	private String check_Field_Errors() {
 		if (textAreaTitle.getText().length() == 0 || textReclamation.getText().length()==0) {
-			return ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.EmptyError");
+			return ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.EmptyError");
 		}
 		return null;
 	}
