@@ -25,7 +25,7 @@ public class Report implements Serializable{
 		super();
 	}
 
-	public Report(String description, String header, String userName, int saleNumber) {
+	public Report(String header, String description, String userName, int saleNumber) {
 		this.description = description;
 		this.header = header;
 		this.userName = userName;

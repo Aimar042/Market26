@@ -27,7 +27,7 @@ public class User implements Serializable {
 	@Id
 	private String name;
 	private String pass;
-	private float balance = 20;
+	private float balance = 2000;
 
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)

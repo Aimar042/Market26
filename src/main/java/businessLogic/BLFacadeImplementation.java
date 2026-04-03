@@ -13,6 +13,7 @@ import javax.jws.WebService;
 
 import dataAccess.DataAccess;
 import domain.Admin;
+import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
 import domain.User;
@@ -186,9 +187,9 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 	
 	@WebMethod
-	public Sale addReclamation(String header, String description, Sale s,boolean status) {
+	public Sale addReclamation(String header, String description, Sale s, String userName) {
 		dbManager.open();
-		Sale sale = dbManager.addReclamation(header, description, s, status);
+		Sale sale = dbManager.addReclamation(header, description, s, userName);
 		dbManager.close();
 		return sale;
 	}
@@ -214,6 +215,37 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.open();
 		dbManager.removeReport(saleNumber, reportNumber);
 		dbManager.close();
+	}
+	
+	@WebMethod
+	public List<Reclamation> getAllReclamations() {
+		dbManager.open();
+		List<Reclamation> r = dbManager.getAllReclamations();
+		dbManager.close();
+		return r;
+	}
+	
+	@WebMethod
+	public void removeReclamation(int saleNumber, int reclamationNumber) {
+		dbManager.open();
+		dbManager.removeReclamaton(saleNumber, reclamationNumber);
+		dbManager.close();
+	}
+	
+	@WebMethod
+	public Reclamation changeStatus(int reclamationNumber, boolean status) {
+		dbManager.open();
+		Reclamation r = dbManager.changeStatus(reclamationNumber, status);
+		dbManager.close();
+		return r;
+	}
+	
+	@WebMethod
+	public Reclamation getReclamation(int reclamationNumber) {
+		dbManager.open();
+		Reclamation r = dbManager.getReclamation(reclamationNumber);
+		dbManager.close();
+		return r;
 	}
 
 }

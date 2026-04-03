@@ -104,7 +104,8 @@ public class ReclamationGUI extends JFrame {
 					lblWarning.setText(error);
 				}else {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					Sale sale = facade.addReclamation(textAreaTitle.getText(), textReclamation.getText(), s, false);
+					Sale sale = facade.addReclamation(textAreaTitle.getText(), textReclamation.getText(), s, name);
+					btnReclamation.setEnabled(false);
 					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReclamationGUI.AllGood"));
 					System.out.println(sale.getReclamations().size());
 				}

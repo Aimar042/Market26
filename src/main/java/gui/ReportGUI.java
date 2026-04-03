@@ -105,6 +105,7 @@ public class ReportGUI extends JFrame {
 				}else {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Sale sale = facade.addReport(textAreaTitle.getText(), textReport.getText(), s, name);
+					btnReport.setEnabled(false);
 					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
 					System.out.println(sale.getRports().size());
 				}

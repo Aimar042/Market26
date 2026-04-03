@@ -9,6 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import domain.Admin;
+import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
 import domain.User;
@@ -96,7 +97,7 @@ public interface BLFacade {
 	public Sale addReport(String header, String description, Sale s, String userName);
 	
 	@WebMethod
-	public Sale addReclamation(String header, String description, Sale s,boolean status);
+	public Sale addReclamation(String header, String description, Sale s, String userName);
 	
 	@WebMethod
 	public Admin isAdmin(String log, String pass);
@@ -106,4 +107,17 @@ public interface BLFacade {
 	
 	@WebMethod
 	public void removeReport(int saleNumber, int reportNumber);
+	
+	@WebMethod
+	public List<Reclamation> getAllReclamations();
+	
+	@WebMethod
+	public void removeReclamation(int saleNumber, int reclamationNumber);
+	
+	@WebMethod
+	public Reclamation changeStatus(int reclamationNumber, boolean status);
+	
+	@WebMethod
+	public Reclamation getReclamation(int reclamationNumber);
+	
 }

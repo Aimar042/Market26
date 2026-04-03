@@ -20,6 +20,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Admin;
+import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
 import domain.Transaction;
@@ -86,6 +87,7 @@ public class DataAccess  {
 			User user1=new User("seller1@gmail.com","Aitor Fernandez", "Bibi");
 			User user2=new User("seller22@gmail.com","Ane Gaztañaga", "Bibi");
 			User user3=new User("seller3@gmail.com","Test Seller", "Bibi");
+			User user4=new User("b", "b", "b");
 
 			//Create products
 			Date today = UtilDate.trim(new Date());
@@ -107,6 +109,7 @@ public class DataAccess  {
 			db.persist(user1);
 			db.persist(user2);
 			db.persist(user3);
+			db.persist(user4);
 
 			db.persist(admin1);
 			
@@ -411,7 +414,7 @@ public void open(){
 			db.getTransaction().begin();;
 
 			dbs = db.find(Sale.class, s.getSaleNumber());
-			dbs.addRport(header, description, userName, s.getSaleNumber());
+			dbs.addRport(header, description, userName);
 			
 			System.out.println("Ezarri da Report-a");
 			
@@ -424,13 +427,13 @@ public void open(){
 		return dbs;
 	}
 
-	public Sale addReclamation(String header, String description, Sale s,boolean status) {
+	public Sale addReclamation(String header, String description, Sale s, String userName) {
 		Sale dbs = null;
 		try {
 			db.getTransaction().begin();;
 
 			dbs = db.find(Sale.class, s.getSaleNumber());
-			dbs.addReclamation(header, description, status);
+			dbs.addReclamation(header, description, false, userName);
 			
 			System.out.println("Ezarri da Report-a");
 			
@@ -457,7 +460,6 @@ public void open(){
 			Report dbr = db.find(Report.class, reportNumber);
 			
 			dbs.getRports().remove(dbr);
-			db.remove(dbr);
 			
 			System.out.println("Kendu da Report-a");
 			
@@ -466,6 +468,65 @@ public void open(){
 		}finally {
 			db.getTransaction().commit();
 		}
+	}
+	
+	public List<Reclamation> getAllReclamations() {
+	    TypedQuery<Reclamation> query = db.createQuery("SELECT r FROM Reclamation r", Reclamation.class);
+	    if(!query.getResultList().isEmpty()) return query.getResultList();
+	    return null;
+	}
+	
+	public void removeReclamaton(int saleNumber, int reclamationNumber) {
+		try {
+			db.getTransaction().begin();;
+
+			Sale dbs = db.find(Sale.class, saleNumber);
+			Reclamation dbr = db.find(Reclamation.class, reclamationNumber);
+			
+			dbs.getReclamations().remove(dbr);
+			
+			System.out.println("Kendu da Reclamation-a");
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+	}
+	
+	public Reclamation changeStatus(int reclamationNumber, boolean status) {
+		Reclamation dbr = null;
+		try {
+			db.getTransaction().begin();;
+			
+			dbr = db.find(Reclamation.class, reclamationNumber);
+			dbr.setStatus(status);
+			
+			System.out.println("Aldatu da Reclamation-aren status: " + dbr.isStatus());
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		
+		return dbr;
+	}
+	
+	public Reclamation getReclamation(int reclamationNumber) {
+		Reclamation dbr = null;
+		try {
+			db.getTransaction().begin();;
+			
+			dbr = db.find(Reclamation.class, reclamationNumber);
+			
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		
+		return dbr;
 	}
 	
 }

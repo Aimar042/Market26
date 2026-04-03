@@ -44,11 +44,11 @@ public class Sale implements Serializable {
 	private User user;
 	
 	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, orphanRemoval = true)
 	private List<Report> reports = new ArrayList<Report>();
 	
 	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, orphanRemoval = true)
 	private List<Reclamation> reclamations = new ArrayList<Reclamation>();
 	
 	public Sale(){
@@ -244,12 +244,12 @@ public class Sale implements Serializable {
 		return this.reports;
 	}
 
-	public void addRport(String header, String description, String userName, int saleNumber) {
-		reports.add(new Report(header, description, userName, saleNumber));
+	public void addRport(String header, String description, String userName) {
+		reports.add(new Report(header, description, userName, getSaleNumber()));
 	}
 
-	public void addReclamation(String header, String description, boolean status) {
-		reclamations.add(new Reclamation(header, description, status));
+	public void addReclamation(String header, String description, boolean status, String userName) {
+		reclamations.add(new Reclamation(header, description, status, userName, getSaleNumber()));
 	}
 	
 	public List<Reclamation> getReclamations(){

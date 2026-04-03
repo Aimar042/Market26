@@ -23,23 +23,24 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
 import domain.User;
 
 
-public class QueryReportsGUI extends JFrame {
+public class QueryReclamationsGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelReports = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
+	private final JLabel jLabelReclamations = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
-	private JScrollPane scrollPanelReports = new JScrollPane();
-	private JTable tableReports= new JTable();
+	private JScrollPane scrollPanelReclamations = new JScrollPane();
+	private JTable tableReclamations= new JTable();
 
-	private DefaultTableModel tableModelReports;
+	private DefaultTableModel tableModelReclamations;
 
 	private JFrame jFather;
 
@@ -52,14 +53,14 @@ public class QueryReportsGUI extends JFrame {
 	};
 	
 
-	public QueryReportsGUI(JFrame jFather, String name) {
-		tableReports.setEnabled(false);
+	public QueryReclamationsGUI(JFrame jFather, String name) {
+		tableReclamations.setEnabled(false);
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
-		jLabelReports.setBounds(108, 71, 427, 16);
-		this.getContentPane().add(jLabelReports);
+		jLabelReclamations.setBounds(108, 71, 427, 16);
+		this.getContentPane().add(jLabelReclamations);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		jButtonClose.setBounds(new Rectangle(276, 342, 130, 30));
@@ -75,24 +76,24 @@ public class QueryReportsGUI extends JFrame {
 		
 		this.getContentPane().add(jButtonClose, null);
 
-		scrollPanelReports.setBounds(new Rectangle(108, 100, 492, 150));
+		scrollPanelReclamations.setBounds(new Rectangle(108, 100, 492, 150));
 
-		scrollPanelReports.setViewportView(tableReports);
-		tableModelReports = new DefaultTableModel(null, columnNamesProducts);
+		scrollPanelReclamations.setViewportView(tableReclamations);
+		tableModelReclamations = new DefaultTableModel(null, columnNamesProducts);
 
-		tableReports.setModel(tableModelReports);
+		tableReclamations.setModel(tableModelReclamations);
 
-		tableModelReports.setDataVector(null, columnNamesProducts);
-		tableModelReports.setColumnCount(4); // another column added to allocate ride objects
+		tableModelReclamations.setDataVector(null, columnNamesProducts);
+		tableModelReclamations.setColumnCount(4); // another column added to allocate ride objects
 
-		tableReports.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tableReports.getColumnModel().getColumn(1).setPreferredWidth(150);
-		tableReports.getColumnModel().getColumn(2).setPreferredWidth(240);
+		tableReclamations.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tableReclamations.getColumnModel().getColumn(1).setPreferredWidth(150);
+		tableReclamations.getColumnModel().getColumn(1).setPreferredWidth(240);
 
 
-		tableReports.getColumnModel().removeColumn(tableReports.getColumnModel().getColumn(3)); // not shown in JTable
+		tableReclamations.getColumnModel().removeColumn(tableReclamations.getColumnModel().getColumn(3)); // not shown in JTable
 
-		this.getContentPane().add(scrollPanelReports, null);
+		this.getContentPane().add(scrollPanelReclamations, null);
 		
 		 jButtonSearch.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
@@ -103,7 +104,7 @@ public class QueryReportsGUI extends JFrame {
 		getContentPane().add(jButtonSearch);
 		
 	    
-		tableReports.addMouseListener(new MouseAdapter() {
+		tableReclamations.addMouseListener(new MouseAdapter() {
 		        @Override
 		        public void mousePressed(MouseEvent mouseEvent) {
 		            
@@ -112,8 +113,8 @@ public class QueryReportsGUI extends JFrame {
 				        JTable table =(JTable) mouseEvent.getSource();
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
-		            	Report r=(Report) tableModelReports.getValueAt(row, 3);
-		            	JFrame a = new ShowReportGUI(r, getQueryReportsGUI());
+		            	Reclamation r=(Reclamation) tableModelReclamations.getValueAt(row, 3);
+		            	JFrame a = new ShowReclamationGUI(r, getQueryReclamationsGUI());
 		            	a.setVisible(true);
 		            }
 		        }
@@ -122,24 +123,25 @@ public class QueryReportsGUI extends JFrame {
 	
 	public void updateQuery() {
 		try {
-			tableModelReports.setDataVector(null, columnNamesProducts);
-			tableModelReports.setColumnCount(4); // another column added to allocate product object
+			tableModelReclamations.setDataVector(null, columnNamesProducts);
+			tableModelReclamations.setColumnCount(4); // another column added to allocate product object
 
 			BLFacade facade = MainGUI.getBusinessLogic();
 
-			List<Report> reports=facade.getAllReports();
-
+			List<Reclamation> reclamations=facade.getAllReclamations();
+			Reclamation r;
 			
-			if (reports == null) jLabelReports.setText("Hutsik");
+			if (reclamations == null) jLabelReclamations.setText("Hutsik");
 			else {
-				jLabelReports.setText("Badaude:");
-				for (Report r:reports){
+				jLabelReclamations.setText("Badaude:");
+				for (Reclamation temp:reclamations){
 					Vector<Object> row = new Vector<Object>();
-					row.add(r.getUserName());
+					r = facade.getReclamation(temp.getReclamationNumber());
+					row.add(r.getUserName() + " (" + r.isStatus() + ")");
 					row.add(r.getHeader());
 					row.add(r.getDescription());
 					row.add(r); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
-					tableModelReports.addRow(row);
+					tableModelReclamations.addRow(row);
 				}
 			}
 		} catch (Exception e1) {
@@ -147,10 +149,10 @@ public class QueryReportsGUI extends JFrame {
 			e1.printStackTrace();
 		}
 
-		tableReports.getColumnModel().removeColumn(tableReports.getColumnModel().getColumn(3)); // not shown in JTable
+		tableReclamations.getColumnModel().removeColumn(tableReclamations.getColumnModel().getColumn(3)); // not shown in JTable
 	}
 	
-	public QueryReportsGUI getQueryReportsGUI() {
+	public QueryReclamationsGUI getQueryReclamationsGUI() {
 		return this;
 	}
 }

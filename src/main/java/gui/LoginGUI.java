@@ -99,8 +99,9 @@ public class LoginGUI extends JFrame {
 							f.setVisible(true);
 							jFather.dispose();
 							dispose();
+						}else {
+							lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NotExist"));
 						}
-						lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.NotExist"));
 					}
 				}
 			}
