@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -18,22 +16,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
-import configuration.UtilDate;
 import domain.Report;
-import domain.Sale;
-import domain.User;
 
 
 public class QueryReportsGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelReports = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
+	private final JLabel jLabelReports = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Reports")); 
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelReports = new JScrollPane();
@@ -43,11 +37,10 @@ public class QueryReportsGUI extends JFrame {
 
 	private JFrame jFather;
 
-	// TODO Hay que cambiar las etiquetas (todas)
 	private String[] columnNamesProducts = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"), 
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Price"),
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.PublicationDate"),
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Name"), 
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Header"),
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Description"),
 
 	};
 	
@@ -57,7 +50,7 @@ public class QueryReportsGUI extends JFrame {
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Title"));
 		jLabelReports.setBounds(108, 71, 427, 16);
 		this.getContentPane().add(jLabelReports);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -130,9 +123,9 @@ public class QueryReportsGUI extends JFrame {
 			List<Report> reports=facade.getAllReports();
 
 			
-			if (reports == null) jLabelReports.setText("Hutsik");
+			if (reports == null) jLabelReports.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Empty"));
 			else {
-				jLabelReports.setText("Badaude:");
+				jLabelReports.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.ThereAre"));
 				for (Report r:reports){
 					Vector<Object> row = new Vector<Object>();
 					row.add(r.getUserName());

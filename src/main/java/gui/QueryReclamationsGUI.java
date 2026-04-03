@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -18,23 +16,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
-import configuration.UtilDate;
 import domain.Reclamation;
-import domain.Report;
-import domain.Sale;
-import domain.User;
 
 
 public class QueryReclamationsGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelReclamations = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
+	private final JLabel jLabelReclamations = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Reclamation")); 
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelReclamations = new JScrollPane();
@@ -44,11 +37,10 @@ public class QueryReclamationsGUI extends JFrame {
 
 	private JFrame jFather;
 
-	// TODO Hay que cambiar las etiquetas (todas)
 	private String[] columnNamesProducts = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"), 
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Price"),
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.PublicationDate"),
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Name"), 
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Header"),
+			ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Description"),
 
 	};
 	
@@ -58,7 +50,7 @@ public class QueryReclamationsGUI extends JFrame {
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Title"));
 		jLabelReclamations.setBounds(108, 71, 427, 16);
 		this.getContentPane().add(jLabelReclamations);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -131,9 +123,9 @@ public class QueryReclamationsGUI extends JFrame {
 			List<Reclamation> reclamations=facade.getAllReclamations();
 			Reclamation r;
 			
-			if (reclamations == null) jLabelReclamations.setText("Hutsik");
+			if (reclamations == null) jLabelReclamations.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Empty"));
 			else {
-				jLabelReclamations.setText("Badaude:");
+				jLabelReclamations.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.ThereAre"));
 				for (Reclamation temp:reclamations){
 					Vector<Object> row = new Vector<Object>();
 					r = facade.getReclamation(temp.getReclamationNumber());

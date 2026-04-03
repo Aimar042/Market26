@@ -30,7 +30,6 @@ public class AdminGUI extends JFrame {
 	 * This is the default constructor
 	 */
 	public AdminGUI(String email, String name) {
-		// TODO cambiar las etiquetas aqui tambien
 		super();
 		
 		this.userMail = email;
@@ -38,7 +37,7 @@ public class AdminGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		jReclamations = new JButton();
-		jReclamations.setText(ResourceBundle.getBundle("Etiquetas").getString("BalanceManagerGUI.Insert"));
+		jReclamations.setText(ResourceBundle.getBundle("Etiquetas").getString("AdminGUI.Reclamations"));
 		jReclamations.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame a = new QueryReclamationsGUI(AdminGUI.this, name);
@@ -51,7 +50,7 @@ public class AdminGUI extends JFrame {
 		jContentPane.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		jReports = new JButton();
-		jReports.setText(ResourceBundle.getBundle("Etiquetas").getString("BalanceManagerGUI.Withdraw"));
+		jReports.setText(ResourceBundle.getBundle("Etiquetas").getString("AdminGUI.Reports"));
 		jReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame a = new QueryReportsGUI(AdminGUI.this, name);
