@@ -87,7 +87,6 @@ public class DataAccess  {
 			User user1=new User("seller1@gmail.com","Aitor Fernandez", "Bibi");
 			User user2=new User("seller22@gmail.com","Ane Gaztañaga", "Bibi");
 			User user3=new User("seller3@gmail.com","Test Seller", "Bibi");
-			User user4=new User("b", "b", "b");
 
 			//Create products
 			Date today = UtilDate.trim(new Date());
@@ -109,7 +108,6 @@ public class DataAccess  {
 			db.persist(user1);
 			db.persist(user2);
 			db.persist(user3);
-			db.persist(user4);
 
 			db.persist(admin1);
 			
@@ -393,7 +391,7 @@ public void open(){
 	}
 
 	public Transaction createTransaction(String name, Sale s, float amount, boolean isInsert) {
-		String tran = name + "\n";
+		String tran = "\n" + name + "\n";
 		if(s != null) {
 			tran += s.getSaleNumber() + "\n";
 			tran += s.getTitle() + "\n";

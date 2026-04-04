@@ -49,7 +49,7 @@ public class TransactionGUI extends JFrame {
 		this.jFather = jFather;
 		
 		JLabel lblAllTransactions = new JLabel();
-		lblAllTransactions.setBounds(30, 34, 167, 17);
+		lblAllTransactions.setBounds(12, 35, 167, 17);
 		lblAllTransactions.setText("Transakzio osoak ikusi:");
 		contentPane.add(lblAllTransactions);
 		
@@ -62,6 +62,7 @@ public class TransactionGUI extends JFrame {
 				User u = facade.getUser(name);
 				System.out.println(u.getName());
 				for(Transaction tran : u.geTransactions()) {
+					textTransactions.append("----------------------------------------");
 					textTransactions.append(tran.toString());
 				}
 			}
@@ -83,7 +84,7 @@ public class TransactionGUI extends JFrame {
 		textTransactions.setEditable(false);
 
 		scrollPane = new JScrollPane(textTransactions);
-		scrollPane.setBounds(195, 34, 240, 100);
+		scrollPane.setBounds(174, 34, 264, 104);
 		contentPane.add(scrollPane); 
 
 	}

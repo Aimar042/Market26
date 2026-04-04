@@ -1,14 +1,15 @@
 Kideak:
 	Sami Ullah Ashraf 
 	Unai Larrañaga
-	Ibai Fuertes
-	Aimar Goñi - Scrum Master-a
+	Ibai Fuertes - Scrum Master-a
+	Aimar Goñi
 	
-Implementatutako erbilpen kasuak:
-	1. Login egitea
-	2. Register egitea
-	3. Eskaintza bat erostea
-	4. Erositakoen zerrenda ikustea
+Implementatutako erbilpen kasuak (2.Iterazioa):
+	1. Produktua erosi errepasatu (Hau, berez, ez da eskatzen iterazio honetan, guk ereabaki dugu arazo              hori konpontzea. Arazoa:Oferta bat erostean ofertak ez ziren berritzen)
+	2. Erreklamazioak
+	3. Diru kudeaketa
+	4. Mugimenduak ikusi
+	5. Oferta salatu
 	
 Internalizazioa:
 	-Euskara: BAI
@@ -16,15 +17,14 @@ Internalizazioa:
 	-Gaztelera: BAI
 
 Arazo nagusiak:
-	Arazo gehien eman dizkigun atalak datubasea dela esango genuke, 
-	edo datubasearekin zerikusia zuena, DataAcces klaseko metodoak adibidez.
+	Iterazio honen arazo nagusiena izan da kodea gehiegi ez errepikatzea, hau da, kode duplikatua sahiestea.
 	
 
 Erabilitako orduak:
-	Etxean eta laborategian erabili ditugun orduak gutxi gora behera 10 ordu inguru izan dira, 
+	Etxean eta laborategian erabili ditugun orduak gutxi gora behera 16 ordu inguru izan dira,
 	zati gehiena etxean edo klasez kanpo izanik	
 	
-Videoaren esteka: https://youtu.be/3xoVo5SgJFI
+Videoaren esteka: https://youtu.be/3xoVo5SgJFI   //Esto Habra que cambiar despues de hacer el video.
 
 GitHub-erako esteka:
 	-HTTPS: https://github.com/Aimar042/Market26
