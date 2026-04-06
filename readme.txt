@@ -24,7 +24,7 @@ Erabilitako orduak:
 	Etxean eta laborategian erabili ditugun orduak gutxi gora behera 16 ordu inguru izan dira,
 	zati gehiena etxean edo klasez kanpo izanik	
 	
-Videoaren esteka: https://youtu.be/3xoVo5SgJFI   //Esto Habra que cambiar despues de hacer el video.
+Videoaren esteka: https://youtu.be/VSmFq9vw9b4?si=jLPysLfj3f_5Y6wq
 
 GitHub-erako esteka:
 	-HTTPS: https://github.com/Aimar042/Market26
