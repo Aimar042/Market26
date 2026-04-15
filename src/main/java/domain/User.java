@@ -108,9 +108,21 @@ public class User implements Serializable {
 		sales.add(sale);
 		return sale;
 	}
+	
+	public void createTransaction(String name, Sale s, float amount, boolean isInsert) {
+		String tran = "\n" + name + "\n";
+		if(s != null) {
+			tran += s.getSaleNumber() + "\n";
+			tran += s.getTitle() + "\n";
+		}else {
+			if(isInsert) {
+				tran += "Money Inserted\n";
+			}else {
+				tran += "Money Withdrawed\n";
+			}
+		}
 
-	public void addTransaction(Transaction tran) {
-		transactions.add(tran);
+		transactions.add(new Transaction(tran, amount));
 	}
 
 	/**

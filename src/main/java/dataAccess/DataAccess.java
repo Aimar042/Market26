@@ -339,9 +339,8 @@ public void open(){
 		    User dbu = db.find(User.class, u.getName());
 		    dbu.addSale(dbs);
 			dbu.setBalance(dbu.getBalance() - dbs.getPrice());
-
-			Transaction tran = createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
-			dbu.addTransaction(tran);
+			
+			dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
 
 		    db.getTransaction().commit();		
 		}catch (NullPointerException e) {
@@ -376,8 +375,7 @@ public void open(){
 			}else {
 				dbu.setBalance(dbu.getBalance() - amount);
 			}
-			Transaction tran = createTransaction(name, null, amount, isInsert);
-			dbu.addTransaction(tran);
+			dbu.createTransaction(name, null, amount, isInsert);
 
 			ema = dbu.getBalance();
 			
@@ -388,22 +386,6 @@ public void open(){
 		}
 
 		return ema;
-	}
-
-	public Transaction createTransaction(String name, Sale s, float amount, boolean isInsert) {
-		String tran = "\n" + name + "\n";
-		if(s != null) {
-			tran += s.getSaleNumber() + "\n";
-			tran += s.getTitle() + "\n";
-		}else {
-			if(isInsert) {
-				tran += "Money Inserted\n";
-			}else {
-				tran += "Money Withdrawed\n";
-			}
-		}
-
-		return new Transaction(tran, amount);
 	}
 	
 	public Sale addReport(String header, String description, Sale s, String userName) {
