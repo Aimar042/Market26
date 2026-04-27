@@ -23,7 +23,6 @@ import domain.Admin;
 import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
-import domain.Transaction;
 import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;

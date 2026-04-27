@@ -124,7 +124,7 @@ public class User implements Serializable {
 
 		transactions.add(new Transaction(tran, amount));
 	}
-
+	
 	/**
 	 * This method checks if the ride already exists for that driver
 	 * 
