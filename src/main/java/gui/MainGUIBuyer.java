@@ -63,9 +63,9 @@ public class MainGUIBuyer extends JFrame {
 		this.setSize(495, 290);
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(6, 1, 0, 0));
 		
 		jButtonChangeMode = new JButton();
+		jButtonChangeMode.setBounds(0, 87, 495, 43);
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
 		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -74,7 +74,9 @@ public class MainGUIBuyer extends JFrame {
 				dispose();
 			}
 		});
+		jContentPane.setLayout(null);
 		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Buyer"));
+		jLabelSelectOption.setBounds(186, 0, 123, 43);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,6 +84,7 @@ public class MainGUIBuyer extends JFrame {
 		jContentPane.add(jButtonChangeMode);
 		
 		jButtonQueryQueries = new JButton();
+		jButtonQueryQueries.setBounds(0, 44, 495, 43);
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QuerySales"));
 		jButtonQueryQueries.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -96,6 +99,7 @@ public class MainGUIBuyer extends JFrame {
 		setContentPane(jContentPane);
 		
 		jButtonShowPurchased = new JButton();
+		jButtonShowPurchased.setBounds(0, 129, 495, 43);
 		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
 		jButtonShowPurchased.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,6 +111,7 @@ public class MainGUIBuyer extends JFrame {
 		jContentPane.add(jButtonShowPurchased);
 		
 		jManageBalance = new JButton();
+		jManageBalance.setBounds(0, 172, 495, 43);
 		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
 		jManageBalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -140,9 +145,23 @@ public class MainGUIBuyer extends JFrame {
 				paintAgain();
 			}
 		});
+		
+		JButton jbuttonNotifications = new JButton();
+		jbuttonNotifications.setBounds(378, 0, 105, 32);
+		jbuttonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
+		jbuttonNotifications.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame a = new NotificationGUI(MainGUIBuyer.this,u);
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jContentPane.add(jbuttonNotifications);
+		
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		
 			panel = new JPanel();
+			panel.setBounds(0, 215, 495, 43);
 			panel.add(rdbtnNewRadioButton_1);
 			panel.add(rdbtnNewRadioButton_2);
 			panel.add(rdbtnNewRadioButton);
@@ -165,5 +184,4 @@ public class MainGUIBuyer extends JFrame {
 		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}
-	
 } // @jve:decl-index=0:visual-constraint="0,0"
