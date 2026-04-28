@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import domain.Reclamation;
+import domain.User;
 
 
 public class NotificationGUI extends JFrame {
@@ -45,7 +46,7 @@ public class NotificationGUI extends JFrame {
 	};
 	
 
-	public NotificationGUI(JFrame jFather, String name) {
+	public NotificationGUI(JFrame jFather, User u) {
 		tableNotifications.setEnabled(false);
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
@@ -105,9 +106,9 @@ public class NotificationGUI extends JFrame {
 				        JTable table =(JTable) mouseEvent.getSource();
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
-		            	Reclamation r=(Reclamation) tableModelReclamations.getValueAt(row, 3);
-		            	JFrame a = new NotificationGUI(r, NotificationGUI());
-		            	a.setVisible(true);
+		            	// HAU ALDATU BEHARRA Reclamation r=(Reclamation) tableModelReclamations.getValueAt(row, 3);
+		            	// JFrame a = new NotificationGUI(r, NotificationGUI());
+		            	// a.setVisible(true);
 		            }
 		        }
 		 });

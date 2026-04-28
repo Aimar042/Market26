@@ -25,7 +25,7 @@ import businessLogic.BLFacade;
 import domain.User;
 
 
-public class MainGUIBuyer extends JFrame {
+public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 	
     private String userMail;
 	private static final long serialVersionUID = 1L;
@@ -150,7 +150,8 @@ public class MainGUIBuyer extends JFrame {
 		jbuttonNotifications.setBounds(378, 0, 105, 32);
 		jbuttonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
 		jbuttonNotifications.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) { // HEMEN NOTIFICATION GUI IZAN BEHARREAN IZAN BEHARKO ZEN QUERY NOTIFICATION GUI
+															// ETA HOR IREKI NOTIFICATIONGUI
 				JFrame a = new NotificationGUI(MainGUIBuyer.this,u);
 				a.setVisible(true);
 				dispose();

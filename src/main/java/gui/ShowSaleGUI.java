@@ -68,7 +68,7 @@ public class ShowSaleGUI extends JFrame {
 	
 	private Sale s;
 	
-	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q, boolean isBought) {
+	public ShowSaleGUI(Sale sale, String name, QuerySellerSalesGUI qs, boolean isBought) {
 		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
@@ -111,7 +111,7 @@ public class ShowSaleGUI extends JFrame {
 						facade.addSaleToBuyer(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonBuy.setEnabled(false);
-						q.updateQuery();
+						qs.updateQuery();
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());

@@ -41,6 +41,11 @@ public class User implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Cart> carts = new ArrayList<Cart>();
+
+
 	public User() {
 		super();
 	}
@@ -66,14 +71,6 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public List<Sale> getBought(){
-		return this.bought;
-	}
-	
-	public List<Sale> getSales(){
-		return this.sales;
-	}
 	
 	public String toString() {
 		return email + ";" + name + ";" + sales;
@@ -89,6 +86,18 @@ public class User implements Serializable {
 
 	public List<Transaction> geTransactions() {
 		return transactions;
+	}
+
+	public List<Sale> getBought(){
+		return this.bought;
+	}
+
+	public List<Sale> getSales(){
+		return this.sales;
+	}
+
+	public List<Cart> getCarts() {
+		return this.carts;
 	}
 
 	/**
@@ -108,6 +117,12 @@ public class User implements Serializable {
 		sales.add(sale);
 		return sale;
 	}
+
+	// TODO Erabaki kendu edo ez
+	public Sale addSale(Sale sale)  {
+		bought.add(sale);
+		return sale;
+	}
 	
 	public void createTransaction(String name, Sale s, float amount, boolean isInsert) {
 		String tran = "\n" + name + "\n";
@@ -124,6 +139,12 @@ public class User implements Serializable {
 
 		transactions.add(new Transaction(tran, amount));
 	}
+
+	public Cart addCart(float price, int amount) {
+		Cart c = new Cart(price, amount);
+		carts.add(c);
+		return c;
+	}
 	
 	/**
 	 * This method checks if the ride already exists for that driver
@@ -138,11 +159,6 @@ public class User implements Serializable {
 			if (s.getTitle().compareTo(title) == 0)
 				return true;
 		return false;
-	}
-	
-	public Sale addSale(Sale sale)  {
-        bought.add(sale);
-        return sale;
 	}
 
 	@Override

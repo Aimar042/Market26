@@ -236,6 +236,11 @@ public class Sale implements Serializable {
 	public void setOnSale(boolean onSale) {
 		this.onSale = onSale;
 	}
+
+	public User getUser() {
+		return this.user;
+	}
+
 	public String toString(){
 		return saleNumber+";"+title+";"+price;  
 	}

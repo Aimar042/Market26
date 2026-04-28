@@ -27,12 +27,12 @@ import domain.Sale;
 import domain.User;
 
 
-public class QuerySalesGUI extends JFrame {
-
+public class QuerySellerSalesGUI extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
+	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products")); 
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -43,15 +43,15 @@ public class QuerySalesGUI extends JFrame {
 	private JFrame jFather;
 
 	private String[] columnNamesProducts = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"),
+			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"), 
 			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Price"),
 			ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.PublicationDate"),
 
 	};
 	private JTextField jTextFieldSearch;
+	
 
-
-	public QuerySalesGUI(JFrame jFather, User u) {
+	public QuerySellerSalesGUI(JFrame jFather, String u, User s, QuerySalesGUI q, boolean isRegister) { // TODO Beharrezko etiketak aldatu
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
@@ -68,10 +68,11 @@ public class QuerySalesGUI extends JFrame {
 			public void actionPerformed(ActionEvent e)
 			{
 				jFather.setVisible(true);
+				q.updateQuery();
 				dispose();
 			}
-		});
-
+		});		
+		
 		this.getContentPane().add(jButtonClose, null);
 
 		scrollPanelProducts.setBounds(new Rectangle(52, 137, 459, 150));
@@ -92,12 +93,12 @@ public class QuerySalesGUI extends JFrame {
 		tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
 
 		this.getContentPane().add(scrollPanelProducts, null);
-
+		
 		jTextFieldSearch = new JTextField();
 		jTextFieldSearch.setBounds(52, 56, 357, 26);
 		getContentPane().add(jTextFieldSearch);
 		jTextFieldSearch.setColumns(10);
-
+		
 		 jButtonSearch.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		updateQuery();
@@ -105,31 +106,24 @@ public class QuerySalesGUI extends JFrame {
 		 });
 		jButtonSearch.setBounds(427, 56, 117, 29);
 		getContentPane().add(jButtonSearch);
-
-
+		
+	    
 		tableProducts.addMouseListener(new MouseAdapter() {
 		        @Override
 		        public void mousePressed(MouseEvent mouseEvent) {
-
-		            if(mouseEvent.getClickCount() >= 2)
+		            
+		            if(mouseEvent.getClickCount() == 2)
 		            {
 				        JTable table =(JTable) mouseEvent.getSource();
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
-						JFrame a;
-		            	if(u != null) {
-							a = new QuerySellerSalesGUI(getQuerySalesGUI(), u.getName(), s.getUser(), QuerySalesGUI.this, true);
-		            	}else {
-		            		a = new QuerySellerSalesGUI(getQuerySalesGUI(), null, s.getUser(), QuerySalesGUI.this, false);
-		            	}
-						setVisible(false);
-						a.setVisible(true);
+						new ShowSaleGUI(s, u, QuerySellerSalesGUI.this, isRegister);
 		            }
 		        }
 		 });
 	}
-
+	
 	public void updateQuery() {
 		try {
 			tableModelProducts.setDataVector(null, columnNamesProducts);
@@ -151,7 +145,7 @@ public class QuerySalesGUI extends JFrame {
 					row.add(sale); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
 					tableModelProducts.addRow(row);
 				}
-
+						
 			}
 		} catch (Exception e1) {
 
@@ -163,8 +157,8 @@ public class QuerySalesGUI extends JFrame {
 
 		tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
 	}
-
-	public QuerySalesGUI getQuerySalesGUI() {
+	
+	public QuerySellerSalesGUI getQuerySellerSalesGUI() {
 		return this;
 	}
 }
