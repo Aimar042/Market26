@@ -1,13 +1,5 @@
 package businessLogic;
 
-import java.awt.Image;
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-
 import domain.Admin;
 import domain.Reclamation;
 import domain.Report;
@@ -16,108 +8,131 @@ import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
+import java.awt.Image;
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 /**
  * Interface that specifies the business logic.
  */
 @WebService
 public interface BLFacade {
+    /**
+     * This method creates/adds a product to a seller
+     *
+     * @param title           of the product
+     * @param description     of the product
+     * @param status
+     * @param selling         price
+     * @param category        of a product
+     * @param publicationDate
+     * @return Sale
+     */
+    @WebMethod
+    public Sale createSale(
+        String title,
+        String description,
+        int status,
+        float price,
+        Date pubDate,
+        String sellerEmail,
+        File file,
+        boolean onSale
+    )
+        throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
 
-	/**
-	 * This method creates/adds a product to a seller
-	 * 
-	 * @param title           of the product
-	 * @param description     of the product
-	 * @param status
-	 * @param selling         price
-	 * @param category        of a product
-	 * @param publicationDate
-	 * @return Sale
-	 */
-	@WebMethod
-	public Sale createSale(String title, String description, int status, float price, Date pubDate, String sellerEmail,
-			File file, boolean onSale) throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
+    /**
+     * This method retrieves the products that contain desc
+     *
+     * @param desc the text to search
+     * @return collection of sales that contain desc
+     */
+    @WebMethod
+    public List<Sale> getSales(String desc);
 
-	/**
-	 * This method retrieves the products that contain desc
-	 * 
-	 * @param desc the text to search
-	 * @return collection of sales that contain desc
-	 */
-	@WebMethod
-	public List<Sale> getSales(String desc);
+    /**
+     * * This method retrieves the products that contain a desc text in a title and
+     * the publicationDate today or before
+     *
+     * @param desc    the text to search
+     * @param pubDate the date of the publication date
+     * @return collection of sales that contain desc and published before pubDate
+     */
+    @WebMethod
+    public List<Sale> getPublishedSales(String desc, Date pubDate);
 
-	/**
-	 * * This method retrieves the products that contain a desc text in a title and
-	 * the publicationDate today or before
-	 * 
-	 * @param desc    the text to search
-	 * @param pubDate the date of the publication date
-	 * @return collection of sales that contain desc and published before pubDate
-	 */
-	@WebMethod
-	public List<Sale> getPublishedSales(String desc, Date pubDate);
+    /**
+     * This method calls the data access to initialize the database with some
+     * sellers and products. It is only invoked when the option "initialize" is
+     * declared in the tag dataBaseOpenMode of resources/config.xml file
+     */
+    @WebMethod
+    public void initializeBD();
 
-	/**
-	 * This method calls the data access to initialize the database with some
-	 * sellers and products. It is only invoked when the option "initialize" is
-	 * declared in the tag dataBaseOpenMode of resources/config.xml file
-	 */
-	@WebMethod
-	public void initializeBD();
+    @WebMethod
+    public Image downloadImage(String imageName);
 
-	@WebMethod
-	public Image downloadImage(String imageName);
+    @WebMethod
+    public User isLogged(String log, String pass);
 
-	@WebMethod
-	public User isLogged(String log, String pass);
+    @WebMethod
+    public User isRegister(String reg, String pass1);
 
-	@WebMethod
-	public User isRegister(String reg, String pass1);
-	
-	@WebMethod
-	public void register(String email, String reg, String pass);
-	
-	@WebMethod
-	public Sale getExactSale(String title, Date pubDate);
-	
-	@WebMethod
-	public List<Sale> getPurchasedSales(User u);
-	
-	@WebMethod
-	public void addSaleToBuyer(User u, Sale s);
+    @WebMethod
+    public void register(String email, String reg, String pass);
 
-	@WebMethod
-	public User getUser(String name);
+    @WebMethod
+    public User getUserSales(String name);
 
-	@WebMethod
-	public float changeBalance(String name, boolean isInsert, float amount);
-	
-	@WebMethod
-	public Sale addReport(String header, String description, Sale s, String userName);
-	
-	@WebMethod
-	public Sale addReclamation(String header, String description, Sale s, String userName);
-	
-	@WebMethod
-	public Admin isAdmin(String log, String pass);
-	
-	@WebMethod
-	public List<Report> getAllReports();
-	
-	@WebMethod
-	public void removeReport(int saleNumber, int reportNumber);
-	
-	@WebMethod
-	public List<Reclamation> getAllReclamations();
-	
-	@WebMethod
-	public void removeReclamation(int saleNumber, int reclamationNumber);
-	
-	@WebMethod
-	public Reclamation changeStatus(int reclamationNumber, boolean status);
-	
-	@WebMethod
-	public Reclamation getReclamation(int reclamationNumber);
-	
+    @WebMethod
+    public List<Sale> getPurchasedSales(User u);
+
+    @WebMethod
+    public void addSaleToBuyer(User u, Sale s);
+
+    @WebMethod
+    public User getUser(String name);
+
+    @WebMethod
+    public float changeBalance(String name, boolean isInsert, float amount);
+
+    @WebMethod
+    public Sale addReport(
+        String header,
+        String description,
+        Sale s,
+        String userName
+    );
+
+    @WebMethod
+    public Sale addReclamation(
+        String header,
+        String description,
+        Sale s,
+        String userName
+    );
+
+    @WebMethod
+    public Admin isAdmin(String log, String pass);
+
+    @WebMethod
+    public List<Report> getAllReports();
+
+    @WebMethod
+    public void removeReport(int saleNumber, int reportNumber);
+
+    @WebMethod
+    public List<Reclamation> getAllReclamations();
+
+    @WebMethod
+    public void removeReclamation(int saleNumber, int reclamationNumber);
+
+    @WebMethod
+    public Reclamation changeStatus(int reclamationNumber, boolean status);
+
+    @WebMethod
+    public Reclamation getReclamation(int reclamationNumber);
 }

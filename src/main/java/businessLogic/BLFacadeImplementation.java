@@ -1,16 +1,5 @@
 package businessLogic;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-
 import dataAccess.DataAccess;
 import domain.Admin;
 import domain.Reclamation;
@@ -20,232 +9,278 @@ import domain.User;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import javax.imageio.ImageIO;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 /**
  * It implements the business logic as a web service.
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
-	private static final int baseSize = 160;
 
-	private static final String basePath = "src/main/resources/images/";
-	DataAccess dbManager;
+    private static final int baseSize = 160;
 
-	public BLFacadeImplementation() {
-		System.out.println("Creating BLFacadeImplementation instance");
-		dbManager = new DataAccess();
-	}
+    private static final String basePath = "src/main/resources/images/";
+    DataAccess dbManager;
 
-	public BLFacadeImplementation(DataAccess da) {
-		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-		dbManager = da;
-	}
+    public BLFacadeImplementation() {
+        System.out.println("Creating BLFacadeImplementation instance");
+        dbManager = new DataAccess();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public Sale createSale(String title, String description, int status, float price, Date pubDate, String sellerEmail,
-			File file, boolean onSale) throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException {
-		dbManager.open();
-		Sale product = dbManager.createSale(title, description, status, price, pubDate, sellerEmail, file, onSale);
-		dbManager.close();
-		return product;
-	};
+    public BLFacadeImplementation(DataAccess da) {
+        System.out.println(
+            "Creating BLFacadeImplementation instance with DataAccess parameter"
+        );
+        dbManager = da;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public List<Sale> getSales(String desc) {
-		dbManager.open();
-		List<Sale> rides = dbManager.getSales(desc);
-		dbManager.close();
-		return rides;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public Sale createSale(
+        String title,
+        String description,
+        int status,
+        float price,
+        Date pubDate,
+        String sellerEmail,
+        File file,
+        boolean onSale
+    )
+        throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException {
+        dbManager.open();
+        Sale product = dbManager.createSale(
+            title,
+            description,
+            status,
+            price,
+            pubDate,
+            sellerEmail,
+            file,
+            onSale
+        );
+        dbManager.close();
+        return product;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public List<Sale> getPublishedSales(String desc, Date pubDate) {
-		dbManager.open();
-		List<Sale> rides = dbManager.getPublishedSales(desc, pubDate);
-		dbManager.close();
-		return rides;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public List<Sale> getSales(String desc) {
+        dbManager.open();
+        List<Sale> rides = dbManager.getSales(desc);
+        dbManager.close();
+        return rides;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public BufferedImage getFile(String fileName) {
-		return dbManager.getFile(fileName);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public List<Sale> getPublishedSales(String desc, Date pubDate) {
+        dbManager.open();
+        List<Sale> rides = dbManager.getPublishedSales(desc, pubDate);
+        dbManager.close();
+        return rides;
+    }
 
-	public void close() {
-		DataAccess dB4oManager = new DataAccess();
-		dB4oManager.close();
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public BufferedImage getFile(String fileName) {
+        return dbManager.getFile(fileName);
+    }
 
-	}
+    public void close() {
+        DataAccess dB4oManager = new DataAccess();
+        dB4oManager.close();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public void initializeBD() {
-		dbManager.open();
-		dbManager.initializeDB();
-		dbManager.close();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public void initializeBD() {
+        dbManager.open();
+        dbManager.initializeDB();
+        dbManager.close();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public Image downloadImage(String imageName) {
-		File image = new File(basePath + imageName);
-		try {
-			return ImageIO.read(image);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public Image downloadImage(String imageName) {
+        File image = new File(basePath + imageName);
+        try {
+            return ImageIO.read(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@WebMethod
-	public User isLogged(String log, String pass) {
-		dbManager.open();
-		User u = dbManager.isLogged(log, pass);
-		dbManager.close();
-		return u;
-	}
+    @WebMethod
+    public User isLogged(String log, String pass) {
+        dbManager.open();
+        User u = dbManager.isLogged(log, pass);
+        dbManager.close();
+        return u;
+    }
 
-	@WebMethod
-	public User isRegister(String reg, String pass1) {
-		dbManager.open();
-		User u = dbManager.isRegistered(reg);
-		dbManager.close();
-		return u;
-	}
-	
-	@WebMethod
-	public void register(String email, String reg, String pass) {
-		dbManager.open();
-		dbManager.register(email, reg, pass);
-		dbManager.close();
-	}
-	
-	@WebMethod
-	public Sale getExactSale(String title, Date pubDate) {
-		dbManager.open();
-		Sale sale = dbManager.getExactSale(title, pubDate);
-		dbManager.close();
-		return sale;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	public List<Sale> getPurchasedSales(User u) {
-		dbManager.open();
-		List<Sale> rides = dbManager.getPurchasedSales(u);
-		dbManager.close();
-		return rides;
-	}
+    @WebMethod
+    public User isRegister(String reg, String pass1) {
+        dbManager.open();
+        User u = dbManager.isRegistered(reg);
+        dbManager.close();
+        return u;
+    }
 
-	@WebMethod
-	public void addSaleToBuyer(User u, Sale s) {
-		dbManager.open();
-		dbManager.addSaleToBuyer(u, s);
-		dbManager.close();
-	}
+    @WebMethod
+    public void register(String email, String reg, String pass) {
+        dbManager.open();
+        dbManager.register(email, reg, pass);
+        dbManager.close();
+    }
 
-	@WebMethod
-	public User getUser(String name) {
-		dbManager.open();
-		User u = dbManager.getUser(name);
-		dbManager.close();
-		return u;
-	}
+    @WebMethod
+    public User getUserSales(String name) {
+        dbManager.open();
+        User u = dbManager.getUserSales(name);
+        dbManager.close();
+        return u;
+    }
 
-	@Override
-	public float changeBalance(String name, boolean isInsert, float amount) {
-		dbManager.open();
-		float balance = dbManager.changeBalance(name, isInsert, amount);
-		dbManager.close();
-		return balance;
-	}
-	
-	@WebMethod
-	public Sale addReport(String header, String description, Sale s, String userName) {
-		dbManager.open();
-		Sale sale = dbManager.addReport(header, description, s, userName);
-		dbManager.close();
-		return sale;
-	}
-	
-	@WebMethod
-	public Sale addReclamation(String header, String description, Sale s, String userName) {
-		dbManager.open();
-		Sale sale = dbManager.addReclamation(header, description, s, userName);
-		dbManager.close();
-		return sale;
-	}
-	
-	@WebMethod
-	public Admin isAdmin(String log, String pass) {
-		dbManager.open();
-		Admin a = dbManager.isAdmin(log, pass);
-		dbManager.close();
-		return a;
-	}
-	
-	@WebMethod
-	public List<Report> getAllReports() {
-		dbManager.open();
-		List<Report> r = dbManager.getAllReports();
-		dbManager.close();
-		return r;
-	}
-	
-	@WebMethod
-	public void removeReport(int saleNumber, int reportNumber) {
-		dbManager.open();
-		dbManager.removeReport(saleNumber, reportNumber);
-		dbManager.close();
-	}
-	
-	@WebMethod
-	public List<Reclamation> getAllReclamations() {
-		dbManager.open();
-		List<Reclamation> r = dbManager.getAllReclamations();
-		dbManager.close();
-		return r;
-	}
-	
-	@WebMethod
-	public void removeReclamation(int saleNumber, int reclamationNumber) {
-		dbManager.open();
-		dbManager.removeReclamaton(saleNumber, reclamationNumber);
-		dbManager.close();
-	}
-	
-	@WebMethod
-	public Reclamation changeStatus(int reclamationNumber, boolean status) {
-		dbManager.open();
-		Reclamation r = dbManager.changeStatus(reclamationNumber, status);
-		dbManager.close();
-		return r;
-	}
-	
-	@WebMethod
-	public Reclamation getReclamation(int reclamationNumber) {
-		dbManager.open();
-		Reclamation r = dbManager.getReclamation(reclamationNumber);
-		dbManager.close();
-		return r;
-	}
+    @WebMethod
+    public Sale getExactSale(String title, Date pubDate) {
+        dbManager.open();
+        Sale sale = dbManager.getExactSale(title, pubDate);
+        dbManager.close();
+        return sale;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod
+    public List<Sale> getPurchasedSales(User u) {
+        dbManager.open();
+        List<Sale> rides = dbManager.getPurchasedSales(u);
+        dbManager.close();
+        return rides;
+    }
+
+    @WebMethod
+    public void addSaleToBuyer(User u, Sale s) {
+        dbManager.open();
+        dbManager.addSaleToBuyer(u, s);
+        dbManager.close();
+    }
+
+    @WebMethod
+    public User getUser(String name) {
+        dbManager.open();
+        User u = dbManager.getUser(name);
+        dbManager.close();
+        return u;
+    }
+
+    @Override
+    public float changeBalance(String name, boolean isInsert, float amount) {
+        dbManager.open();
+        float balance = dbManager.changeBalance(name, isInsert, amount);
+        dbManager.close();
+        return balance;
+    }
+
+    @WebMethod
+    public Sale addReport(
+        String header,
+        String description,
+        Sale s,
+        String userName
+    ) {
+        dbManager.open();
+        Sale sale = dbManager.addReport(header, description, s, userName);
+        dbManager.close();
+        return sale;
+    }
+
+    @WebMethod
+    public Sale addReclamation(
+        String header,
+        String description,
+        Sale s,
+        String userName
+    ) {
+        dbManager.open();
+        Sale sale = dbManager.addReclamation(header, description, s, userName);
+        dbManager.close();
+        return sale;
+    }
+
+    @WebMethod
+    public Admin isAdmin(String log, String pass) {
+        dbManager.open();
+        Admin a = dbManager.isAdmin(log, pass);
+        dbManager.close();
+        return a;
+    }
+
+    @WebMethod
+    public List<Report> getAllReports() {
+        dbManager.open();
+        List<Report> r = dbManager.getAllReports();
+        dbManager.close();
+        return r;
+    }
+
+    @WebMethod
+    public void removeReport(int saleNumber, int reportNumber) {
+        dbManager.open();
+        dbManager.removeReport(saleNumber, reportNumber);
+        dbManager.close();
+    }
+
+    @WebMethod
+    public List<Reclamation> getAllReclamations() {
+        dbManager.open();
+        List<Reclamation> r = dbManager.getAllReclamations();
+        dbManager.close();
+        return r;
+    }
+
+    @WebMethod
+    public void removeReclamation(int saleNumber, int reclamationNumber) {
+        dbManager.open();
+        dbManager.removeReclamaton(saleNumber, reclamationNumber);
+        dbManager.close();
+    }
+
+    @WebMethod
+    public Reclamation changeStatus(int reclamationNumber, boolean status) {
+        dbManager.open();
+        Reclamation r = dbManager.changeStatus(reclamationNumber, status);
+        dbManager.close();
+        return r;
+    }
+
+    @WebMethod
+    public Reclamation getReclamation(int reclamationNumber) {
+        dbManager.open();
+        Reclamation r = dbManager.getReclamation(reclamationNumber);
+        dbManager.close();
+        return r;
+    }
 }
