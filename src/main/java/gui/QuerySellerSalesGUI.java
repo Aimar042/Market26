@@ -50,21 +50,22 @@ public class QuerySellerSalesGUI extends JFrame {
     private String[] columnNamesProducts = new String[] {
         ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Title"),
         ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Price"),
-        ResourceBundle.getBundle("Etiquetas").getString(
-            "CreateSaleGUI.PublicationDate"
-        ),
+        ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.PublicationDate"),
     };
     private JTextField jTextFieldSearch;
+
+    private String name;
 
     public QuerySellerSalesGUI(
         JFrame jFather,
         String u,
         User s,
         QuerySalesGUI q,
-        boolean isRegister
+        boolean isBought
     ) {
         // TODO Beharrezko etiketak aldatu
         tableProducts.setEnabled(false);
+        this.name = s.getName();
         this.jFather = jFather;
         this.getContentPane().setLayout(null);
         this.setSize(new Dimension(700, 500));
@@ -139,7 +140,7 @@ public class QuerySellerSalesGUI extends JFrame {
                             s,
                             u,
                             QuerySellerSalesGUI.this,
-                            isRegister
+                            isBought
                         );
                     }
                 }
@@ -153,14 +154,8 @@ public class QuerySellerSalesGUI extends JFrame {
             tableModelProducts.setColumnCount(4); // another column added to allocate product object
 
             BLFacade facade = MainGUI.getBusinessLogic();
-            Date today = UtilDate.trim(new Date());
 
-            User u 0 facade.getUserSales(); // FALTA DA JARTZEA name
-
-            List<domain.Sale> sales = facade.getPublishedSales(
-                jTextFieldSearch.getText(),
-                today
-            );
+            List<domain.Sale> sales = facade.getUserSales(getName());
 
             if (sales.isEmpty()) jLabelProducts.setText(
                 ResourceBundle.getBundle("Etiquetas").getString(
@@ -174,7 +169,7 @@ public class QuerySellerSalesGUI extends JFrame {
             );
             for (domain.Sale sale : sales) {
                 Vector<Object> row = new Vector<Object>();
-                if (sale.getOnSale() == true) {
+                if ((sale.getOnSale() == true) && (!sale.getOnCart())) {
                     row.add(sale.getTitle());
                     row.add(sale.getPrice());
                     row.add(
@@ -200,5 +195,9 @@ public class QuerySellerSalesGUI extends JFrame {
 
     public QuerySellerSalesGUI getQuerySellerSalesGUI() {
         return this;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

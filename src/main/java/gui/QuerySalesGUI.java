@@ -119,9 +119,9 @@ public class QuerySalesGUI extends JFrame {
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
 						JFrame a;
 		            	if(u != null) {
-							a = new QuerySellerSalesGUI(getQuerySalesGUI(), u.getName(), s.getUser(), QuerySalesGUI.this, true);
+							a = new QuerySellerSalesGUI(getQuerySalesGUI(), u.getName(), s.getUser(), QuerySalesGUI.this, false);
 		            	}else {
-		            		a = new QuerySellerSalesGUI(getQuerySalesGUI(), null, s.getUser(), QuerySalesGUI.this, false);
+		            		a = new QuerySellerSalesGUI(getQuerySalesGUI(), null, s.getUser(), QuerySalesGUI.this, true);
 		            	}
 						setVisible(false);
 						a.setVisible(true);
@@ -144,7 +144,7 @@ public class QuerySalesGUI extends JFrame {
 			else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
 			for (domain.Sale sale:sales){
 				Vector<Object> row = new Vector<Object>();
-				if(sale.getOnSale()==true) {
+				if((sale.getOnSale()) && (!sale.getOnCart())) {
 					row.add(sale.getTitle());
 					row.add(sale.getPrice());
 					row.add(new SimpleDateFormat("dd-MM-yyyy").format(sale.getPublicationDate()));

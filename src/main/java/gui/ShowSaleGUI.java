@@ -64,11 +64,11 @@ public class ShowSaleGUI extends JFrame {
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
 	private JMenuItem JMenuReclamation;
-	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
+	private final JButton jButtonCart = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Sale s;
 	
-	public ShowSaleGUI(Sale sale, String name, QuerySellerSalesGUI qs, boolean isBought) {
+	public ShowSaleGUI(Sale sale, String name, QuerySellerSalesGUI qs, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
 		this.s = sale;
 		thisFrame=this; 
 		this.setVisible(true);
@@ -95,12 +95,12 @@ public class ShowSaleGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//thisFrame.setVisible(false);	
+				thisFrame.setVisible(false);
 				dispose();
 			}
 		});
 		
-		jButtonBuy.addActionListener(new ActionListener() {
+		jButtonCart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(name != null) {
@@ -108,9 +108,9 @@ public class ShowSaleGUI extends JFrame {
 					User u = facade.getUser(name);
 					System.out.println("Saldoa: " + u.getBalance());
 					if(u.getBalance() >= sale.getPrice()) {
-						facade.addSaleToBuyer(u, sale);
+						facade.addSaleToCart(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
-						jButtonBuy.setEnabled(false);
+						jButtonCart.setEnabled(false);
 						qs.updateQuery();
 						System.out.println("Kendu da");
 					}else {
@@ -119,11 +119,11 @@ public class ShowSaleGUI extends JFrame {
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
 				}
-				jButtonBuy.setEnabled(false);
+				jButtonCart.setEnabled(false);
 			}
 		});
 		
-		jButtonBuy.setBounds(178, 268, 105, 31);
+		jButtonCart.setBounds(178, 268, 105, 31);
 
 		jLabelError.setBounds(new Rectangle(16, 236, 299, 20));
 		jLabelError.setForeground(Color.red);
@@ -132,7 +132,7 @@ public class ShowSaleGUI extends JFrame {
 		this.getContentPane().add(jLabelError, null);
 
 		this.getContentPane().add(jButtonClose, null);
-		this.getContentPane().add(jButtonBuy, null);
+		this.getContentPane().add(jButtonCart, null);
 		this.getContentPane().add(jLabelTitle, null);
 		
 		
@@ -217,11 +217,11 @@ public class ShowSaleGUI extends JFrame {
 		
 		if(name == null) {
 			btnOptions.setEnabled(false);
-			jButtonBuy.setEnabled(false);
+			jButtonCart.setEnabled(false);
 		}
 		
 		if(isBought) {
-			jButtonBuy.setVisible(false);
+			jButtonCart.setVisible(false);
 			JMenuReport.setVisible(false);;
 		}else {
 			JMenuReclamation.setVisible(false);

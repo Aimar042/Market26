@@ -2,11 +2,7 @@ package dataAccess;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Admin;
-import domain.Reclamation;
-import domain.Report;
-import domain.Sale;
-import domain.User;
+import domain.*;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.SaleAlreadyExistException;
@@ -90,6 +86,8 @@ public class DataAccess {
                 "Bibi"
             );
             User user3 = new User("seller3@gmail.com", "Test Seller", "Bibi");
+            
+            User user4 = new User(" ", " ", " ");
 
             //Create products
             Date today = UtilDate.trim(new Date());
@@ -172,7 +170,8 @@ public class DataAccess {
             db.persist(user1);
             db.persist(user2);
             db.persist(user3);
-
+            db.persist(user4);
+            
             db.persist(admin1);
 
             db.getTransaction().commit();
@@ -404,17 +403,22 @@ public class DataAccess {
         }
     }
 
-    public User getUserSales(String name) {
-        TypedQuery<User> query = db.createQuery(
-            "SELECT u FROM User u WHERE u.name=?1",
-            User.class
-        );
+    public List<Sale> getUserSales(String name) {
+        db.getTransaction().begin();
+        List<Sale> dbs = null;
+        try {
+            User dbu = db.find(User.class, name);
+            dbs = dbu.getSales();
+            System.out.println("Hemen iritsa da (DB)");
 
-        query.setParameter(1, name);
-        if (!query.getResultList().isEmpty()) return query
-            .getResultList()
-            .get(0);
-        else return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            db.getTransaction().rollback();
+        } finally {
+            db.getTransaction().commit();
+        }
+
+        return dbs;
     }
 
     public User isRegistered(String user) {
@@ -464,6 +468,23 @@ public class DataAccess {
             res.add(purchased);
         }
         return res;
+    }
+
+    public void addSaleToCart(User u, Sale s) {
+        try {
+            db.getTransaction().begin();
+
+            Sale dbs = db.find(Sale.class, s.getSaleNumber());
+            dbs.setOnCart(true);
+
+            User dbu = db.find(User.class, u.getName());
+            Cart c = dbu.addCart(dbs.getPrice(), dbs.getSaleNumber());
+
+            db.getTransaction().commit();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            db.getTransaction().commit();
+        }
     }
 
     public void addSaleToBuyer(User u, Sale s) {

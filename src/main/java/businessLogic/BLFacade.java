@@ -85,13 +85,16 @@ public interface BLFacade {
     public void register(String email, String reg, String pass);
 
     @WebMethod
-    public User getUserSales(String name);
+    public List<Sale> getUserSales(String name);
 
     @WebMethod
     public List<Sale> getPurchasedSales(User u);
 
     @WebMethod
     public void addSaleToBuyer(User u, Sale s);
+
+    @WebMethod
+    public void addSaleToCart(User u, Sale s);
 
     @WebMethod
     public User getUser(String name);

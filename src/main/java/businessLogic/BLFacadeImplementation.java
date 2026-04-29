@@ -155,11 +155,11 @@ public class BLFacadeImplementation implements BLFacade {
     }
 
     @WebMethod
-    public User getUserSales(String name) {
+    public List<Sale> getUserSales(String name) {
         dbManager.open();
-        User u = dbManager.getUserSales(name);
+        List<Sale> s = dbManager.getUserSales(name);
         dbManager.close();
-        return u;
+        return s;
     }
 
     @WebMethod
@@ -185,6 +185,13 @@ public class BLFacadeImplementation implements BLFacade {
     public void addSaleToBuyer(User u, Sale s) {
         dbManager.open();
         dbManager.addSaleToBuyer(u, s);
+        dbManager.close();
+    }
+
+    @WebMethod
+    public void addSaleToCart(User u, Sale s) {
+        dbManager.open();
+        dbManager.addSaleToCart(u, s);
         dbManager.close();
     }
 

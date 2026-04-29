@@ -1,19 +1,27 @@
 package domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Cart {
 
+    @XmlID
+    @Id
     @GeneratedValue
     private int cartNumber;
 
     private int saleNumber;
     private float price;
-    private int amount;
 
-    public Cart(float price, int amount) {
+    public Cart(float price, int saleNumber) {
         this.price = price;
-        this.amount = amount;
+        this.saleNumber = saleNumber;
     }
 
     public float getPrice() {
@@ -22,14 +30,6 @@ public class Cart {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public int getSaleNumber() {
@@ -50,6 +50,6 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart [price=" + price + ", amount=" + amount + "]";
+        return "Cart [price=" + price + "]";
     }
 }

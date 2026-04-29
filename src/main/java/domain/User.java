@@ -27,7 +27,7 @@ public class User implements Serializable {
 	@Id
 	private String name;
 	private String pass;
-	private float balance = 0;
+	private float balance = 50000;
 
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -140,8 +140,8 @@ public class User implements Serializable {
 		transactions.add(new Transaction(tran, amount));
 	}
 
-	public Cart addCart(float price, int amount) {
-		Cart c = new Cart(price, amount);
+	public Cart addCart(float price, int saleNumber) {
+		Cart c = new Cart(price, saleNumber);
 		carts.add(c);
 		return c;
 	}

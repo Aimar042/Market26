@@ -274,6 +274,14 @@ public class Sale implements Serializable {
         );
     }
 
+    public boolean getOnCart() {
+        return this.onCart;
+    }
+
+    public void setOnCart(boolean onCart) {
+        this.onCart = onCart;
+    }
+
     public List<Reclamation> getReclamations() {
         return this.reclamations;
     }
