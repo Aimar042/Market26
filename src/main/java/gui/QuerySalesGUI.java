@@ -54,14 +54,13 @@ public class QuerySalesGUI extends JFrame {
 	public QuerySalesGUI(JFrame jFather, User u) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
-		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
+		getContentPane().setLayout(null);
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		jButtonClose.setBounds(new Rectangle(220, 379, 130, 30));
+		jButtonClose.setBounds(220, 379, 130, 30);
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -72,9 +71,8 @@ public class QuerySalesGUI extends JFrame {
 			}
 		});
 
-		this.getContentPane().add(jButtonClose, null);
-
-		scrollPanelProducts.setBounds(new Rectangle(52, 137, 459, 150));
+		this.getContentPane().add(jButtonClose);
+		scrollPanelProducts.setBounds(52, 137, 459, 150);
 
 		scrollPanelProducts.setViewportView(tableProducts);
 		tableModelProducts = new DefaultTableModel(null, columnNamesProducts);
@@ -91,19 +89,19 @@ public class QuerySalesGUI extends JFrame {
 
 		tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
 
-		this.getContentPane().add(scrollPanelProducts, null);
+		this.getContentPane().add(scrollPanelProducts);
 
 		jTextFieldSearch = new JTextField();
 		jTextFieldSearch.setBounds(52, 56, 357, 26);
 		getContentPane().add(jTextFieldSearch);
 		jTextFieldSearch.setColumns(10);
+		 jButtonSearch.setBounds(427, 56, 117, 29);
 
 		 jButtonSearch.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		updateQuery();
 		 	}
 		 });
-		jButtonSearch.setBounds(427, 56, 117, 29);
 		getContentPane().add(jButtonSearch);
 
 
