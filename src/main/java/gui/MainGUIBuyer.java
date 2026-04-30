@@ -147,7 +147,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		});
 		
 		JButton jbuttonNotifications = new JButton();
-		jbuttonNotifications.setBounds(378, 0, 105, 32);
+		jbuttonNotifications.setBounds(347, 0, 136, 32);
 		jbuttonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
 		jbuttonNotifications.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { // HEMEN NOTIFICATION GUI IZAN BEHARREAN IZAN BEHARKO ZEN QUERY NOTIFICATION GUI
