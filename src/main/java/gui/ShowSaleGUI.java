@@ -211,7 +211,7 @@ public class ShowSaleGUI extends JFrame {
 
 		btnOptions.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        popupMenu.show(btnOptions, 0, btnOptions.getHeight()); // aparece debajo del botón
+		        popupMenu.show(btnOptions, 0, btnOptions.getHeight()); 
 		    }
 		});
 		
