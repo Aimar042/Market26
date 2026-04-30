@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Cart;
 import domain.Sale;
 import domain.User;
 
@@ -34,6 +35,8 @@ public class QuerySalesGUI extends JFrame {
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
+	private JButton jButtonCart = new JButton((String) null);
+	private JButton jButtonRequest = new JButton((String) null);
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
 	private JTable tableProducts= new JTable();
@@ -49,18 +52,21 @@ public class QuerySalesGUI extends JFrame {
 
 	};
 	private JTextField jTextFieldSearch;
+	private User u;
 
 
 	public QuerySalesGUI(JFrame jFather, User u) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
+		this.u = u;
+		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
-		getContentPane().setLayout(null);
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		jButtonClose.setBounds(220, 379, 130, 30);
+
+		jButtonClose.setBounds(new Rectangle(220, 379, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -71,8 +77,9 @@ public class QuerySalesGUI extends JFrame {
 			}
 		});
 
-		this.getContentPane().add(jButtonClose);
-		scrollPanelProducts.setBounds(52, 137, 459, 150);
+		this.getContentPane().add(jButtonClose, null);
+
+		scrollPanelProducts.setBounds(new Rectangle(52, 137, 459, 150));
 
 		scrollPanelProducts.setViewportView(tableProducts);
 		tableModelProducts = new DefaultTableModel(null, columnNamesProducts);
@@ -89,20 +96,33 @@ public class QuerySalesGUI extends JFrame {
 
 		tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
 
-		this.getContentPane().add(scrollPanelProducts);
+		this.getContentPane().add(scrollPanelProducts, null);
 
 		jTextFieldSearch = new JTextField();
 		jTextFieldSearch.setBounds(52, 56, 357, 26);
 		getContentPane().add(jTextFieldSearch);
 		jTextFieldSearch.setColumns(10);
-		 jButtonSearch.setBounds(427, 56, 117, 29);
 
 		 jButtonSearch.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		updateQuery();
 		 	}
 		 });
+		jButtonSearch.setBounds(427, 56, 117, 29);
 		getContentPane().add(jButtonSearch);
+
+		jButtonCart.setBounds(new Rectangle(220, 379, 130, 30));
+		jButtonCart.setBounds(122, 319, 130, 30);
+		jButtonCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		 		
+		 	}
+		});
+		getContentPane().add(jButtonCart);
+
+		jButtonRequest.setBounds(new Rectangle(220, 379, 130, 30));
+		jButtonRequest.setBounds(314, 319, 130, 30);
+		getContentPane().add(jButtonRequest);
 
 
 		tableProducts.addMouseListener(new MouseAdapter() {
@@ -117,9 +137,9 @@ public class QuerySalesGUI extends JFrame {
 		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
 						JFrame a;
 		            	if(u != null) {
-							a = new QuerySellerSalesGUI(getQuerySalesGUI(), u.getName(), s.getUser(), QuerySalesGUI.this, false);
+							a = new ShowSaleGUI(s, u.getName(), QuerySalesGUI.this, false);
 		            	}else {
-		            		a = new QuerySellerSalesGUI(getQuerySalesGUI(), null, s.getUser(), QuerySalesGUI.this, true);
+		            		a = new ShowSaleGUI(s, null, QuerySalesGUI.this, true);
 		            	}
 						setVisible(false);
 						a.setVisible(true);
@@ -164,5 +184,13 @@ public class QuerySalesGUI extends JFrame {
 
 	public QuerySalesGUI getQuerySalesGUI() {
 		return this;
+	}
+	
+	public User getUser() {
+		return this.u;
+	}
+	
+	public List<Cart> getUserCarts() {
+		return getUser().getCarts();
 	}
 }

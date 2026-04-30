@@ -70,13 +70,13 @@ public class CreateRequestGUI extends JFrame {
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jLabelMsg.setText("");
-				String error=check_fields_Errors();
-				if (error!=null) 
-					jLabelMsg.setText(error);
-				else
+				// String error=check_fields_Errors();
+				// if (error!=null) 
+					// jLabelMsg.setText(error);
+				//else
 					try {
 						BLFacade facade = MainGUI.getBusinessLogic();
-						facade.createRequest(fieldTitle.getText(), fieldDescription.getText(), sellerMail, targetFile, true);
+						// TODO ALDATZEKO facade.createRequest(fieldTitle.getText(), fieldDescription.getText(), sellerMail, targetFile, true);
 						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.ProductCreated"));
 					
 					} catch (Exception e1) {
@@ -151,6 +151,7 @@ public class CreateRequestGUI extends JFrame {
         g.dispose();
         return resizedImage;
     }
+	/*
 	private String check_fields_Errors() {
 		
 		try {
@@ -195,4 +196,5 @@ public  String encodeFileToBase64Binary(File file){
 
         return encodedfile;
     }
+    */
 }

@@ -492,13 +492,16 @@ public class DataAccess {
             db.getTransaction().begin();
 
             Sale dbs = db.find(Sale.class, s.getSaleNumber());
+            User dbSeller = dbs.getUser();
             dbs.setOnSale(false);
 
             User dbu = db.find(User.class, u.getName());
             dbu.addSale(dbs);
             dbu.setBalance(dbu.getBalance() - dbs.getPrice());
+            dbSeller.setBalance(dbSeller.getBalance() + dbs.getPrice());
 
             dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
+            dbSeller.createTransaction(dbSeller.getName(), dbs, dbs.getPrice(), false);
 
             db.getTransaction().commit();
         } catch (NullPointerException e) {

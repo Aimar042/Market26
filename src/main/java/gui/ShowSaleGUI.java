@@ -59,7 +59,7 @@ public class ShowSaleGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelError = new JLabel();
 	private JLabel statusField=new JLabel();
-	private JFrame thisFrame;
+	private JFrame jFather;
 	private JPopupMenu popupMenu;
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
@@ -68,9 +68,9 @@ public class ShowSaleGUI extends JFrame {
 	
 	private Sale s;
 	
-	public ShowSaleGUI(Sale sale, String name, QuerySellerSalesGUI qs, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
+	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
 		this.s = sale;
-		thisFrame=this; 
+		jFather= q; 
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
@@ -95,7 +95,7 @@ public class ShowSaleGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				thisFrame.setVisible(false);
+				jFather.setVisible(true);
 				dispose();
 			}
 		});
@@ -111,7 +111,7 @@ public class ShowSaleGUI extends JFrame {
 						facade.addSaleToCart(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonCart.setEnabled(false);
-						qs.updateQuery();
+						q.updateQuery();
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
