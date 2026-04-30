@@ -96,6 +96,7 @@ public class ShowSaleGUI extends JFrame {
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jFather.setVisible(true);
+				q.updateQuery();
 				dispose();
 			}
 		});
@@ -111,7 +112,6 @@ public class ShowSaleGUI extends JFrame {
 						facade.addSaleToCart(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonCart.setEnabled(false);
-						q.updateQuery();
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());

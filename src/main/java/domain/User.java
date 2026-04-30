@@ -83,6 +83,20 @@ public class User implements Serializable {
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
+	
+	public int getFirstCartSale() {
+		if(!this.getCarts().isEmpty()) return this.getCarts().get(0).getSaleNumber();
+		return Integer.MIN_VALUE;
+	}
+	
+	public Cart getCart(int cartNumber) {
+		for(Cart c : carts) {
+			if(c.getCartNumber() == cartNumber) {
+				return c;
+			}
+		}
+		return null;
+	}
 
 	public List<Transaction> geTransactions() {
 		return transactions;
@@ -140,10 +154,18 @@ public class User implements Serializable {
 		transactions.add(new Transaction(tran, amount));
 	}
 
-	public Cart addCart(float price, int saleNumber) {
-		Cart c = new Cart(price, saleNumber);
+	public Cart addCart(float price, String title, int saleNumber) {
+		Cart c = new Cart(price, title, saleNumber);
 		carts.add(c);
 		return c;
+	}
+	
+	public void removeCarts() {
+		int i = carts.size();
+		while(i > 0) {
+			carts.remove(i - 1);
+			i--;
+		}
 	}
 	
 	/**

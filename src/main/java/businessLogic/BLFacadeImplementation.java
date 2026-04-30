@@ -2,6 +2,7 @@ package businessLogic;
 
 import dataAccess.DataAccess;
 import domain.Admin;
+import domain.Cart;
 import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
@@ -155,9 +156,9 @@ public class BLFacadeImplementation implements BLFacade {
     }
 
     @WebMethod
-    public List<Sale> getUserSales(String name) {
+    public List<Sale> getUserSales(int saleNUmber) {
         dbManager.open();
-        List<Sale> s = dbManager.getUserSales(name);
+        List<Sale> s = dbManager.getUserSales(saleNUmber);
         dbManager.close();
         return s;
     }
@@ -180,11 +181,19 @@ public class BLFacadeImplementation implements BLFacade {
         dbManager.close();
         return rides;
     }
+    
+    @WebMethod
+    public List<Cart> getUserCart(String name) {
+        dbManager.open();
+        List<Cart> cart = dbManager.getUserCart(name);
+        dbManager.close();
+        return cart;
+    }
 
     @WebMethod
-    public void addSaleToBuyer(User u, Sale s) {
+    public void addCartToBuyer(String name) {
         dbManager.open();
-        dbManager.addSaleToBuyer(u, s);
+        dbManager.addCartToBuyer(name);
         dbManager.close();
     }
 
@@ -272,6 +281,13 @@ public class BLFacadeImplementation implements BLFacade {
     public void removeReclamation(int saleNumber, int reclamationNumber) {
         dbManager.open();
         dbManager.removeReclamaton(saleNumber, reclamationNumber);
+        dbManager.close();
+    }
+    
+    @WebMethod
+    public void removeCart(String name, int cartNumber) {
+        dbManager.open();
+        dbManager.removeCart(name, cartNumber);
         dbManager.close();
     }
 

@@ -1,6 +1,7 @@
 package businessLogic;
 
 import domain.Admin;
+import domain.Cart;
 import domain.Reclamation;
 import domain.Report;
 import domain.Sale;
@@ -85,13 +86,16 @@ public interface BLFacade {
     public void register(String email, String reg, String pass);
 
     @WebMethod
-    public List<Sale> getUserSales(String name);
+    public List<Sale> getUserSales(int saleNumber);
 
     @WebMethod
     public List<Sale> getPurchasedSales(User u);
+    
+    @WebMethod
+    public List<Cart> getUserCart(String name);
 
     @WebMethod
-    public void addSaleToBuyer(User u, Sale s);
+    public void addCartToBuyer(String name);
 
     @WebMethod
     public void addSaleToCart(User u, Sale s);
@@ -132,6 +136,9 @@ public interface BLFacade {
 
     @WebMethod
     public void removeReclamation(int saleNumber, int reclamationNumber);
+    
+    @WebMethod
+    public void removeCart(String name, int cartNumber);
 
     @WebMethod
     public Reclamation changeStatus(int reclamationNumber, boolean status);

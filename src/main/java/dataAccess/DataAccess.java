@@ -403,12 +403,13 @@ public class DataAccess {
         }
     }
 
-    public List<Sale> getUserSales(String name) {
+    public List<Sale> getUserSales(int saleNUmber) {
         db.getTransaction().begin();
-        List<Sale> dbs = null;
+        List<Sale> dbSales = null;
         try {
-            User dbu = db.find(User.class, name);
-            dbs = dbu.getSales();
+            Sale dbs = db.find(Sale.class, saleNUmber);
+            User dbu = dbs.getUser();
+            dbSales = dbu.getSales();
             System.out.println("Hemen iritsa da (DB)");
 
         } catch (Exception e) {
@@ -418,7 +419,7 @@ public class DataAccess {
             db.getTransaction().commit();
         }
 
-        return dbs;
+        return dbSales;
     }
 
     public User isRegistered(String user) {
@@ -470,6 +471,18 @@ public class DataAccess {
         return res;
     }
 
+    public List<Cart> getUserCart(String name) {
+        System.out.println(">> DataAccess: getCart=> from= " + name);
+
+        TypedQuery<User> query = db.createQuery(
+            "SELECT u FROM User u WHERE u.name=?1",
+            User.class
+        );
+        query.setParameter(1, name);
+        List<Cart> cart = query.getResultList().get(0).getCarts();
+        return cart;
+    }
+    
     public void addSaleToCart(User u, Sale s) {
         try {
             db.getTransaction().begin();
@@ -478,7 +491,7 @@ public class DataAccess {
             dbs.setOnCart(true);
 
             User dbu = db.find(User.class, u.getName());
-            Cart c = dbu.addCart(dbs.getPrice(), dbs.getSaleNumber());
+            Cart c = dbu.addCart(dbs.getPrice(), dbs.getTitle(),dbs.getSaleNumber());
 
             db.getTransaction().commit();
         } catch (NullPointerException e) {
@@ -487,21 +500,36 @@ public class DataAccess {
         }
     }
 
-    public void addSaleToBuyer(User u, Sale s) {
+    public void addCartToBuyer(String name) {
         try {
             db.getTransaction().begin();
 
-            Sale dbs = db.find(Sale.class, s.getSaleNumber());
-            User dbSeller = dbs.getUser();
-            dbs.setOnSale(false);
-
-            User dbu = db.find(User.class, u.getName());
-            dbu.addSale(dbs);
-            dbu.setBalance(dbu.getBalance() - dbs.getPrice());
-            dbSeller.setBalance(dbSeller.getBalance() + dbs.getPrice());
-
-            dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
-            dbSeller.createTransaction(dbSeller.getName(), dbs, dbs.getPrice(), false);
+            User dbu = db.find(User.class, name);
+            User tmp;
+            Sale s;
+            float total = 0;
+            
+            if(dbu.getCarts() != null && !dbu.getCarts().isEmpty()) {
+            	
+            }
+            for(Cart c : dbu.getCarts()) {
+            	s = db.find(Sale.class, c.getSaleNumber());
+            	s.setOnSale(false);
+            	s.setOnCart(false);
+            	
+            	tmp = s.getUser();
+            	tmp.setBalance(tmp.getBalance() + s.getPrice());
+            	tmp.createTransaction(tmp.getName(), s, s.getPrice(), false);
+            	
+            	dbu.createTransaction(name, s, s.getPrice(), false);
+            	dbu.addSale(s);
+            	
+            	total += s.getPrice();
+            }
+            
+            dbu.removeCarts();
+            
+            dbu.setBalance(dbu.getBalance() - total);
 
             db.getTransaction().commit();
         } catch (NullPointerException e) {
@@ -637,6 +665,25 @@ public class DataAccess {
             Reclamation dbr = db.find(Reclamation.class, reclamationNumber);
 
             dbs.getReclamations().remove(dbr);
+
+            System.out.println("Kendu da Reclamation-a");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+            db.getTransaction().commit();
+        }
+    }
+    
+    public void removeCart(String name, int cartNumber) {
+        try {
+            db.getTransaction().begin();
+
+            User dbu = db.find(User.class, name);
+            Cart dbc = dbu.getCart(cartNumber);
+            Sale dbs = db.find(Sale.class, dbc.getSaleNumber());
+
+            dbu.getCarts().remove(dbc);
+            dbs.setOnCart(false);
 
             System.out.println("Kendu da Reclamation-a");
         } catch (NullPointerException e) {
