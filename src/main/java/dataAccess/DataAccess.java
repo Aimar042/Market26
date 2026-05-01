@@ -727,4 +727,36 @@ public class DataAccess {
 
         return dbr;
     }
+    
+    public void addRequestToUser(String title, String description, String name) {
+        try {
+            db.getTransaction().begin();
+
+            User dbu = db.find(User.class, name);
+            dbu.addRequest(title, description);
+            
+            System.out.println("Request Sotu Da DB-n");
+            
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+        	db.getTransaction().commit();
+        }
+    }
+    
+    public List<Request> getAllRequests(String name) {
+    	List<Request> dbr = null;
+        try {
+            db.getTransaction().begin();
+
+            User dbu = db.find(User.class, name);
+            dbr = dbu.getRequests();
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+            db.getTransaction().commit();
+        }
+        return dbr;
+    }
 }

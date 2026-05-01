@@ -4,6 +4,7 @@ import domain.Admin;
 import domain.Cart;
 import domain.Reclamation;
 import domain.Report;
+import domain.Request;
 import domain.Sale;
 import domain.User;
 import exceptions.FileNotUploadedException;
@@ -145,4 +146,10 @@ public interface BLFacade {
 
     @WebMethod
     public Reclamation getReclamation(int reclamationNumber);
+    
+    @WebMethod
+    public void addRequestToUser(String title, String description, String name);
+    
+    @WebMethod
+    public List<Request> getAllRequests(String name);
 }

@@ -5,6 +5,7 @@ import domain.Admin;
 import domain.Cart;
 import domain.Reclamation;
 import domain.Report;
+import domain.Request;
 import domain.Sale;
 import domain.User;
 import exceptions.FileNotUploadedException;
@@ -303,6 +304,21 @@ public class BLFacadeImplementation implements BLFacade {
     public Reclamation getReclamation(int reclamationNumber) {
         dbManager.open();
         Reclamation r = dbManager.getReclamation(reclamationNumber);
+        dbManager.close();
+        return r;
+    }
+    
+    @WebMethod
+    public void addRequestToUser(String title, String description, String name) {
+        dbManager.open();
+        dbManager.addRequestToUser(title, description, name);
+        dbManager.close();
+    }
+    
+    @WebMethod
+    public List<Request> getAllRequests(String name) {
+        dbManager.open();
+        List<Request> r = dbManager.getAllRequests(name);
         dbManager.close();
         return r;
     }

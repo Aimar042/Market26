@@ -44,6 +44,10 @@ public class User implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Cart> carts = new ArrayList<Cart>();
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Request> requests = new ArrayList<Request>();
 
 
 	public User() {
@@ -113,6 +117,10 @@ public class User implements Serializable {
 	public List<Cart> getCarts() {
 		return this.carts;
 	}
+	
+	public List<Request> getRequests() {
+		return this.requests;
+	}
 
 	/**
 	 * This method creates/adds a sale to a seller
@@ -158,6 +166,12 @@ public class User implements Serializable {
 		Cart c = new Cart(price, title, saleNumber);
 		carts.add(c);
 		return c;
+	}
+	
+	public Request addRequest(String title, String description) {
+		Request r = new Request(title, description, this.getName());
+		requests.add(r);
+		return r;
 	}
 	
 	public void removeCarts() {

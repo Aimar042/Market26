@@ -16,6 +16,8 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -35,8 +37,9 @@ public class QuerySalesGUI extends JFrame {
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private JButton jButtonCart = new JButton((String) null);
-	private JButton jButtonRequest = new JButton((String) null);
+	private JButton jButtonCart = new JButton("Cart");
+	private JButton jButtonRequest = new JButton("Request");
+	private JButton btnOptions;
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
 	private JTable tableProducts= new JTable();
@@ -53,9 +56,12 @@ public class QuerySalesGUI extends JFrame {
 	};
 	private JTextField jTextFieldSearch;
 	private User u;
+	
+	private JMenuItem JMenuShowRequests = new JMenuItem("Requests");
+	
+	private JPopupMenu popupMenu;
 
-
-	public QuerySalesGUI(JFrame jFather, User u) { // TODO Botoi berrien etiketak jartzea
+	public QuerySalesGUI(JFrame jFather, User u) { // TODO Botoi berrien etiketak jartzea eta JMenuItem-ena era
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;
@@ -126,6 +132,14 @@ public class QuerySalesGUI extends JFrame {
 
 		jButtonRequest.setBounds(new Rectangle(220, 379, 130, 30));
 		jButtonRequest.setBounds(314, 319, 130, 30);
+		jButtonRequest.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JFrame a = new RequestGUI(QuerySalesGUI.this, u);
+		        a.setVisible(true);
+		        setVisible(false);
+		    }
+		});
 		getContentPane().add(jButtonRequest);
 
 
@@ -150,6 +164,29 @@ public class QuerySalesGUI extends JFrame {
 		            }
 		        }
 		 });
+		
+		btnOptions = new JButton("\u22EE");
+		btnOptions.setBounds(628, 12, 37, 36);
+		
+		popupMenu = new JPopupMenu();
+		popupMenu.add(JMenuShowRequests);
+		
+		JMenuShowRequests.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JFrame a = new QueryRequestsGUI(QuerySalesGUI.this, u.getName());
+		        a.setVisible(true);
+		        setVisible(false);
+		    }
+		});
+
+		btnOptions.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        popupMenu.show(btnOptions, 0, btnOptions.getHeight()); 
+		    }
+		});
+		
+		getContentPane().add(btnOptions);
 	}
 
 	public void updateQuery() {
