@@ -199,7 +199,7 @@ public class DataAccess {
         int status,
         float price,
         Date pubDate,
-        String sellerEmail,
+        String sellerName,
         File file,
         boolean onSale
     )
@@ -208,7 +208,7 @@ public class DataAccess {
             ">> DataAccess: createProduct=> title= " +
                 title +
                 " seller=" +
-                sellerEmail
+                sellerName
         );
         try {
             if (pubDate.before(UtilDate.trim(new Date()))) {
@@ -226,7 +226,7 @@ public class DataAccess {
 
             db.getTransaction().begin();
 
-            User userS = db.find(User.class, sellerEmail);
+            User userS = db.find(User.class, sellerName);
             if (userS.doesSaleExist(title)) {
                 db.getTransaction().commit();
                 throw new SaleAlreadyExistException(
@@ -744,7 +744,7 @@ public class DataAccess {
         }
     }
     
-    public List<Request> getAllRequests(String name) {
+    public List<Request> getUserRequests(String name) {
     	List<Request> dbr = null;
         try {
             db.getTransaction().begin();
@@ -759,4 +759,71 @@ public class DataAccess {
         }
         return dbr;
     }
+    
+    public List<Request> getAllRequests(){
+    	TypedQuery<Request> query = db.createQuery("SELECT r FROM Request r", Request.class);
+    	
+    	if(!query.getResultList().isEmpty()) return query.getResultList();
+    	return null;
+    }
+
+	public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)
+		throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException {
+	        System.out.println(
+	            ">> DataAccess: createOffer=> title= " +
+	                title +
+	                " seller=" +
+	                sellerName
+	        );
+	        try {
+	            if (pubDate.before(UtilDate.trim(new Date()))) {
+	                throw new MustBeLaterThanTodayException(
+	                    ResourceBundle.getBundle("Etiquetas").getString(
+	                        "DataAccess.ErrorSaleMustBeLaterThanToday"
+	                    )
+	                );
+	            }
+	            if (file == null) throw new FileNotUploadedException(
+	                ResourceBundle.getBundle("Etiquetas").getString(
+	                    "DataAccess.ErrorFileNotUploadedException"
+	                )
+	            );
+
+	            db.getTransaction().begin();
+
+	            User userS = db.find(User.class, sellerName);
+	            Request re = db.find(Request.class, r.getRequestNumber());
+	            /*
+	            if (userS.doesSaleExist(title)) {
+	                db.getTransaction().commit();
+	                throw new SaleAlreadyExistException(
+	                    ResourceBundle.getBundle("Etiquetas").getString(
+	                        "DataAccess.SaleAlreadyExist"
+	                    )
+	                );
+	            }
+	            */ // TODO VER SI ESTO HAY QUE HACER O NO
+
+	            re.addOffer(
+	                title,
+	                description,
+	                status,
+	                price,
+	                pubDate,
+	                file,
+	                userS
+	            );
+	            //next instruction can be obviated
+
+	            db.getTransaction().commit();
+	            System.out.println("Offer stroed");
+
+	            System.out.println("hasta aqui");
+
+	        } catch (NullPointerException e) {
+	            e.printStackTrace();
+	            // TODO Auto-generated catch block
+	            db.getTransaction().commit();
+	        }
+	}
 }

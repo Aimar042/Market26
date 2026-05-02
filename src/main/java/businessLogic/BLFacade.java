@@ -151,5 +151,12 @@ public interface BLFacade {
     public void addRequestToUser(String title, String description, String name);
     
     @WebMethod
-    public List<Request> getAllRequests(String name);
+    public List<Request> getUserRequests(String name);
+    
+    @WebMethod
+    public List<Request> getAllRequests();
+    
+    @WebMethod
+    public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)
+    		throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
 }

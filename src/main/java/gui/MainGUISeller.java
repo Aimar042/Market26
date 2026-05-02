@@ -49,11 +49,12 @@ public class MainGUISeller extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton jButtonRequests;
 	
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUISeller(String mail, User u) {
+	public MainGUISeller(String mail, User u) { // TODO Beharrezko etiketak jartzea
 		super();
 
 		this.userMail=mail;
@@ -98,13 +99,13 @@ public class MainGUISeller extends JFrame {
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateSale"));
 		jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new CreateSaleGUI(userMail);
+				JFrame a = new CreateSaleGUI(userMail, true, null);
 				a.setVisible(true);
 			}
 		});
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
 		jContentPane.add(jLabelSelectOption);
 		
 		jButtonChangeMode = new JButton();
@@ -118,6 +119,17 @@ public class MainGUISeller extends JFrame {
 		});
 		jContentPane.add(jButtonChangeMode);
 		jContentPane.add(jButtonCreateQuery);
+		
+		jButtonRequests = new JButton();
+		jButtonRequests.setText("Requests");
+		jButtonRequests.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				JFrame a = new QueryRequestsGUI(MainGUISeller.this, u, true);
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		jContentPane.add(jButtonRequests);
 		jContentPane.add(panel);
 		
 		

@@ -1,0 +1,272 @@
+package domain;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.imageio.ImageIO;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@SuppressWarnings("serial")
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Offer implements Serializable {
+
+    @XmlID
+    @Id
+    @XmlJavaTypeAdapter(IntegerAdapter.class)
+    @GeneratedValue
+    private Integer saleNumber;
+
+    private String title;
+    private String description;
+    private int status;
+    private float price;
+    private Date pubDate;
+    private String fileName;
+
+    @ManyToOne
+    private User user;
+
+    @XmlIDREF
+    @OneToMany(
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.PERSIST,
+        orphanRemoval = true
+    )
+    private List<Report> reports = new ArrayList<Report>();
+
+    @XmlIDREF
+    @OneToMany(
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.PERSIST,
+        orphanRemoval = true
+    )
+    private List<Reclamation> reclamations = new ArrayList<Reclamation>();
+    
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Request> requests = new ArrayList<Request>();
+
+    public Offer() {
+        super();
+    }
+
+    public Offer(
+        String title,
+        String description,
+        int status,
+        float price,
+        Date pubDate,
+        File file,
+        User user
+    ) {
+        super();
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.price = price;
+        this.pubDate = pubDate;
+        if (file != null) {
+            this.fileName = file.getName();
+            try {
+                BufferedImage img1 = ImageIO.read(file);
+
+                String path = "src/main/resources/images/";
+                File outputfile = new File(path + file.getName());
+
+                ImageIO.write(img1, "png", outputfile); // ignore returned boolean
+            } catch (IOException ex) {
+                //System.out.println("Write error for " + outputfile.getPath()  ": " + ex.getMessage());
+            }
+        }
+
+        this.user = user;
+    }
+
+    /**
+     * Get the number of the sale
+     *
+     * @return the sale number
+     */
+    public Integer getSaleNumber() {
+        return saleNumber;
+    }
+
+    /**
+     * Set a number to a sale
+     *
+     * @param sale Number to be set	 */
+
+    public void setSaleNumber(Integer saleNumber) {
+        this.saleNumber = saleNumber;
+    }
+
+    /**
+     * Get the title  of the sale
+     *
+     * @return the title
+     */
+
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Set the title of the sale
+     *
+     * @param title to be set
+     */
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * Get the description of the sale
+     *
+     * @return the sale description
+     */
+
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set the description of the sale
+     *
+     * @param description to be set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Get the status of the sale
+     *
+     * @return the sale status
+     */
+
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * Set the status of the sale
+     *
+     * @param status to be set
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    /**
+     * Get the price of the sale
+     *
+     * @return the price description
+     */
+
+    public float getPrice() {
+        return price;
+    }
+
+    /**
+     * Set the price of the sale
+     *
+     * @param price to be set
+     */
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    /**
+     * Get the publication date  of the sale
+     *
+     * @return the publication date
+     */
+    public Date getPublicationDate() {
+        return pubDate;
+    }
+
+    /**
+     * Set the publication date  of the sale
+     *
+     * @param publication date to be set
+     */
+    public void setPublicationDate(Date publicationDate) {
+        this.pubDate = publicationDate;
+    }
+
+    /**
+     * Get the seller of a sale
+     *
+     * @return the associated seller
+     */
+
+    /**
+     * Set the seller of a sale
+     *
+     * @param seller to assign to the sale
+     */
+
+    /**
+     * Get the file of a sale
+     *
+     * @return the associated file
+     */
+    public String getFile() {
+        return fileName;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public String toString() {
+        return saleNumber + ";" + title + ";" + price;
+    }
+
+    public List<Report> getRports() {
+        return this.reports;
+    }
+
+    public void addRport(String header, String description, String userName) {
+        reports.add(new Report(header, description, userName, getSaleNumber()));
+    }
+
+    public void addReclamation(
+        String header,
+        String description,
+        boolean status,
+        String userName
+    ) {
+        reclamations.add(
+            new Reclamation(
+                header,
+                description,
+                status,
+                userName,
+                getSaleNumber()
+            )
+        );
+    }
+
+    public List<Reclamation> getReclamations() {
+        return this.reclamations;
+    }
+}

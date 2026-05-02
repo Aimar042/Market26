@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 import domain.Report;
 import domain.Request;
+import domain.User;
 
 
 public class QueryRequestsGUI extends JFrame {
@@ -45,16 +46,19 @@ public class QueryRequestsGUI extends JFrame {
 
 	};
 	
-	private String name;
+	private User u;
+	
+	private boolean isSeller;
 	
 
-	public QueryRequestsGUI(JFrame jFather, String name) { // TODO Hemen ere Etiketak aldatu behar
+	public QueryRequestsGUI(JFrame jFather, User u, boolean isSeller) { // TODO Hemen ere Etiketak aldatu behar
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		tableReports.setEnabled(false);
 		this.jFather = jFather;
-		this.name = name;
+		this.u = u;
+		this.isSeller = isSeller;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Title"));
@@ -100,23 +104,23 @@ public class QueryRequestsGUI extends JFrame {
 		jButtonSearch.setBounds(483, 65, 117, 29);
 		getContentPane().add(jButtonSearch);
 		
-	    /*
 		tableReports.addMouseListener(new MouseAdapter() {
 		        @Override
 		        public void mousePressed(MouseEvent mouseEvent) {
 		            
 		            if(mouseEvent.getClickCount() == 2)
 		            {
-				        JTable table =(JTable) mouseEvent.getSource();
-		            	Point point = mouseEvent.getPoint();
-				        int row = table.rowAtPoint(point);
-		            	Report r=(Report) tableModelReports.getValueAt(row, 3);
-		            	JFrame a = new ShowReportGUI(r, getQueryReportsGUI());
-		            	a.setVisible(true);
+		            	if(isSeller) {
+					        JTable table =(JTable) mouseEvent.getSource();
+			            	Point point = mouseEvent.getPoint();
+					        int row = table.rowAtPoint(point);
+			            	Request r = (Request) tableModelReports.getValueAt(row, 2);
+			            	JFrame a = new CreateSaleGUI(u.getName(), false, r);
+			            	a.setVisible(true);
+		            	}
 		            }
 		        }
 		 });
-		 */
 	}
 	
 	public void updateQuery() {
@@ -126,7 +130,12 @@ public class QueryRequestsGUI extends JFrame {
 
 			BLFacade facade = MainGUI.getBusinessLogic();
 
-			List<Request> requests=facade.getAllRequests(getName());
+			List<Request> requests;
+			if(this.isSeller()) {
+				requests=facade.getAllRequests();
+			}else {
+				requests=facade.getUserRequests(getUser().getName());
+			}
 
 			
 			if (requests == null) jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Empty"));
@@ -155,7 +164,11 @@ public class QueryRequestsGUI extends JFrame {
 		return this;
 	}
 	
-	public String getName() {
-		return this.name;
+	public User getUser() {
+		return this.u;
+	}
+	
+	public boolean isSeller() {
+		return this.isSeller;
 	}
 }

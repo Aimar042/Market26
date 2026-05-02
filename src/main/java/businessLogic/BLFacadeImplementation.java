@@ -316,10 +316,26 @@ public class BLFacadeImplementation implements BLFacade {
     }
     
     @WebMethod
-    public List<Request> getAllRequests(String name) {
+    public List<Request> getUserRequests(String name) {
         dbManager.open();
-        List<Request> r = dbManager.getAllRequests(name);
+        List<Request> r = dbManager.getUserRequests(name);
         dbManager.close();
         return r;
     }
+    
+    @WebMethod
+    public List<Request> getAllRequests() {
+        dbManager.open();
+        List<Request> r = dbManager.getAllRequests();
+        dbManager.close();
+        return r;
+    }
+    
+    @WebMethod
+    public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)
+    		throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException {
+    		dbManager.open();
+    		dbManager.createOffer(title, description, status, price, pubDate, sellerName, file, r);
+    }
+
 }

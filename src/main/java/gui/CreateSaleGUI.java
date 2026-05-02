@@ -3,6 +3,7 @@ package gui;
 import businessLogic.BLFacade;
 import com.toedter.calendar.JCalendar;
 import configuration.UtilDate;
+import domain.Request;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class CreateSaleGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private String sellerMail;
+	private String sellerName;
 	private JTextField fieldTitle=new JTextField();
 	private JTextField fieldDescription=new JTextField();
 	
@@ -62,10 +63,10 @@ public class CreateSaleGUI extends JFrame {
 	private JFrame thisFrame;
 	private final JButton btnNewButton_2 = new JButton("grabar Imagen"); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public CreateSaleGUI(String mail) {
+	public CreateSaleGUI(String name, boolean isSale, Request r) { // TODO Beharrezko etiketak jarri
 
 		thisFrame=this;
-		this.sellerMail=mail;
+		this.sellerName=name;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.CreateProduct"));
@@ -93,8 +94,15 @@ public class CreateSaleGUI extends JFrame {
 						float price = Float.parseFloat(jTextFieldPrice.getText());
 						String s=(String)jComboBoxStatus.getSelectedItem();
 						int numStatus=status.indexOf(s);
-						facade.createSale(fieldTitle.getText(), fieldDescription.getText(), numStatus, price,  UtilDate.trim(jCalendar.getDate()), sellerMail, targetFile, true);
+						
+						if(isSale)
+							facade.createSale(fieldTitle.getText(), fieldDescription.getText(), numStatus, price,  UtilDate.trim(jCalendar.getDate()), sellerName, targetFile, true);
+						else
+							facade.createOffer(fieldTitle.getText(), fieldDescription.getText(), numStatus, price,  UtilDate.trim(jCalendar.getDate()), sellerName, targetFile, r);
+						
 						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.ProductCreated"));
+						
+						jButtonCreate.setEnabled(false);
 					
 					} catch (Exception e1) {
 

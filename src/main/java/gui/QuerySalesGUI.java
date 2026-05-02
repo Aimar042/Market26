@@ -174,7 +174,7 @@ public class QuerySalesGUI extends JFrame {
 		JMenuShowRequests.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		        JFrame a = new QueryRequestsGUI(QuerySalesGUI.this, u.getName());
+		        JFrame a = new QueryRequestsGUI(QuerySalesGUI.this, u, false);
 		        a.setVisible(true);
 		        setVisible(false);
 		    }
