@@ -26,20 +26,19 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Cart;
+import domain.Offer;
+import domain.Request;
 import domain.Sale;
 import domain.User;
 
 
-public class QuerySalesGUI extends JFrame {
+public class QueryOffersGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private JButton jButtonCart = new JButton("Cart");
-	private JButton jButtonRequest = new JButton("Request");
-	private JButton btnOptions;
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
 	private JTable tableProducts= new JTable();
@@ -55,16 +54,17 @@ public class QuerySalesGUI extends JFrame {
 
 	};
 	private JTextField jTextFieldSearch;
+	
 	private User u;
-	
-	private JMenuItem JMenuShowRequests = new JMenuItem("Requests");
-	
-	private JPopupMenu popupMenu;
+	private Request r;
+	private boolean isBought;
 
-	public QuerySalesGUI(JFrame jFather, User u) { // TODO Botoi berrien etiketak jartzea eta JMenuItem-ena era
+	public QueryOffersGUI(JFrame jFather, User u, Request r, boolean isBought) { // TODO Botoien etiketak jartzea eta JMenuItem-ena era
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;
+		this.isBought = isBought;
+		this.r = r;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
@@ -72,7 +72,7 @@ public class QuerySalesGUI extends JFrame {
 		this.getContentPane().add(jLabelProducts);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		jButtonClose.setBounds(new Rectangle(220, 379, 130, 30));
+		jButtonClose.setBounds(new Rectangle(220, 340, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -117,31 +117,6 @@ public class QuerySalesGUI extends JFrame {
 		jButtonSearch.setBounds(427, 56, 117, 29);
 		getContentPane().add(jButtonSearch);
 
-		jButtonCart.setBounds(new Rectangle(220, 379, 130, 30));
-		jButtonCart.setText("Cart");
-		jButtonCart.setBounds(122, 319, 130, 30);
-		jButtonCart.setVisible(false);
-		jButtonCart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		 		JFrame a = new QueryCartGUI(QuerySalesGUI.this, u, getQuerySalesGUI());
-		 		a.setVisible(true);
-		 		setVisible(false);
-		 	}
-		});
-		getContentPane().add(jButtonCart);
-
-		jButtonRequest.setBounds(new Rectangle(220, 379, 130, 30));
-		jButtonRequest.setBounds(314, 319, 130, 30);
-		jButtonRequest.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		        JFrame a = new RequestGUI(QuerySalesGUI.this, u);
-		        a.setVisible(true);
-		        setVisible(false);
-		    }
-		});
-		getContentPane().add(jButtonRequest);
-
 
 		tableProducts.addMouseListener(new MouseAdapter() {
 		        @Override
@@ -152,45 +127,14 @@ public class QuerySalesGUI extends JFrame {
 				        JTable table =(JTable) mouseEvent.getSource();
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
-		            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
+		            	Offer o = (Offer) tableModelProducts.getValueAt(row, 3);
 						JFrame a;
-		            	if(u != null) {
-							a = new ShowSaleGUI(s, u.getName(), QuerySalesGUI.this, false);
-		            	}else {
-		            		a = new ShowSaleGUI(s, null, QuerySalesGUI.this, true);
-		            	}
+						a = new ShowOfferGUI(o, getUser().getName(), getQueryOffersGUI(), false);
 						setVisible(false);
 						a.setVisible(true);
 		            }
 		        }
 		 });
-		
-		btnOptions = new JButton("\u22EE");
-		btnOptions.setBounds(628, 12, 37, 36);
-		
-		popupMenu = new JPopupMenu();
-		popupMenu.add(JMenuShowRequests);
-		
-		JMenuShowRequests.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		        JFrame a = new QueryRequestsGUI(QuerySalesGUI.this, u, false);
-		        a.setVisible(true);
-		        setVisible(false);
-		    }
-		});
-
-		btnOptions.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        popupMenu.show(btnOptions, 0, btnOptions.getHeight()); 
-		    }
-		});
-		
-		getContentPane().add(btnOptions);
-		
-		if(u == null) {
-			jButtonRequest.setVisible(false);
-		}
 	}
 
 	public void updateQuery() {
@@ -203,27 +147,22 @@ public class QuerySalesGUI extends JFrame {
 			
 			User user = facade.getUser(getUser().getName());
 			
-			List<domain.Sale> sales;
-			if((user.getCarts() == null) || (user.getCarts().isEmpty())) {
-				sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);
-				jButtonCart.setVisible(false);
+			List<domain.Offer> offers = null;
+			if(this.isBought()) {
+				// offers=facade.getPublishedSales(jTextFieldSearch.getText(),today);
 			}else {
-				sales=facade.getUserSales(user.getFirstCartSale());
-				jButtonCart.setVisible(true);
+				offers=facade.getRequestOffers(this.getRequest().getRequestNumber());
 			}
 			
-			if (sales.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
+			if (offers.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
 			else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
-			for (domain.Sale sale:sales){
+			for (domain.Offer offer:offers){
 				Vector<Object> row = new Vector<Object>();
-				if((sale.getOnSale()) && (!sale.getOnCart())) {
-					row.add(sale.getTitle());
-					row.add(sale.getPrice());
-					row.add(new SimpleDateFormat("dd-MM-yyyy").format(sale.getPublicationDate()));
-					row.add(sale); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
-					tableModelProducts.addRow(row);
-				}
-
+				row.add(offer.getTitle());
+				row.add(offer.getPrice());
+				row.add(new SimpleDateFormat("dd-MM-yyyy").format(offer.getPublicationDate()));
+				row.add(offer); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
+				tableModelProducts.addRow(row);
 			}
 			
 		} catch (Exception e1) {
@@ -237,11 +176,19 @@ public class QuerySalesGUI extends JFrame {
 		tableProducts.getColumnModel().removeColumn(tableProducts.getColumnModel().getColumn(3)); // not shown in JTable
 	}
 
-	public QuerySalesGUI getQuerySalesGUI() {
+	public QueryOffersGUI getQueryOffersGUI() {
 		return this;
 	}
 	
 	public User getUser() {
 		return this.u;
+	}
+	
+	public boolean isBought() {
+		return this.isBought;
+	}
+	
+	public Request getRequest() {
+		return this.r;
 	}
 }

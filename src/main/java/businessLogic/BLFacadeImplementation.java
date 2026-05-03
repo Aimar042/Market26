@@ -3,6 +3,7 @@ package businessLogic;
 import dataAccess.DataAccess;
 import domain.Admin;
 import domain.Cart;
+import domain.Offer;
 import domain.Reclamation;
 import domain.Report;
 import domain.Request;
@@ -338,4 +339,18 @@ public class BLFacadeImplementation implements BLFacade {
     		dbManager.createOffer(title, description, status, price, pubDate, sellerName, file, r);
     }
 
+    @WebMethod 
+    public List<Offer> getRequestOffers(int requestNumber) {
+    	dbManager.open();
+    	List<Offer> o = dbManager.getRequestOffers(requestNumber);
+    	dbManager.close();
+    	return o;
+    }
+    
+    @WebMethod
+    public void addOfferToBuyer(String name, Offer o) {
+    	dbManager.open();
+    	dbManager.addOfferToBuyer(name, o);
+    	dbManager.close();
+    }
 }

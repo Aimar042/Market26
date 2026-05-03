@@ -110,14 +110,19 @@ public class QueryRequestsGUI extends JFrame {
 		            
 		            if(mouseEvent.getClickCount() == 2)
 		            {
+		            	JTable table =(JTable) mouseEvent.getSource();
+		            	Point point = mouseEvent.getPoint();
+				        int row = table.rowAtPoint(point);
+		            	Request r = (Request) tableModelReports.getValueAt(row, 2);
+		            	JFrame a;
+		            		
 		            	if(isSeller) {
-					        JTable table =(JTable) mouseEvent.getSource();
-			            	Point point = mouseEvent.getPoint();
-					        int row = table.rowAtPoint(point);
-			            	Request r = (Request) tableModelReports.getValueAt(row, 2);
-			            	JFrame a = new CreateSaleGUI(u.getName(), false, r);
-			            	a.setVisible(true);
+		            		a = new CreateSaleGUI(u.getName(), false, r);
+		            	}else {
+		            		a = new QueryOffersGUI(QueryRequestsGUI.this, u, r, false);
+		            		setVisible(false);
 		            	}
+		            	a.setVisible(true);
 		            }
 		        }
 		 });
@@ -160,7 +165,7 @@ public class QueryRequestsGUI extends JFrame {
 		tableReports.getColumnModel().removeColumn(tableReports.getColumnModel().getColumn(2)); // not shown in JTable
 	}
 	
-	public QueryRequestsGUI getQueryReportsGUI() {
+	public QueryRequestsGUI getQueryRequestsGUI() {
 		return this;
 	}
 	

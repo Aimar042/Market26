@@ -49,6 +49,10 @@ public class User implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Request> requests = new ArrayList<Request>();
 
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Offer> offers = new ArrayList<Offer>();
 
 	public User() {
 		super();
@@ -144,6 +148,12 @@ public class User implements Serializable {
 	public Sale addSale(Sale sale)  {
 		bought.add(sale);
 		return sale;
+	}
+	
+	public Offer addOffer(String title, String description, int status, float price, Date pubDate, File file, User u)  {
+		Offer o = new Offer(title, description, status, price, pubDate, file, u);
+		offers.add(o);
+		return o;
 	}
 	
 	public void createTransaction(String name, Sale s, float amount, boolean isInsert) {

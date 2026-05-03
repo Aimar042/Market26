@@ -114,7 +114,8 @@ public class CreateSaleGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(328, 228, 101, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				thisFrame.setVisible(false);			}
+				thisFrame.setVisible(false);
+			}
 		});
 
 		jLabelMsg.setBounds(new Rectangle(26, 275, 377, 20));

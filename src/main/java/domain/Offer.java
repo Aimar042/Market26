@@ -30,7 +30,7 @@ public class Offer implements Serializable {
     @Id
     @XmlJavaTypeAdapter(IntegerAdapter.class)
     @GeneratedValue
-    private Integer saleNumber;
+    private Integer offerNumber;
 
     private String title;
     private String description;
@@ -104,8 +104,8 @@ public class Offer implements Serializable {
      *
      * @return the sale number
      */
-    public Integer getSaleNumber() {
-        return saleNumber;
+    public Integer getOfferNumber() {
+        return offerNumber;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Offer implements Serializable {
      * @param sale Number to be set	 */
 
     public void setSaleNumber(Integer saleNumber) {
-        this.saleNumber = saleNumber;
+        this.offerNumber = saleNumber;
     }
 
     /**
@@ -238,7 +238,7 @@ public class Offer implements Serializable {
     }
 
     public String toString() {
-        return saleNumber + ";" + title + ";" + price;
+        return offerNumber + ";" + title + ";" + price;
     }
 
     public List<Report> getRports() {
@@ -246,7 +246,7 @@ public class Offer implements Serializable {
     }
 
     public void addRport(String header, String description, String userName) {
-        reports.add(new Report(header, description, userName, getSaleNumber()));
+        reports.add(new Report(header, description, userName, getOfferNumber()));
     }
 
     public void addReclamation(
@@ -261,7 +261,7 @@ public class Offer implements Serializable {
                 description,
                 status,
                 userName,
-                getSaleNumber()
+                getOfferNumber()
             )
         );
     }

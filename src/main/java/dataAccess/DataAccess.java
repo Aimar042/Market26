@@ -826,4 +826,42 @@ public class DataAccess {
 	            db.getTransaction().commit();
 	        }
 	}
+	
+	public List<Offer> getRequestOffers(int requestNumber) {
+		List<Offer> dbo = null;
+		try {
+			db.getTransaction().begin();
+			
+			Request dbr = db.find(Request.class, requestNumber);
+			dbo = dbr.getOffers();
+			
+		}catch(NullPointerException e) {
+			db.getTransaction().rollback();
+			e.printStackTrace();
+		}finally {
+			db.getTransaction().commit();
+		}
+		return dbo;
+	}
+	
+    public void addOfferToBuyer(String name, Offer o) {
+        try {
+            db.getTransaction().begin();
+
+            User dbu = db.find(User.class, name);
+            Offer dbo = db.find(Offer.class, o.getOfferNumber());
+            
+            String path = "src/main/resources/images/";
+            File file = new File(path + dbo.getFile());
+            
+            dbu.addOffer(dbo.getTitle(), dbo.getDescription(), dbo.getStatus(), dbo.getPrice(), dbo.getPublicationDate(), file, dbo.getUser());
+            
+            System.out.println("Request Sotu Da DB-n");
+            
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+        	db.getTransaction().commit();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package businessLogic;
 
 import domain.Admin;
 import domain.Cart;
+import domain.Offer;
 import domain.Reclamation;
 import domain.Report;
 import domain.Request;
@@ -159,4 +160,10 @@ public interface BLFacade {
     @WebMethod
     public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)
     		throws FileNotUploadedException, MustBeLaterThanTodayException, SaleAlreadyExistException;
+    
+    @WebMethod
+    public List<Offer> getRequestOffers(int requestNumber);
+    
+    @WebMethod
+    public void addOfferToBuyer(String name, Offer o);
 }
