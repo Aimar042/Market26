@@ -121,7 +121,7 @@ public class MainGUISeller extends JFrame {
 		jContentPane.add(jButtonCreateQuery);
 		
 		jButtonRequests = new JButton();
-		jButtonRequests.setText("Requests");
+		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Request"));
 		jButtonRequests.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				JFrame a = new QueryRequestsGUI(MainGUISeller.this, u, true);

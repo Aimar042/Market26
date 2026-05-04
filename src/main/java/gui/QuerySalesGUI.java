@@ -37,8 +37,8 @@ public class QuerySalesGUI extends JFrame {
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private JButton jButtonCart = new JButton("Cart");
-	private JButton jButtonRequest = new JButton("Request");
+	private JButton jButtonCart =  new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Cart"));
+	private JButton jButtonRequest = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Request"));
 	private JButton btnOptions;
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -57,7 +57,7 @@ public class QuerySalesGUI extends JFrame {
 	private JTextField jTextFieldSearch;
 	private User u;
 	
-	private JMenuItem JMenuShowRequests = new JMenuItem("Requests");
+	private JMenuItem JMenuShowRequests = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.ShowRequests"));
 	
 	private JPopupMenu popupMenu;
 
@@ -118,7 +118,6 @@ public class QuerySalesGUI extends JFrame {
 		getContentPane().add(jButtonSearch);
 
 		jButtonCart.setBounds(new Rectangle(220, 379, 130, 30));
-		jButtonCart.setText("Cart");
 		jButtonCart.setBounds(122, 319, 130, 30);
 		jButtonCart.setVisible(false);
 		jButtonCart.addActionListener(new ActionListener() {
@@ -166,7 +165,7 @@ public class QuerySalesGUI extends JFrame {
 		 });
 		
 		btnOptions = new JButton("\u22EE");
-		btnOptions.setBounds(628, 12, 37, 36);
+		btnOptions.setBounds(567, 12, 37, 36);
 		
 		popupMenu = new JPopupMenu();
 		popupMenu.add(JMenuShowRequests);

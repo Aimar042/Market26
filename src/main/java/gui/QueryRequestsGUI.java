@@ -27,7 +27,7 @@ import domain.User;
 public class QueryRequestsGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelRequests = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Reports")); 
+	private final JLabel jLabelRequests = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestGUI.Requests")); 
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
