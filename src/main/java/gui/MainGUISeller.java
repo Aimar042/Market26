@@ -121,7 +121,7 @@ public class MainGUISeller extends JFrame {
 		jContentPane.add(jButtonCreateQuery);
 		
 		jButtonRequests = new JButton();
-		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Request"));
+		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUISeller.Request"));
 		jButtonRequests.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				JFrame a = new QueryRequestsGUI(MainGUISeller.this, u, true);
@@ -148,6 +148,7 @@ public class MainGUISeller extends JFrame {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateSale"));
+		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUISeller.Request"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}
 	
