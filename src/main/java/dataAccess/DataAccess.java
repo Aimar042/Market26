@@ -456,7 +456,7 @@ public class DataAccess {
     }
 
     public List<Sale> getPurchasedSales(User u) {
-        System.out.println(">> DataAccess: getProducts=> from= " + u.getName());
+        System.out.println(">> DataAccess: getPurchasedSales=> from= " + u.getName());
 
         List<Sale> res = new ArrayList<Sale>();
         TypedQuery<User> query = db.createQuery(
@@ -469,6 +469,19 @@ public class DataAccess {
             res.add(purchased);
         }
         return res;
+    }
+    
+    public List<Offer> getPurchasedOffers(User u) {
+        System.out.println(">> DataAccess: getPurchasedOffers=> from= " + u.getName());
+
+        TypedQuery<User> query = db.createQuery(
+            "SELECT u FROM User u WHERE u.name=?1",
+            User.class
+        );
+        query.setParameter(1, u.getName());
+        
+        List<Offer> purchaseds = query.getResultList().get(0).getOffers();
+        return purchaseds;
     }
 
     public List<Cart> getUserCart(String name) {

@@ -25,10 +25,11 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Offer;
 import domain.Sale;
 import domain.User;
 
-public class ShowPurchasedListGUI extends JFrame {
+public class ShowPurchasedOffersListGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -67,7 +68,7 @@ public class ShowPurchasedListGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowPurchasedListGUI(JFrame jFather, User u) {
+	public ShowPurchasedOffersListGUI(JFrame jFather, User u) {
 		// TODO Hemen ere JMenuReclamtion-en etiketak
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -127,7 +128,7 @@ public class ShowPurchasedListGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					Date today = UtilDate.trim(new Date());
 
-					List<domain.Sale> purchaseds = facade.getPurchasedSales(u);
+					List<domain.Offer> purchaseds = facade.getPurchasedOffers(u);
 
 					// List<domain.Sale> purchaseds=u.getBuyer().getBought();
 
@@ -137,7 +138,7 @@ public class ShowPurchasedListGUI extends JFrame {
 					else
 						jLabelProducts.setText(
 								ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Purchased"));
-					for (domain.Sale purchased : purchaseds) {
+					for (domain.Offer purchased : purchaseds) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(purchased.getTitle());
 						row.add(purchased.getPrice());
@@ -182,8 +183,8 @@ public class ShowPurchasedListGUI extends JFrame {
 			        JTable table =(JTable) mouseEvent.getSource();
 	            	Point point = mouseEvent.getPoint();
 			        int row = table.rowAtPoint(point);
-	            	Sale s=(Sale) tableModelProducts.getValueAt(row, 3);
-	            	new ShowSaleGUI(s, u.getName(), null, true);
+	            	Offer o=(Offer) tableModelProducts.getValueAt(row, 3);
+	            	new ShowOfferGUI(o, u.getName(), null, true);
 	            }
 	        }
 	 });

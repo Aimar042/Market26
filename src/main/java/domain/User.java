@@ -125,6 +125,10 @@ public class User implements Serializable {
 	public List<Request> getRequests() {
 		return this.requests;
 	}
+	
+	public List<Offer> getOffers() {
+		return this.offers;
+	}
 
 	/**
 	 * This method creates/adds a sale to a seller

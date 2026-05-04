@@ -113,7 +113,7 @@ public class RequestGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.addRequestToUser(textAreaTitle.getText(), textDescription.getText(), u.getName());
 					btnRequest.setEnabled(false);
-					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.AllGood"));
+					// lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.AllGood")); Dice que non existe
 				}
 			}
 		});

@@ -96,8 +96,10 @@ public class ShowOfferGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jFather.setVisible(true);
-				q.updateQuery();
+				if(!isBought) {
+					jFather.setVisible(true);
+					q.updateQuery();
+				}
 				dispose();
 			}
 		});

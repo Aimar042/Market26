@@ -185,6 +185,14 @@ public class BLFacadeImplementation implements BLFacade {
     }
     
     @WebMethod
+    public List<Offer> getPurchasedOffers(User u) {
+        dbManager.open();
+        List<Offer> rides = dbManager.getPurchasedOffers(u);
+        dbManager.close();
+        return rides;
+    }
+    
+    @WebMethod
     public List<Cart> getUserCart(String name) {
         dbManager.open();
         List<Cart> cart = dbManager.getUserCart(name);

@@ -94,6 +94,9 @@ public interface BLFacade {
     public List<Sale> getPurchasedSales(User u);
     
     @WebMethod
+    public List<Offer> getPurchasedOffers(User u);
+    
+    @WebMethod
     public List<Cart> getUserCart(String name);
 
     @WebMethod

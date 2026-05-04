@@ -103,7 +103,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
 		jButtonShowPurchased.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame a = new ShowPurchasedListGUI(MainGUIBuyer.this,u);
+				JFrame a = new BoughtGUI(MainGUIBuyer.this, u);
 				a.setVisible(true);
 				dispose();	
 			}
