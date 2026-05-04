@@ -22,7 +22,7 @@ public class RequestGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextArea textRequest;
+	private JTextArea textDescription;
 	private JScrollPane scrollPane;
 	private JLabel lblTitle;
 	private JTextArea textAreaTitle;
@@ -61,10 +61,10 @@ public class RequestGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblReason = new JLabel();
-		lblReason.setBounds(30, 45, 167, 17);
-		lblReason.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Reason")); //$NON-NLS-1$ //$NON-NLS-2$
-		contentPane.add(lblReason);
+		JLabel lblDescription = new JLabel();
+		lblDescription.setBounds(30, 45, 167, 17);
+		lblDescription.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Description")); //$NON-NLS-1$ //$NON-NLS-2$
+		contentPane.add(lblDescription);
 		
 		JButton btnGoBack = new JButton();
 		btnGoBack.setBounds(30, 202, 106, 27);
@@ -77,15 +77,15 @@ public class RequestGUI extends JFrame {
 		});
 		
 		lblTitle = new JLabel();
-		lblTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.Header")); 
+		lblTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.title")); 
 		lblTitle.setBounds(30, 12, 167, 17);
 		contentPane.add(lblTitle);
 		contentPane.add(btnGoBack);
 		
-		textRequest = new JTextArea();
-		textRequest.setEditable(true);
+		textDescription = new JTextArea();
+		textDescription.setEditable(true);
 
-		scrollPane = new JScrollPane(textRequest);
+		scrollPane = new JScrollPane(textDescription);
 		scrollPane.setBounds(195, 45, 240, 100);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		contentPane.add(scrollPane); 
@@ -101,8 +101,8 @@ public class RequestGUI extends JFrame {
 		contentPane.add(lblWarning);
 		
 		btnRequest = new JButton(); 
+		btnRequest.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Request")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnRequest.setBounds(263, 157, 106, 27);
-		btnRequest.setText("Request");
 		
 		btnRequest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -111,9 +111,9 @@ public class RequestGUI extends JFrame {
 					lblWarning.setText(error);
 				}else {
 					BLFacade facade = MainGUI.getBusinessLogic();
-					facade.addRequestToUser(textAreaTitle.getText(), textRequest.getText(), u.getName());
+					facade.addRequestToUser(textAreaTitle.getText(), textDescription.getText(), u.getName());
 					btnRequest.setEnabled(false);
-					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.AllGood"));
+					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.AllGood"));
 				}
 			}
 		});
@@ -122,8 +122,10 @@ public class RequestGUI extends JFrame {
 	}
 	
 	private String check_Field_Errors() {
-		if (textAreaTitle.getText().length() == 0 || textRequest.getText().length()==0) {
-			return ResourceBundle.getBundle("Etiquetas").getString("ReportGUI.EmptyError");
+		if (textAreaTitle.getText().length() == 0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.TitleError");
+		}else if( textDescription.getText().length()==0) {
+			return ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.DescriptionError");
 		}
 		return null;
 	}

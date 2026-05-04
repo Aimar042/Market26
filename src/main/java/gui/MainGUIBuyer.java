@@ -81,7 +81,6 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		jContentPane.add(jLabelSelectOption);
-		jContentPane.add(jButtonChangeMode);
 		
 		jButtonQueryQueries = new JButton();
 		jButtonQueryQueries.setBounds(0, 44, 495, 43);
@@ -94,6 +93,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 			}
 		});
 		jContentPane.add(jButtonQueryQueries);
+		jContentPane.add(jButtonChangeMode);
 		
 		
 		setContentPane(jContentPane);
