@@ -42,7 +42,7 @@ public class BoughtGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		jOffers = new JButton();
-		jOffers.setText("Offers");
+		jOffers.setText(ResourceBundle.getBundle("Etiquetas").getString("BoughtGUI.offers"));
 		jOffers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -71,7 +71,7 @@ public class BoughtGUI extends JFrame {
 	    });
 		
 		jSales = new JButton();
-		jSales.setText("Sales");
+		jSales.setText(ResourceBundle.getBundle("Etiquetas").getString("BoughtGUI.sales"));
 		jSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {

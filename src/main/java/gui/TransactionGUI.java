@@ -50,12 +50,12 @@ public class TransactionGUI extends JFrame {
 		
 		JLabel lblAllTransactions = new JLabel();
 		lblAllTransactions.setBounds(12, 35, 167, 17);
-		lblAllTransactions.setText("Transakzio osoak ikusi:");
+		lblAllTransactions.setText(ResourceBundle.getBundle("Etiquetas").getString("TransactionGUI.see"));
 		contentPane.add(lblAllTransactions);
 		
 		btnSearch = new JButton();
 		btnSearch.setBounds(125, 146, 190, 27);
-		btnSearch.setText("Bilatu");
+		btnSearch.setText(ResourceBundle.getBundle("Etiquetas").getString("TransactionGUI.search"));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				BLFacade facade = MainGUI.getBusinessLogic();
