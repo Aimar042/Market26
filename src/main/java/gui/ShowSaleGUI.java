@@ -92,7 +92,7 @@ public class ShowSaleGUI extends JFrame {
 		
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 		
-		jButtonClose.setBounds(new Rectangle(16, 268, 114, 30));
+		jButtonClose.setBounds(new Rectangle(16, 295, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jFather.setVisible(true);
@@ -123,7 +123,7 @@ public class ShowSaleGUI extends JFrame {
 			}
 		});
 		
-		jButtonCart.setBounds(178, 268, 105, 31);
+		jButtonCart.setBounds(178, 295, 105, 31);
 
 		jLabelError.setBounds(new Rectangle(16, 236, 299, 20));
 		jLabelError.setForeground(Color.red);
@@ -228,6 +228,11 @@ public class ShowSaleGUI extends JFrame {
 		}
 		
 		getContentPane().add(btnOptions);
+		
+		JButton jButtonBuy = new JButton((String) null);
+		jButtonBuy.setBounds(178, 240, 105, 31);
+		
+		getContentPane().add(jButtonBuy);
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)
     {
