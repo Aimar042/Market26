@@ -65,7 +65,7 @@ public class ShowOfferGUI extends JFrame {
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
 	private JMenuItem JMenuReclamation;
-	private final JButton jButtonCart = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
+	private final JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Offer o;
 	
@@ -104,7 +104,7 @@ public class ShowOfferGUI extends JFrame {
 			}
 		});
 		
-		jButtonCart.addActionListener(new ActionListener() {
+		jButtonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(name != null) {
@@ -114,7 +114,7 @@ public class ShowOfferGUI extends JFrame {
 					if(u.getBalance() >= offer.getPrice()) {
 						facade.addOfferToBuyer(u.getName(), offer);
 						System.out.println("Sartu da:" + u.doesSaleExist(o.getTitle()));
-						jButtonCart.setEnabled(false);
+						jButtonBuy.setEnabled(false);
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
@@ -122,11 +122,11 @@ public class ShowOfferGUI extends JFrame {
 				}else {
 					System.out.println("Erregistratu edo Login egin mesedez");
 				}
-				jButtonCart.setEnabled(false);
+				jButtonBuy.setEnabled(false);
 			}
 		});
 		
-		jButtonCart.setBounds(178, 268, 105, 31);
+		jButtonBuy.setBounds(178, 268, 105, 31);
 
 		jLabelError.setBounds(new Rectangle(16, 236, 299, 20));
 		jLabelError.setForeground(Color.red);
@@ -135,7 +135,7 @@ public class ShowOfferGUI extends JFrame {
 		this.getContentPane().add(jLabelError, null);
 
 		this.getContentPane().add(jButtonClose, null);
-		this.getContentPane().add(jButtonCart, null);
+		this.getContentPane().add(jButtonBuy, null);
 		this.getContentPane().add(jLabelTitle, null);
 		
 		
@@ -226,7 +226,7 @@ public class ShowOfferGUI extends JFrame {
 		*/
 		
 		if(isBought) {
-			jButtonCart.setVisible(false);
+			jButtonBuy.setVisible(false);
 			JMenuReport.setVisible(false);;
 		}else {
 			JMenuReclamation.setVisible(false);

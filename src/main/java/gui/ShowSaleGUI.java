@@ -64,7 +64,8 @@ public class ShowSaleGUI extends JFrame {
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
 	private JMenuItem JMenuReclamation;
-	private final JButton jButtonCart = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
+	private final JButton jButtonCart = new JButton("Cart");
+	private JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Sale s;
 	
@@ -116,8 +117,6 @@ public class ShowSaleGUI extends JFrame {
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
 					}
-				}else {
-					System.out.println("Erregistratu edo Login egin mesedez");
 				}
 				jButtonCart.setEnabled(false);
 			}
@@ -229,9 +228,26 @@ public class ShowSaleGUI extends JFrame {
 		
 		getContentPane().add(btnOptions);
 		
-		JButton jButtonBuy = new JButton((String) null);
 		jButtonBuy.setBounds(178, 240, 105, 31);
-		
+		jButtonBuy.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(name != null) {
+					BLFacade facade = MainGUI.getBusinessLogic();
+					User u = facade.getUser(name);
+					System.out.println("Saldoa: " + u.getBalance());
+					if(u.getBalance() >= sale.getPrice()) {
+						facade.addSaleToBuyer(u, sale);
+						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
+						jButtonBuy.setEnabled(false);
+						System.out.println("Kendu da");
+					}else {
+						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
+					}
+				}
+				jButtonBuy.setEnabled(false);
+			}
+		});
 		getContentPane().add(jButtonBuy);
 	}	 
 	public BufferedImage rescale(BufferedImage originalImage)

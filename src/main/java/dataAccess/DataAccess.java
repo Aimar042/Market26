@@ -522,9 +522,6 @@ public class DataAccess {
             Sale s;
             float total = 0;
             
-            if(dbu.getCarts() != null && !dbu.getCarts().isEmpty()) {
-            	
-            }
             for(Cart c : dbu.getCarts()) {
             	s = db.find(Sale.class, c.getSaleNumber());
             	s.setOnSale(false);
@@ -543,6 +540,25 @@ public class DataAccess {
             dbu.removeCarts();
             
             dbu.setBalance(dbu.getBalance() - total);
+
+            db.getTransaction().commit();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            db.getTransaction().commit();
+        }
+    }
+    
+    public void addSaleToBuyer(User u, Sale s) {
+        try {
+            db.getTransaction().begin();
+
+            Sale dbs = db.find(Sale.class, s.getSaleNumber());
+            dbs.setOnSale(false);
+
+            User dbu = db.find(User.class, u.getName());
+            dbu.addSale(dbs);
+            
+            dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
 
             db.getTransaction().commit();
         } catch (NullPointerException e) {
@@ -577,7 +593,7 @@ public class DataAccess {
             } else {
                 dbu.setBalance(dbu.getBalance() - amount);
             }
-            dbu.createTransaction(name, null, amount, isInsert);
+            dbu.createTransaction(name, (Sale) null, amount, isInsert);
 
             ema = dbu.getBalance();
         } catch (NullPointerException e) {
@@ -868,6 +884,8 @@ public class DataAccess {
             File file = new File(path + dbo.getFile());
             
             dbu.addOffer(dbo.getTitle(), dbo.getDescription(), dbo.getStatus(), dbo.getPrice(), dbo.getPublicationDate(), file, dbo.getUser());
+            
+            dbu.createTransaction(name, dbo, o.getPrice(), false);
             
             System.out.println("Request Sotu Da DB-n");
             

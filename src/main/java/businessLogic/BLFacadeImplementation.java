@@ -215,6 +215,13 @@ public class BLFacadeImplementation implements BLFacade {
     }
 
     @WebMethod
+    public void addSaleToBuyer(User u, Sale s) {
+        dbManager.open();
+        dbManager.addSaleToBuyer(u, s);
+        dbManager.close();
+    }
+    
+    @WebMethod
     public User getUser(String name) {
         dbManager.open();
         User u = dbManager.getUser(name);

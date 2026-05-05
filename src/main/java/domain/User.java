@@ -175,6 +175,22 @@ public class User implements Serializable {
 
 		transactions.add(new Transaction(tran, amount));
 	}
+	
+	public void createTransaction(String name, Offer o, float amount, boolean isInsert) {
+		String tran = "\n" + name + "\n";
+		if(o != null) {
+			tran += o.getOfferNumber() + "\n";
+			tran += o.getTitle() + "\n";
+		}else {
+			if(isInsert) {
+				tran += "Money Inserted\n";
+			}else {
+				tran += "Money Withdrawed\n";
+			}
+		}
+
+		transactions.add(new Transaction(tran, amount));
+	}
 
 	public Cart addCart(float price, String title, int saleNumber) {
 		Cart c = new Cart(price, title, saleNumber);
