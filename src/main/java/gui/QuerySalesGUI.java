@@ -189,6 +189,7 @@ public class QuerySalesGUI extends JFrame {
 		
 		if(u == null) {
 			jButtonRequest.setVisible(false);
+			btnOptions.setVisible(false);
 		}
 	}
 
@@ -200,10 +201,14 @@ public class QuerySalesGUI extends JFrame {
 			BLFacade facade = MainGUI.getBusinessLogic();
 			Date today = UtilDate.trim(new Date());
 			
-			User user = facade.getUser(getUser().getName());
+			User user = null;
+			
+			if(getUser() != null) {
+				user = facade.getUser(getUser().getName());
+			}
 			
 			List<domain.Sale> sales;
-			if((user.getCarts() == null) || (user.getCarts().isEmpty())) {
+			if((user == null) || (user.getCarts() == null) || (user.getCarts().isEmpty())) {
 				sales=facade.getPublishedSales(jTextFieldSearch.getText(),today);
 				jButtonCart.setVisible(false);
 			}else {
