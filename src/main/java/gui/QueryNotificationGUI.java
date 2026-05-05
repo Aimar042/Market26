@@ -23,7 +23,7 @@ import domain.Reclamation;
 import domain.User;
 
 
-public class NotificationGUI extends JFrame {
+public class QueryNotificationGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private final JLabel jLabelNotifications = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryReclamationsGUI.Reclamation")); 
@@ -46,7 +46,7 @@ public class NotificationGUI extends JFrame {
 	};
 	
 
-	public NotificationGUI(JFrame jFather, User u) {
+	public QueryNotificationGUI(JFrame jFather, User u) {
 		tableNotifications.setEnabled(false);
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
@@ -145,7 +145,7 @@ public class NotificationGUI extends JFrame {
 		tableNotifications.getColumnModel().removeColumn(tableNotifications.getColumnModel().getColumn(3)); // not shown in JTable
 	}
 	
-	public NotificationGUI getQueryReclamationsGUI() {
+	public QueryNotificationGUI getQueryReclamationsGUI() {
 		return this;
 	}
 }

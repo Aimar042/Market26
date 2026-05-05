@@ -33,6 +33,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 	private JPanel jContentPane = null;
 	private JButton jButtonChangeMode = null;
 	private JButton jButtonQueryQueries = null;
+	private JButton jbuttonNotifications = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -150,9 +151,8 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jbuttonNotifications.setBounds(347, 0, 136, 32);
 		jbuttonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
 		jbuttonNotifications.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) { // HEMEN NOTIFICATION GUI IZAN BEHARREAN IZAN BEHARKO ZEN QUERY NOTIFICATION GUI
-															// ETA HOR IREKI NOTIFICATIONGUI
-				JFrame a = new NotificationGUI(MainGUIBuyer.this,u);
+			public void actionPerformed(ActionEvent arg0) { 
+				JFrame a = new QueryNotificationGUI(MainGUIBuyer.this,u);
 				a.setVisible(true);
 				dispose();
 			}
@@ -183,6 +183,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToSeller"));
 		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
 		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
+		jbuttonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
