@@ -69,7 +69,7 @@ public class ShowOfferGUI extends JFrame {
 	
 	private Offer o;
 	
-	public ShowOfferGUI(Offer offer, String name, QueryOffersGUI q, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
+	public ShowOfferGUI(Offer offer, String name, QueryOffersGUI q, QueryRequestsGUI qr, int requestNumber, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
 		this.o = offer;
 		this.jFather = q; 
 		this.setVisible(true);
@@ -112,9 +112,10 @@ public class ShowOfferGUI extends JFrame {
 					User u = facade.getUser(name);
 					System.out.println("Saldoa: " + u.getBalance());
 					if(u.getBalance() >= offer.getPrice()) {
-						facade.addOfferToBuyer(u.getName(), offer);
-						System.out.println("Sartu da:" + u.doesSaleExist(o.getTitle()));
+						facade.addOfferToBuyer(u.getName(), offer, requestNumber);
 						jButtonBuy.setEnabled(false);
+						setJFather(qr);
+						qr.updateQuery();
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
@@ -246,6 +247,10 @@ public class ShowOfferGUI extends JFrame {
 	
 	public Date getDate() {
 		return (Date) this.o.getPublicationDate();
+	}
+	
+	public void setJFather(QueryRequestsGUI qr) {
+		this.jFather = qr;
 	}
 }
 

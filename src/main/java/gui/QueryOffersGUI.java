@@ -129,7 +129,7 @@ public class QueryOffersGUI extends JFrame {
 				        int row = table.rowAtPoint(point);
 		            	Offer o = (Offer) tableModelProducts.getValueAt(row, 3);
 						JFrame a;
-						a = new ShowOfferGUI(o, getUser().getName(), getQueryOffersGUI(), false);
+						a = new ShowOfferGUI(o, getUser().getName(), getQueryOffersGUI(), (QueryRequestsGUI) jFather, r.getRequestNumber(), false);
 						setVisible(false);
 						a.setVisible(true);
 		            }

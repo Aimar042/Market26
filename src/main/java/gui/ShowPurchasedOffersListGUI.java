@@ -69,7 +69,7 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowPurchasedOffersListGUI(JFrame jFather, User u) {
-		// TODO Hemen ere JMenuReclamtion-en etiketak
+		// TODO Hemen ere etiketak jarri
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -184,7 +184,7 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 	            	Point point = mouseEvent.getPoint();
 			        int row = table.rowAtPoint(point);
 	            	Offer o=(Offer) tableModelProducts.getValueAt(row, 3);
-	            	new ShowOfferGUI(o, u.getName(), null, true);
+	            	new ShowOfferGUI(o, u.getName(), null, null, Integer.MIN_VALUE, true);
 	            }
 	        }
 	 });

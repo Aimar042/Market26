@@ -96,8 +96,10 @@ public class ShowSaleGUI extends JFrame {
 		jButtonClose.setBounds(new Rectangle(16, 295, 114, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jFather.setVisible(true);
-				q.updateQuery();
+				if(!isBought) {
+					jFather.setVisible(true);
+					q.updateQuery();
+				}
 				dispose();
 			}
 		});
@@ -221,7 +223,8 @@ public class ShowSaleGUI extends JFrame {
 		
 		if(isBought) {
 			jButtonCart.setVisible(false);
-			JMenuReport.setVisible(false);;
+			jButtonBuy.setVisible(false);
+			JMenuReport.setVisible(false);
 		}else {
 			JMenuReclamation.setVisible(false);
 		}

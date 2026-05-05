@@ -171,5 +171,5 @@ public interface BLFacade {
     public List<Offer> getRequestOffers(int requestNumber);
     
     @WebMethod
-    public void addOfferToBuyer(String name, Offer o);
+    public void addOfferToBuyer(String name, Offer o, int requestNumber);
 }

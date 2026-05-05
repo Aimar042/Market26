@@ -553,12 +553,17 @@ public class DataAccess {
             db.getTransaction().begin();
 
             Sale dbs = db.find(Sale.class, s.getSaleNumber());
+            User dbSeller = dbs.getUser();
             dbs.setOnSale(false);
 
             User dbu = db.find(User.class, u.getName());
             dbu.addSale(dbs);
             
+            dbu.setBalance(dbu.getBalance() - dbs.getPrice());
+            dbSeller.setBalance(dbSeller.getBalance() + dbs.getPrice());
+            
             dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
+            dbSeller.createTransaction(dbSeller.getName(), dbs, dbs.getPrice(), false);
 
             db.getTransaction().commit();
         } catch (NullPointerException e) {
@@ -873,21 +878,28 @@ public class DataAccess {
 		return dbo;
 	}
 	
-    public void addOfferToBuyer(String name, Offer o) {
+    public void addOfferToBuyer(String name, Offer o, int requestNumber) {
         try {
             db.getTransaction().begin();
 
             User dbu = db.find(User.class, name);
             Offer dbo = db.find(Offer.class, o.getOfferNumber());
+            User dbSeller = dbo.getUser();
             
             String path = "src/main/resources/images/";
             File file = new File(path + dbo.getFile());
             
             dbu.addOffer(dbo.getTitle(), dbo.getDescription(), dbo.getStatus(), dbo.getPrice(), dbo.getPublicationDate(), file, dbo.getUser());
             
+            dbu.setBalance(dbu.getBalance() - dbo.getPrice());
+            dbSeller.setBalance(dbSeller.getBalance() + dbo.getPrice());
+            
+            dbSeller.createTransaction(dbSeller.getName(), dbo, dbo.getPrice(), false);
             dbu.createTransaction(name, dbo, o.getPrice(), false);
             
-            System.out.println("Request Sotu Da DB-n");
+            dbu.removeRequest(requestNumber);
+            
+            System.out.println("Offer erosi da DB-n");
             
         } catch (NullPointerException e) {
             e.printStackTrace();

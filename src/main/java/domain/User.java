@@ -212,6 +212,19 @@ public class User implements Serializable {
 		}
 	}
 	
+	public void removeRequest(int requestNumber) {
+		int i = 0;
+		boolean found = false;
+		
+		while(!found && i < getRequests().size()) {
+			if(getRequests().get(i).getRequestNumber() == requestNumber) {
+				found = true;
+				this.getRequests().remove(i);
+			}
+			i++;
+		}
+	}
+	
 	/**
 	 * This method checks if the ride already exists for that driver
 	 * 

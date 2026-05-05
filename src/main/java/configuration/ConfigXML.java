@@ -38,8 +38,6 @@ public class ConfigXML {
 	
 	private int databasePort;
 	
-
-	
 	private String user;
 	
 	private String password;
@@ -108,7 +106,7 @@ public class ConfigXML {
 			  
 				//Two possible values: true (if the database must be initialized ) or false (in other case)
 			  String dbOpenValue= ((Element)config.getElementsByTagName("database").item(0)).getAttribute("initialize");
-			  isDatabaseInitialized= dbOpenValue.equals("true");
+			  isDatabaseInitialized= dbOpenValue.equals("false");
 
 	
 			  databaseNode = getTagValue("databaseNode", config);

@@ -68,7 +68,7 @@ public class ShowPurchasedSalesListGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowPurchasedSalesListGUI(JFrame jFather, User u) {
-		// TODO Hemen ere JMenuReclamtion-en etiketak
+		// TODO Hemen ere JMenuReclamtion-en etiketak eta falta badira ere jarri
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

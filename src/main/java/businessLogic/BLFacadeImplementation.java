@@ -363,9 +363,9 @@ public class BLFacadeImplementation implements BLFacade {
     }
     
     @WebMethod
-    public void addOfferToBuyer(String name, Offer o) {
+    public void addOfferToBuyer(String name, Offer o, int requestNumber) {
     	dbManager.open();
-    	dbManager.addOfferToBuyer(name, o);
+    	dbManager.addOfferToBuyer(name, o, requestNumber);
     	dbManager.close();
     }
 }
