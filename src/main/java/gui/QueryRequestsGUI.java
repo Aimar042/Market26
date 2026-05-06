@@ -143,9 +143,9 @@ public class QueryRequestsGUI extends JFrame {
 			}
 
 			
-			if (requests == null) jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Empty"));
+			if (requests == null) jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Empty"));
 			else {
-				jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.ThereAre"));
+				jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.ThereAre"));
 				for (Request r : requests){
 					Vector<Object> row = new Vector<Object>();
 					row.add(r.getTitle());

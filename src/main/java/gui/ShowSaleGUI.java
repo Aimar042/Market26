@@ -64,7 +64,7 @@ public class ShowSaleGUI extends JFrame {
 	private JButton btnOptions;
 	private JMenuItem JMenuReport;
 	private JMenuItem JMenuReclamation;
-	private final JButton jButtonCart = new JButton("Cart");
+	private final JButton jButtonCart = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Cart"));
 	private JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 	
 	private Sale s;

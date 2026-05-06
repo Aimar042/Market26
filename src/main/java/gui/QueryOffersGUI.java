@@ -35,7 +35,7 @@ import domain.User;
 public class QueryOffersGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
+	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.Offers"));
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
@@ -154,8 +154,8 @@ public class QueryOffersGUI extends JFrame {
 				offers=facade.getRequestOffers(this.getRequest().getRequestNumber());
 			}
 			
-			if (offers.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
-			else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
+			if (offers.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.NoOffers"));
+			else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.Offers"));
 			for (domain.Offer offer:offers){
 				Vector<Object> row = new Vector<Object>();
 				row.add(offer.getTitle());

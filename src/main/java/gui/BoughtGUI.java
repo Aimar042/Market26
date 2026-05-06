@@ -33,7 +33,7 @@ public class BoughtGUI extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public BoughtGUI(JFrame jFather, User u) { // TODO Etiketak
+	public BoughtGUI(JFrame jFather, User u) { 
 		super();
 		
 		this.userMail = u.getEmail();

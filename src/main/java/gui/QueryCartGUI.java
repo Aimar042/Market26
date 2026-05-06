@@ -32,13 +32,13 @@ public class QueryCartGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final JLabel jLabelCart = new JLabel("2 Klik Kentzeko");
-	private JLabel jLabelTotal = new JLabel("Guztira:");
+	private final JLabel jLabelCart = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.See"));
+	private JLabel jLabelTotal = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.Total"));
 	private JLabel jLabelToPay = new JLabel();
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private JButton jButtonBuy = new JButton("Erosi");
+	private JButton jButtonBuy = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Buy"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
 	private JTable tableProducts= new JTable();
@@ -173,11 +173,11 @@ public class QueryCartGUI extends JFrame {
 			List<domain.Cart> cart=facade.getUserCart(getUser().getName());
 			
 			if ((cart == null) || (cart.isEmpty())) {
-				jLabelCart.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
+				jLabelCart.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.NoProducts"));
 				jButtonBuy.setVisible(false);
 			}
 			else {
-				jLabelCart.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Products"));
+				jLabelCart.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.Products"));
 				jButtonBuy.setVisible(true);
 				for (domain.Cart c:cart){
 					Vector<Object> row = new Vector<Object>();
