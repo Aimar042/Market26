@@ -161,7 +161,7 @@ public interface BLFacade {
     public List<Request> getUserRequests(String name);
     
     @WebMethod
-    public List<Request> getAllRequests();
+    public List<Request> getAllRequests(String name);
     
     @WebMethod
     public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)

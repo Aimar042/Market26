@@ -137,7 +137,7 @@ public class QueryRequestsGUI extends JFrame {
 
 			List<Request> requests;
 			if(this.isSeller()) {
-				requests=facade.getAllRequests();
+				requests=facade.getAllRequests(getUser().getName());
 			}else {
 				requests=facade.getUserRequests(getUser().getName());
 			}
