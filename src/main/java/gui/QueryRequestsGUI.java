@@ -119,7 +119,7 @@ public class QueryRequestsGUI extends JFrame {
 		            	if(isSeller) {
 		            		a = new CreateSaleGUI(u.getName(), false, r);
 		            	}else {
-		            		a = new QueryOffersGUI(QueryRequestsGUI.this, u, r, false);
+		            		a = new QueryOffersGUI(QueryRequestsGUI.this, u, r);
 		            		setVisible(false);
 		            	}
 		            	a.setVisible(true);

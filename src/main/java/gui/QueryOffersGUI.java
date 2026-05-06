@@ -57,13 +57,11 @@ public class QueryOffersGUI extends JFrame {
 	
 	private User u;
 	private Request r;
-	private boolean isBought;
 
-	public QueryOffersGUI(JFrame jFather, User u, Request r, boolean isBought) { // TODO Botoien etiketak jartzea eta JMenuItem-ena era
+	public QueryOffersGUI(JFrame jFather, User u, Request r) { // TODO Botoien etiketak jartzea eta JMenuItem-ena era
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;
-		this.isBought = isBought;
 		this.r = r;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
@@ -148,11 +146,8 @@ public class QueryOffersGUI extends JFrame {
 			User user = facade.getUser(getUser().getName());
 			
 			List<domain.Offer> offers = null;
-			if(this.isBought()) {
-				// offers=facade.getPublishedSales(jTextFieldSearch.getText(),today);
-			}else {
-				offers=facade.getRequestOffers(this.getRequest().getRequestNumber());
-			}
+			
+			offers=facade.getRequestOffers(this.getRequest().getRequestNumber());
 			
 			if (offers.isEmpty() ) jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.NoOffers"));
 			else jLabelProducts.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.Offers"));
@@ -182,10 +177,6 @@ public class QueryOffersGUI extends JFrame {
 	
 	public User getUser() {
 		return this.u;
-	}
-	
-	public boolean isBought() {
-		return this.isBought;
 	}
 	
 	public Request getRequest() {
