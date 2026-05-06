@@ -53,6 +53,10 @@ public class User implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Offer> offers = new ArrayList<Offer>();
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Notification> notifications = new ArrayList<Notification>();
 
 	public User() {
 		super();
@@ -128,6 +132,10 @@ public class User implements Serializable {
 	
 	public List<Offer> getOffers() {
 		return this.offers;
+	}
+	
+	public List<Notification> getNotifications(){
+		return this.notifications;
 	}
 
 	/**
@@ -223,6 +231,11 @@ public class User implements Serializable {
 			}
 			i++;
 		}
+	}
+	
+	public void addNotification(String title, String description) {
+		Notification n = new Notification(title, description, this.getName(), false);
+		this.getNotifications().add(n);
 	}
 	
 	/**

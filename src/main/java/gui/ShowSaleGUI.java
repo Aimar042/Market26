@@ -115,12 +115,12 @@ public class ShowSaleGUI extends JFrame {
 						facade.addSaleToCart(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonCart.setEnabled(false);
+						jButtonBuy.setEnabled(false);
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
 					}
 				}
-				jButtonCart.setEnabled(false);
 			}
 		});
 		
@@ -243,6 +243,7 @@ public class ShowSaleGUI extends JFrame {
 						facade.addSaleToBuyer(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonBuy.setEnabled(false);
+						jButtonCart.setEnabled(false);
 						System.out.println("Kendu da");
 					}else {
 						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());

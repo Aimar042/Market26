@@ -2,6 +2,7 @@ package businessLogic;
 
 import domain.Admin;
 import domain.Cart;
+import domain.Notification;
 import domain.Offer;
 import domain.Reclamation;
 import domain.Report;
@@ -172,4 +173,7 @@ public interface BLFacade {
     
     @WebMethod
     public void addOfferToBuyer(String name, Offer o, int requestNumber);
+    
+    @WebMethod
+    public List<Notification> getUserNotifications(String name);
 }

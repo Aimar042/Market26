@@ -151,7 +151,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jButtonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
 		jButtonNotifications.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { 
-				JFrame a = new QueryNotificationGUI(MainGUIBuyer.this,u);
+				JFrame a = new QueryNotificationsGUI(MainGUIBuyer.this, u.getName());
 				a.setVisible(true);
 				dispose();
 			}

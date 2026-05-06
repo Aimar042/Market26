@@ -26,7 +26,7 @@ public class Notification implements Serializable{
 		super();
 	}
 
-	public Notification(String title, String description, boolean readed, String userName) {
+	public Notification(String title, String description, String userName, boolean readed) {
 		this.description = description;
 		this.title = title;
 		this.readed = readed;
@@ -39,14 +39,6 @@ public class Notification implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getHeader() {
-		return title;
-	}
-
-	public void setHeader(String header) {
-		this.title = header;
 	}
 
 	public boolean isStatus() {

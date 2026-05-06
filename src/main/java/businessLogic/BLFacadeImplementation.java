@@ -3,6 +3,7 @@ package businessLogic;
 import dataAccess.DataAccess;
 import domain.Admin;
 import domain.Cart;
+import domain.Notification;
 import domain.Offer;
 import domain.Reclamation;
 import domain.Report;
@@ -367,5 +368,13 @@ public class BLFacadeImplementation implements BLFacade {
     	dbManager.open();
     	dbManager.addOfferToBuyer(name, o, requestNumber);
     	dbManager.close();
+    }
+    
+    @WebMethod
+    public List<Notification> getUserNotifications(String name) {
+    	dbManager.open();
+    	List<Notification> n = dbManager.getUserNotifications(name);
+    	dbManager.close();
+    	return n;
     }
 }

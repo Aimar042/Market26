@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
+import javax.jws.soap.SOAPBinding.Use;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -531,6 +532,12 @@ public class DataAccess {
             	tmp.setBalance(tmp.getBalance() + s.getPrice());
             	tmp.createTransaction(tmp.getName(), s, s.getPrice(), false);
             	
+            	String description = "'" + s.getTitle() + "'" + " Bought By: " + dbu.getName() + " \n" + 
+            						 "Sale Number: " + s.getSaleNumber()  + " \n" +
+            						 "Amount To Be Received: " + s.getPrice();
+            	
+            	tmp.addNotification("Sale Sold", description);
+            	
             	dbu.createTransaction(name, s, s.getPrice(), false);
             	dbu.addSale(s);
             	
@@ -544,6 +551,7 @@ public class DataAccess {
             db.getTransaction().commit();
         } catch (NullPointerException e) {
             e.printStackTrace();
+            db.getTransaction().rollback();
             db.getTransaction().commit();
         }
     }
@@ -902,6 +910,12 @@ public class DataAccess {
             dbu.setBalance(dbu.getBalance() - dbo.getPrice());
             dbSeller.setBalance(dbSeller.getBalance() + dbo.getPrice());
             
+            String description = "'" + dbo.getTitle() + "'" + " Bought By: " + dbu.getName() + " \n" + 
+								 "Offer Number: " + dbo.getOfferNumber()  + " \n" +
+								 "Amount To Be Received: " + dbo.getPrice();
+            
+            dbSeller.addNotification("Offer Sold", description);
+            
             dbSeller.createTransaction(dbSeller.getName(), dbo, dbo.getPrice(), false);
             dbu.createTransaction(name, dbo, o.getPrice(), false);
             
@@ -910,9 +924,28 @@ public class DataAccess {
             System.out.println("Offer erosi da DB-n");
             
         } catch (NullPointerException e) {
+        	db.getTransaction().rollback();
             e.printStackTrace();
         } finally {
         	db.getTransaction().commit();
         }
+    }
+    
+    public List<Notification> getUserNotifications(String name) {
+    	List<Notification> dbn = null;
+    	try {
+    		db.getTransaction().begin();
+    		
+    		User dbu = db.find(User.class, name);
+    		dbn = dbu.getNotifications();
+    		
+    	}catch(NullPointerException e) {
+    		e.printStackTrace();
+    		db.getTransaction().rollback();
+    	}finally {
+    		db.getTransaction().commit();
+    	}
+    	
+    	return dbn;
     }
 }
