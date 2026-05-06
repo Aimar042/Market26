@@ -719,7 +719,7 @@ public class DataAccess {
             dbu.getCarts().remove(dbc);
             dbs.setOnCart(false);
 
-            System.out.println("Kendu da Reclamation-a");
+            System.out.println("Kendu da Cart-a");
         } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
@@ -794,11 +794,19 @@ public class DataAccess {
         return dbr;
     }
     
-    public List<Request> getAllRequests(){
+    public List<Request> getAllRequests(String name){
     	TypedQuery<Request> query = db.createQuery("SELECT r FROM Request r", Request.class);
     	
-    	if(!query.getResultList().isEmpty()) return query.getResultList();
-    	return null;
+		List<Request> tmp = new ArrayList<Request>();
+    	
+    	if(!query.getResultList().isEmpty()) {
+    		for(Request r : query.getResultList()) {
+    			if(!r.getUserName().equals(name)) {
+    				tmp.add(r);
+    			}
+    		}
+    	}
+    	return tmp;
     }
 
 	public void createOffer(String title, String description, int status, float price, Date pubDate, String sellerName, File file, Request r)

@@ -340,9 +340,9 @@ public class BLFacadeImplementation implements BLFacade {
     }
     
     @WebMethod
-    public List<Request> getAllRequests() {
+    public List<Request> getAllRequests(String name) {
         dbManager.open();
-        List<Request> r = dbManager.getAllRequests();
+        List<Request> r = dbManager.getAllRequests(name);
         dbManager.close();
         return r;
     }
