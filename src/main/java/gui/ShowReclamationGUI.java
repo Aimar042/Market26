@@ -49,7 +49,7 @@ public class ShowReclamationGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowReclamationGUI(Reclamation r, QueryReclamationsGUI q) { // TODO Hemengo Eitketak ondo daudela begirat eta baita ReclamationGUI-koak ere
+	public ShowReclamationGUI(Reclamation r, QueryReclamationsGUI q) { // TODO Hemengo Eitketak ondo daudela begirat eta baita ReclamationGUI-koak
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
