@@ -570,6 +570,12 @@ public class DataAccess {
             dbu.setBalance(dbu.getBalance() - dbs.getPrice());
             dbSeller.setBalance(dbSeller.getBalance() + dbs.getPrice());
             
+            String description = "'" + dbs.getTitle() + "'" + " Bought By: " + dbu.getName() + " \n" + 
+								 "Sale Number: " + dbs.getSaleNumber()  + " \n" +
+								 "Amount To Be Received: " + dbs.getPrice();
+
+            dbSeller.addNotification("Sale Sold", description);
+            
             dbu.createTransaction(dbu.getName(), dbs, dbs.getPrice(), false);
             dbSeller.createTransaction(dbSeller.getName(), dbs, dbs.getPrice(), false);
 
@@ -629,8 +635,16 @@ public class DataAccess {
             db.getTransaction().begin();
 
             dbs = db.find(Sale.class, s.getSaleNumber());
+            User dbu = dbs.getUser();
             dbs.addRport(header, description, userName);
-
+            
+            String notification = "A report has been issued by this User: " + userName + " \n" +
+			            		  "Sale Title: " + dbs.getTitle() + " \n" + 
+								  "Sale Number: " + dbs.getSaleNumber() + " \n" +
+            					  "The reason:" + description;
+            
+            dbu.addNotification("Report Issued", notification);
+ 
             System.out.println("Ezarri da Report-a");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -652,9 +666,17 @@ public class DataAccess {
             db.getTransaction().begin();
 
             dbs = db.find(Sale.class, s.getSaleNumber());
+            User dbu = dbs.getUser();
             dbs.addReclamation(header, description, false, userName);
+            
+            String notification = "A reclamation has been issued by this User: " + userName + " \n" +
+            					  "Sale Title: " + dbs.getTitle() + " \n" + 
+								  "Sale Number: " + dbs.getSaleNumber() + " \n" +
+								  "The reason:" + description;
 
-            System.out.println("Ezarri da Report-a");
+            dbu.addNotification("Reclamation Issued", notification);
+
+            System.out.println("Ezarri da Reclamation-a");
         } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
@@ -680,6 +702,12 @@ public class DataAccess {
             Sale dbs = db.find(Sale.class, saleNumber);
             Report dbr = db.find(Report.class, reportNumber);
 
+            String notification = "The following report has been removed: " + dbr.getHeader() + " \n" +
+          		  				  "Of This Sale: " + dbs.getTitle() + " \n" + 
+          		  				  "Sale Number: " + dbs.getSaleNumber();
+
+            dbs.getUser().addNotification("Report Removed", notification);
+            
             dbs.getRports().remove(dbr);
 
             System.out.println("Kendu da Report-a");
@@ -705,6 +733,12 @@ public class DataAccess {
 
             Sale dbs = db.find(Sale.class, saleNumber);
             Reclamation dbr = db.find(Reclamation.class, reclamationNumber);
+            
+            String notification = "The following reclamation has been removed: " + dbr.getHeader() + " \n" +
+            					  "Of This Sale: " + dbs.getTitle() + " \n" + 
+	  				              "Sale Number: " + dbs.getSaleNumber();
+
+            dbs.getUser().addNotification("Reclamation Removed", notification);
 
             dbs.getReclamations().remove(dbr);
 
@@ -735,12 +769,18 @@ public class DataAccess {
         }
     }
 
-    public Reclamation changeStatus(int reclamationNumber, boolean status) {
+    public Reclamation changeStatus(int saleNumber, int reclamationNumber, boolean status) {
         Reclamation dbr = null;
         try {
             db.getTransaction().begin();
 
             dbr = db.find(Reclamation.class, reclamationNumber);
+            Sale dbs = db.find(Sale.class, saleNumber);
+            
+            String notification = "The status of the following reclamation has changed: " + dbr.getHeader() + " \n";
+
+            dbs.getUser().addNotification("Reclamation Status Changed", notification);
+            
             dbr.setStatus(status);
 
             System.out.println(
@@ -864,6 +904,16 @@ public class DataAccess {
 	                userS
 	            );
 	            //next instruction can be obviated
+	            
+	            User userR = db.find(User.class, r.getUserName());
+	            
+	            String notiDescription = "'" + title + "'" + " Offer Created By: " + userS.getName() + " \n" + 
+	            						 "For The Request: " + re.getTitle() + " \n" +	
+	            						 "Offer Description: " + description + " \n" +
+	            						 "Offer Price: " + price + " \n" +
+	            						 "For more information check the request.";
+	
+	            userR.addNotification("Offer Created", notiDescription);
 
 	            db.getTransaction().commit();
 	            System.out.println("Offer stroed");

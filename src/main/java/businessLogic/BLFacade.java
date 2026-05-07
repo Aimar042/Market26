@@ -150,7 +150,7 @@ public interface BLFacade {
     public void removeCart(String name, int cartNumber);
 
     @WebMethod
-    public Reclamation changeStatus(int reclamationNumber, boolean status);
+    public Reclamation changeStatus(int saleNumber, int reclamationNumber, boolean status);
 
     @WebMethod
     public Reclamation getReclamation(int reclamationNumber);

@@ -310,9 +310,9 @@ public class BLFacadeImplementation implements BLFacade {
     }
 
     @WebMethod
-    public Reclamation changeStatus(int reclamationNumber, boolean status) {
+    public Reclamation changeStatus(int saleNumber, int reclamationNumber, boolean status) {
         dbManager.open();
-        Reclamation r = dbManager.changeStatus(reclamationNumber, status);
+        Reclamation r = dbManager.changeStatus(saleNumber, reclamationNumber, status);
         dbManager.close();
         return r;
     }

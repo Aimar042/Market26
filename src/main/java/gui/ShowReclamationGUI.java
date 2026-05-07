@@ -49,7 +49,7 @@ public class ShowReclamationGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowReclamationGUI(Reclamation r, QueryReclamationsGUI q) {
+	public ShowReclamationGUI(Reclamation r, QueryReclamationsGUI q) { // TODO Hemengo Eitketak ondo daudela begirat eta baita ReclamationGUI-koak ere
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -131,7 +131,7 @@ public class ShowReclamationGUI extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				Reclamation temp = facade.getReclamation(r.getReclamationNumber());
-				facade.changeStatus(r.getReclamationNumber(), !temp.isStatus());;
+				facade.changeStatus(r.getSaleNumber(), r.getReclamationNumber(), !temp.isStatus());;
 				lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowReclamationGUI.WarningS"));
 				textAreaName.setText(r.getUserName() + " (" + !temp.isStatus() + ")");
 				System.out.println("Aldatu da");
