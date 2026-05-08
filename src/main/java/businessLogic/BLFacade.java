@@ -176,4 +176,7 @@ public interface BLFacade {
     
     @WebMethod
     public List<Notification> getUserNotifications(String name);
+    
+    @WebMethod
+    public void changeNotificationStatus(Notification n);
 }

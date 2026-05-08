@@ -47,7 +47,7 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 	
 	private String name;
 
-	public QueryNotificationsGUI(JFrame jFather, String name) {
+	public QueryNotificationsGUI(JFrame jFather, String name) { // TODO Etiketak jarri
 		tableReports.setEnabled(false);
 		this.jFather = jFather;
 		this.name = name;
@@ -107,9 +107,9 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 				        JTable table =(JTable) mouseEvent.getSource();
 		            	Point point = mouseEvent.getPoint();
 				        int row = table.rowAtPoint(point);
-		            	Report r=(Report) tableModelReports.getValueAt(row, 2);
-		            	// JFrame a = new ShowReportGUI(r, getQueryReportsGUI());
-		            	// a.setVisible(true);
+		            	Notification n=(Notification) tableModelReports.getValueAt(row, 2);
+		            	JFrame a = new ShowNotificationGUI(n, getQueryNotificationsGUI());
+		            	a.setVisible(true);
 		            }
 		        }
 		 });
@@ -132,11 +132,13 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 			else {
 				jLabelReports.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.ThereAre"));
 				for (Notification n:notifications){
-					Vector<Object> row = new Vector<Object>();
-					row.add(n.getTitle());
-					row.add(n.getDescription());
-					row.add(n); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
-					tableModelReports.addRow(row);
+					if(!n.isReaded()) {
+						Vector<Object> row = new Vector<Object>();
+						row.add(n.getTitle());
+						row.add(n.getDescription());
+						row.add(n); // product object added in order to obtain it with tableModelProducts.getValueAt(i,2)
+						tableModelReports.addRow(row);
+					}
 				}
 			}
 		} catch (Exception e1) {
@@ -147,7 +149,7 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 		tableReports.getColumnModel().removeColumn(tableReports.getColumnModel().getColumn(2)); // not shown in JTable
 	}
 	
-	public QueryNotificationsGUI getQueryReportsGUI() {
+	public QueryNotificationsGUI getQueryNotificationsGUI() {
 		return this;
 	}
 	

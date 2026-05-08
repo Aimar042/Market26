@@ -377,4 +377,11 @@ public class BLFacadeImplementation implements BLFacade {
     	dbManager.close();
     	return n;
     }
+    
+    @WebMethod
+    public void changeNotificationStatus(Notification n) {
+    	dbManager.open();
+    	dbManager.changeNotificationStatus(n);
+    	dbManager.close();
+    }
 }

@@ -641,7 +641,7 @@ public class DataAccess {
             String notification = "A report has been issued by this User: " + userName + " \n" +
 			            		  "Sale Title: " + dbs.getTitle() + " \n" + 
 								  "Sale Number: " + dbs.getSaleNumber() + " \n" +
-            					  "The reason:" + description;
+            					  "The reason: " + description;
             
             dbu.addNotification("Report Issued", notification);
  
@@ -672,7 +672,7 @@ public class DataAccess {
             String notification = "A reclamation has been issued by this User: " + userName + " \n" +
             					  "Sale Title: " + dbs.getTitle() + " \n" + 
 								  "Sale Number: " + dbs.getSaleNumber() + " \n" +
-								  "The reason:" + description;
+								  "The reason: " + description;
 
             dbu.addNotification("Reclamation Issued", notification);
 
@@ -997,5 +997,21 @@ public class DataAccess {
     	}
     	
     	return dbn;
+    }
+    
+    public void changeNotificationStatus(Notification n) {
+    	try {
+    		db.getTransaction().begin();
+
+    		Notification dbn = db.find(Notification.class, n.getNotiNumber());
+    		dbn.setReaded(true);
+    		
+    		System.out.println("Notification Status Changed");
+    	}catch(NullPointerException e) {
+    		e.printStackTrace();
+    		db.getTransaction().rollback();
+    	}finally {
+    		db.getTransaction().commit();
+    	}
     }
 }

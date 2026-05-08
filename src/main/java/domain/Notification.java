@@ -61,11 +61,11 @@ public class Notification implements Serializable{
 		this.userName = userName;
 	}
 
-	public int getNotiNUmber() {
+	public int getNotiNumber() {
 		return notiNumber;
 	}
 
-	public void setNotiNUmber(int notiNUmber) {
+	public void setNotiNumber(int notiNUmber) {
 		this.notiNumber = notiNUmber;
 	}
 
