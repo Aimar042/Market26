@@ -86,13 +86,13 @@ public class DataAccess {
 
             //Create sellers
             User user1 = new User(
-                "seller1@gmail.com",
-                "Aitor Fernandez",
+                "sami@gmail.com",
+                "Sami",
                 "Bibi"
             );
             User user2 = new User(
-                "seller22@gmail.com",
-                "Ane Gaztañaga",
+                "aimar@gmail.com",
+                "Aimar",
                 "Bibi"
             );
             User user3 = new User("seller3@gmail.com", "Test Seller", "Bibi");
