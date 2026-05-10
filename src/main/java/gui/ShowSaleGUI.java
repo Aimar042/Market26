@@ -69,7 +69,7 @@ public class ShowSaleGUI extends JFrame {
 	
 	private Sale s;
 	
-	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
+	public ShowSaleGUI(Sale sale, String name, QuerySalesGUI q, boolean isBought) { 
 		this.s = sale;
 		jFather= q; 
 		this.setVisible(true);
@@ -124,7 +124,7 @@ public class ShowSaleGUI extends JFrame {
 			}
 		});
 		
-		jButtonCart.setBounds(178, 295, 105, 31);
+		jButtonCart.setBounds(142, 295, 141, 31);
 
 		jLabelError.setBounds(new Rectangle(16, 236, 299, 20));
 		jLabelError.setForeground(Color.red);
@@ -231,6 +231,12 @@ public class ShowSaleGUI extends JFrame {
 		
 		getContentPane().add(btnOptions);
 		
+		//Zerbait saskian baldin badago, erosteko botoia desaktibatu
+		if(!MainGUI.getBusinessLogic().getUser(name).getCarts().isEmpty()) {
+			jButtonBuy.setEnabled(false);
+			jButtonBuy.setVisible(false);
+		}
+			
 		jButtonBuy.setBounds(178, 240, 105, 31);
 		jButtonBuy.addActionListener(new ActionListener() {
 			@Override

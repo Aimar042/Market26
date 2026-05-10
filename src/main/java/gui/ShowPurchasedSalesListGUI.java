@@ -33,10 +33,10 @@ public class ShowPurchasedSalesListGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JLabel jLabelProducts = new JLabel(
-			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Press"));
+			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedSalesListGUI.Press"));
 
 	private JButton jButtonShow = new JButton(
-			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Show"));
+			ResourceBundle.getBundle("Etiquetas").getString("See"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -68,7 +68,6 @@ public class ShowPurchasedSalesListGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowPurchasedSalesListGUI(JFrame jFather, User u) {
-		// TODO Hemen ere JMenuReclamtion-en etiketak eta falta badira ere jarri
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -79,7 +78,7 @@ public class ShowPurchasedSalesListGUI extends JFrame {
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Title"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedSalesListGUI.Title"));
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 
@@ -133,10 +132,10 @@ public class ShowPurchasedSalesListGUI extends JFrame {
 
 					if (purchaseds.isEmpty())
 						jLabelProducts
-								.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
+								.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedSalesListGUI.Empty"));
 					else
 						jLabelProducts.setText(
-								ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Purchased"));
+								ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedSalesListGUI.Purchased"));
 					for (domain.Sale purchased : purchaseds) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(purchased.getTitle());

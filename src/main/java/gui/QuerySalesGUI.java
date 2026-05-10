@@ -25,7 +25,6 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Cart;
 import domain.Sale;
 import domain.User;
 
@@ -118,7 +117,7 @@ public class QuerySalesGUI extends JFrame {
 		getContentPane().add(jButtonSearch);
 
 		jButtonCart.setBounds(new Rectangle(220, 379, 130, 30));
-		jButtonCart.setBounds(122, 319, 130, 30);
+		jButtonCart.setBounds(112, 319, 149, 30);
 		jButtonCart.setVisible(false);
 		jButtonCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -130,7 +129,7 @@ public class QuerySalesGUI extends JFrame {
 		getContentPane().add(jButtonCart);
 
 		jButtonRequest.setBounds(new Rectangle(220, 379, 130, 30));
-		jButtonRequest.setBounds(314, 319, 130, 30);
+		jButtonRequest.setBounds(304, 319, 149, 30);
 		jButtonRequest.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

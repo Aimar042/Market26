@@ -19,7 +19,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
-import domain.Report;
 import domain.Request;
 import domain.User;
 
@@ -27,9 +26,8 @@ import domain.User;
 public class QueryRequestsGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelRequests = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestGUI.Requests")); 
-
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Search")); 
+	private final JLabel jLabelRequests = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Requests")); 
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Search")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelRequests = new JScrollPane();
@@ -40,10 +38,8 @@ public class QueryRequestsGUI extends JFrame {
 	private JFrame jFather;
 
 	private String[] columnNamesProducts = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Name"), 
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Header"),
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Description"),
-
+			ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Head"), 
+			ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Description"),
 	};
 	
 	private User u;
@@ -51,7 +47,7 @@ public class QueryRequestsGUI extends JFrame {
 	private boolean isSeller;
 	
 
-	public QueryRequestsGUI(JFrame jFather, User u, boolean isSeller) { // TODO Hemen ere Etiketak aldatu behar
+	public QueryRequestsGUI(JFrame jFather, User u, boolean isSeller) {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -61,7 +57,7 @@ public class QueryRequestsGUI extends JFrame {
 		this.isSeller = isSeller;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Title"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Title"));
 		jLabelRequests.setBounds(108, 71, 427, 16);
 		this.getContentPane().add(jLabelRequests);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +139,7 @@ public class QueryRequestsGUI extends JFrame {
 			}
 
 			
-			if (requests == null) jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Empty"));
+			if (requests.isEmpty()) jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.Empty"));
 			else {
 				jLabelRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryRequestsGUI.ThereAre"));
 				for (Request r : requests){

@@ -16,8 +16,6 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -25,10 +23,8 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
-import domain.Cart;
 import domain.Offer;
 import domain.Request;
-import domain.Sale;
 import domain.User;
 
 
@@ -37,7 +33,7 @@ public class QueryOffersGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private final JLabel jLabelProducts = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.Offers"));
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -58,14 +54,14 @@ public class QueryOffersGUI extends JFrame {
 	private User u;
 	private Request r;
 
-	public QueryOffersGUI(JFrame jFather, User u, Request r) { // TODO Botoien etiketak jartzea eta JMenuItem-ena era
+	public QueryOffersGUI(JFrame jFather, User u, Request r) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;
 		this.r = r;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.FindProducts"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryOffersGUI.Title"));
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

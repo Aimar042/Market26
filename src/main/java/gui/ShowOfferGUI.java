@@ -28,7 +28,6 @@ import javax.swing.JTextField;
 
 import businessLogic.BLFacade;
 import domain.Offer;
-import domain.Sale;
 import domain.User;
 
 
@@ -47,7 +46,7 @@ public class ShowOfferGUI extends JFrame {
 	
 	JLabel labelStatus = new JLabel(); 
 
-	private JLabel jLabelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.Title"));
+	private JLabel jLabelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ShowOfferGUI.Title"));
 	private JLabel jLabelDescription = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Description")); 
 	private JLabel jLabelProductStatus = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Status"));
 	private JLabel jLabelPrice = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateSaleGUI.Price"));
@@ -69,7 +68,7 @@ public class ShowOfferGUI extends JFrame {
 	
 	private Offer o;
 	
-	public ShowOfferGUI(Offer offer, String name, QueryOffersGUI q, QueryRequestsGUI qr, int requestNumber, boolean isBought) { // TODO Etiketa aldatu Erosi -> Cart-era sartu
+	public ShowOfferGUI(Offer offer, String name, QueryOffersGUI q, QueryRequestsGUI qr, int requestNumber, boolean isBought) {
 		this.o = offer;
 		this.jFather = q; 
 		this.setVisible(true);

@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -33,6 +32,7 @@ public class MainGUISeller extends JFrame {
 	private JPanel jContentPane = null;
 	private JButton jButtonCreateQuery = null;
 	private JButton jButtonChangeMode = null;
+	private JButton jButtonNotifications = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -61,6 +61,7 @@ public class MainGUISeller extends JFrame {
 		
 		this.setSize(495, 290);
 		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Seller"));
+		jLabelSelectOption.setBounds(0, 1, 495, 52);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
@@ -91,11 +92,13 @@ public class MainGUISeller extends JFrame {
 		buttonGroup.add(rdbtnNewRadioButton_2);
 	
 		panel = new JPanel();
+		panel.setBounds(0, 209, 495, 52);
 		panel.add(rdbtnNewRadioButton_1);
 		panel.add(rdbtnNewRadioButton_2);
 		panel.add(rdbtnNewRadioButton);
 		
 		jButtonCreateQuery = new JButton();
+		jButtonCreateQuery.setBounds(0, 105, 495, 52);
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateSale"));
 		jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -105,10 +108,11 @@ public class MainGUISeller extends JFrame {
 		});
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
+		jContentPane.setLayout(null);
 		jContentPane.add(jLabelSelectOption);
 		
 		jButtonChangeMode = new JButton();
+		jButtonChangeMode.setBounds(0, 53, 495, 52);
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonChangeMode.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -121,6 +125,7 @@ public class MainGUISeller extends JFrame {
 		jContentPane.add(jButtonCreateQuery);
 		
 		jButtonRequests = new JButton();
+		jButtonRequests.setBounds(0, 157, 495, 52);
 		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUISeller.Request"));
 		jButtonRequests.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -134,6 +139,18 @@ public class MainGUISeller extends JFrame {
 		
 		
 		setContentPane(jContentPane);
+		
+		jButtonNotifications = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
+		jButtonNotifications.setBounds(347, 0, 136, 32);
+		jContentPane.add(jButtonNotifications);
+		jButtonNotifications.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { 
+				JFrame a = new QueryNotificationsGUI(MainGUISeller.this, u.getName());
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") +": "+userMail);
 		
 		addWindowListener(new WindowAdapter() {
@@ -151,5 +168,4 @@ public class MainGUISeller extends JFrame {
 		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUISeller.Request"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
 	}
-	
 } // @jve:decl-index=0:visual-constraint="0,0"

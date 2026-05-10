@@ -398,7 +398,6 @@ public class DataAccess {
 
     public void register(String email, String reg, String pass) {
         db.getTransaction().begin();
-        // TODO
         try {
             //Add user to DB
             User NUser = new User(email, reg, pass);

@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Offer;
-import domain.Sale;
 import domain.User;
 
 public class ShowPurchasedOffersListGUI extends JFrame {
@@ -34,10 +33,10 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JLabel jLabelProducts = new JLabel(
-			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Press"));
+			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedOffersListGUI.Press"));
 
 	private JButton jButtonShow = new JButton(
-			ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Show"));
+			ResourceBundle.getBundle("Etiquetas").getString("See"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelProducts = new JScrollPane();
@@ -69,7 +68,6 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowPurchasedOffersListGUI(JFrame jFather, User u) {
-		// TODO Hemen ere etiketak jarri
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -80,7 +78,7 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 		this.jFather = jFather;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Title"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedOffersListGUI.Title"));
 		jLabelProducts.setBounds(52, 108, 427, 16);
 		this.getContentPane().add(jLabelProducts);
 
@@ -134,10 +132,10 @@ public class ShowPurchasedOffersListGUI extends JFrame {
 
 					if (purchaseds.isEmpty())
 						jLabelProducts
-								.setText(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.NoProducts"));
+								.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedOffersListGUI.Empty"));
 					else
 						jLabelProducts.setText(
-								ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedListGUI.Purchased"));
+								ResourceBundle.getBundle("Etiquetas").getString("ShowPurchasedOffersListGUI.Purchased"));
 					for (domain.Offer purchased : purchaseds) {
 						Vector<Object> row = new Vector<Object>();
 						row.add(purchased.getTitle());

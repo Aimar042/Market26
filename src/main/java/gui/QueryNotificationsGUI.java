@@ -20,15 +20,13 @@ import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
 import domain.Notification;
-import domain.Report;
 
 
-public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak aldatu
-	
+public class QueryNotificationsGUI extends JFrame { 	
 	private static final long serialVersionUID = 1L;
-	private final JLabel jLabelReports = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Reports")); 
+	private final JLabel jLabelNotifications = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.Sakatu")); 
 
-	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Search")); 
+	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("See")); 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
 	private JScrollPane scrollPanelReports = new JScrollPane();
@@ -39,23 +37,21 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 	private JFrame jFather;
 
 	private String[] columnNamesProducts = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Name"), 
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Header"),
-			ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Description"),
-
+			ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.Header"), 
+			ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.Description"),
 	};
 	
 	private String name;
 
-	public QueryNotificationsGUI(JFrame jFather, String name) { // TODO Etiketak jarri
+	public QueryNotificationsGUI(JFrame jFather, String name) {
 		tableReports.setEnabled(false);
 		this.jFather = jFather;
 		this.name = name;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Title"));
-		jLabelReports.setBounds(108, 71, 427, 16);
-		this.getContentPane().add(jLabelReports);
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.Title"));
+		jLabelNotifications.setBounds(108, 71, 427, 16);
+		this.getContentPane().add(jLabelNotifications);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		jButtonClose.setBounds(new Rectangle(276, 342, 130, 30));
@@ -128,9 +124,9 @@ public class QueryNotificationsGUI extends JFrame { // TODO Hemen ere etiketak a
 			List<Notification> notifications=facade.getUserNotifications(this.getName());
 
 			
-			if (notifications == null) jLabelReports.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.Empty"));
+			if (notifications.isEmpty()) jLabelNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.Empty"));
 			else {
-				jLabelReports.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryReportsGUI.ThereAre"));
+				jLabelNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryNotificationsGUI.ThereAre"));
 				for (Notification n:notifications){
 					if(!n.isReaded()) {
 						Vector<Object> row = new Vector<Object>();
