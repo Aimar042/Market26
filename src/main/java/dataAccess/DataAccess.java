@@ -1,11 +1,5 @@
 package dataAccess;
 
-import configuration.ConfigXML;
-import configuration.UtilDate;
-import domain.*;
-import exceptions.FileNotUploadedException;
-import exceptions.MustBeLaterThanTodayException;
-import exceptions.SaleAlreadyExistException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,12 +10,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 import javax.imageio.ImageIO;
-import javax.jws.soap.SOAPBinding.Use;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+
+import configuration.ConfigXML;
+import configuration.UtilDate;
+import domain.Admin;
+import domain.Cart;
+import domain.Notification;
+import domain.Offer;
+import domain.Reclamation;
+import domain.Report;
+import domain.Request;
+import domain.Sale;
+import domain.User;
+import exceptions.FileNotUploadedException;
+import exceptions.MustBeLaterThanTodayException;
+import exceptions.SaleAlreadyExistException;
 
 /**
  * It implements the data access to the objectDb database
@@ -257,7 +266,6 @@ public class DataAccess {
             return sale;
         } catch (NullPointerException e) {
             e.printStackTrace();
-            // TODO Auto-generated catch block
             db.getTransaction().commit();
             return null;
         }
@@ -922,7 +930,6 @@ public class DataAccess {
 
 	        } catch (NullPointerException e) {
 	            e.printStackTrace();
-	            // TODO Auto-generated catch block
 	            db.getTransaction().commit();
 	        }
 	}
