@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -7,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Cart;
-import domain.Sale;
 import domain.User;
 
 
@@ -35,6 +34,7 @@ public class QueryCartGUI extends JFrame {
 	private final JLabel jLabelCart = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.See"));
 	private JLabel jLabelTotal = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.Total"));
 	private JLabel jLabelToPay = new JLabel();
+	private JLabel jLabelError = new JLabel();
 
 	private JButton jButtonSearch = new JButton(ResourceBundle.getBundle("Etiquetas").getString("QuerySalesGUI.Search"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
@@ -59,7 +59,7 @@ public class QueryCartGUI extends JFrame {
 
 	float total;
 
-	public QueryCartGUI(JFrame jFather, User u, QuerySalesGUI q) { // TODO Botoi berrien etiketak jartzea eta update-eko etiketak ere
+	public QueryCartGUI(JFrame jFather, User u, QuerySalesGUI q) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;
@@ -114,7 +114,11 @@ public class QueryCartGUI extends JFrame {
 		 });
 		jButtonSearch.setBounds(427, 56, 117, 29);
 		getContentPane().add(jButtonSearch);
+		jLabelError.setForeground(Color.RED);
 		
+		jLabelError.setBounds(220, 299, 357, 17);
+		getContentPane().add(jLabelError);
+				
 		jButtonBuy.setBounds(new Rectangle(220, 379, 130, 30));
 		jButtonBuy.setBounds(220, 337, 130, 30);
 		jButtonBuy.addActionListener(new ActionListener() {
@@ -124,9 +128,10 @@ public class QueryCartGUI extends JFrame {
 		 		
 		 		if(user.getBalance() >= total) {
 		 			facade.addCartToBuyer(user.getName());
+		 			jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCartGUI.AllGood"));
 		 			updateQuery();
 		 		}else {
-		 			// TODO Abisatu, ez duela nahiko dirurik
+		 			jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + user.getBalance());
 		 		}
 		 	}
 		});
@@ -137,6 +142,8 @@ public class QueryCartGUI extends JFrame {
 
 		jLabelToPay.setBounds(136, 298, 76, 17);
 		getContentPane().add(jLabelToPay);
+		
+	
 
 
 		tableProducts.addMouseListener(new MouseAdapter() {

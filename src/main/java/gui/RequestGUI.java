@@ -15,7 +15,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
-import domain.Sale;
 import domain.User;
 
 public class RequestGUI extends JFrame {
@@ -63,7 +62,7 @@ public class RequestGUI extends JFrame {
 		
 		JLabel lblDescription = new JLabel();
 		lblDescription.setBounds(30, 45, 167, 17);
-		lblDescription.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Description")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblDescription.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Description")); 
 		contentPane.add(lblDescription);
 		
 		JButton btnGoBack = new JButton();
@@ -101,7 +100,7 @@ public class RequestGUI extends JFrame {
 		contentPane.add(lblWarning);
 		
 		btnRequest = new JButton(); 
-		btnRequest.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Request")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnRequest.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.Request"));
 		btnRequest.setBounds(263, 157, 106, 27);
 		
 		btnRequest.addActionListener(new ActionListener() {
@@ -113,7 +112,7 @@ public class RequestGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					facade.addRequestToUser(textAreaTitle.getText(), textDescription.getText(), u.getName());
 					btnRequest.setEnabled(false);
-					// lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.AllGood")); Dice que non existe
+					lblWarning.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestGUI.AllGood"));
 				}
 			}
 		});

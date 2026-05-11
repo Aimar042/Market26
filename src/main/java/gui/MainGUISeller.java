@@ -54,13 +54,13 @@ public class MainGUISeller extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUISeller(String mail, User u) { // TODO Beharrezko etiketak jartzea
+	public MainGUISeller(String mail, User u) {
 		super();
 
 		this.userMail=mail;
 		
 		this.setSize(495, 290);
-		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Seller"));
+		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jLabelSelectOption.setBounds(0, 1, 495, 52);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
@@ -151,7 +151,7 @@ public class MainGUISeller extends JFrame {
 			}
 		});
 		
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") +": "+userMail);
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitleSeller") +": "+userMail);
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -166,6 +166,6 @@ public class MainGUISeller extends JFrame {
 		jButtonChangeMode.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.ChangeToBuyer"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateSale"));
 		jButtonRequests.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUISeller.Request"));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitleSeller")+ ": "+userMail);
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

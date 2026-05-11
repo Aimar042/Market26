@@ -60,7 +60,7 @@ public class QuerySalesGUI extends JFrame {
 	
 	private JPopupMenu popupMenu;
 
-	public QuerySalesGUI(JFrame jFather, User u) { // TODO Botoi berrien etiketak jartzea eta JMenuItem-ena era
+	public QuerySalesGUI(JFrame jFather, User u) {
 		tableProducts.setEnabled(false);
 		this.jFather = jFather;
 		this.u = u;

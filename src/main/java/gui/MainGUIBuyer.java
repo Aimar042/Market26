@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -25,7 +24,7 @@ import businessLogic.BLFacade;
 import domain.User;
 
 
-public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
+public class MainGUIBuyer extends JFrame {
 	
     private String userMail;
 	private static final long serialVersionUID = 1L;
@@ -76,7 +75,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 			}
 		});
 		jContentPane.setLayout(null);
-		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Buyer"));
+		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jLabelSelectOption.setBounds(186, 0, 123, 43);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
@@ -166,7 +165,7 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 			panel.add(rdbtnNewRadioButton_2);
 			panel.add(rdbtnNewRadioButton);
 			jContentPane.add(panel);
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") +": "+userMail);
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitleBuyer") +": "+userMail);
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -183,6 +182,6 @@ public class MainGUIBuyer extends JFrame { // TODO ETIKETA EGOKIAK JARRI
 		jButtonShowPurchased.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ShowPurchased"));
 		jManageBalance.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.ManageBalance"));
 		jButtonNotifications.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUIBuyer.Notification"));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ ": "+userMail);
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitleBuyer")+ ": "+userMail);
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

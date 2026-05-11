@@ -16,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Notification;
-import domain.Report;
 
 public class ShowNotificationGUI extends JFrame {
 
@@ -58,7 +57,7 @@ public class ShowNotificationGUI extends JFrame {
 		
 		JLabel lblDescription = new JLabel();
 		lblDescription.setBounds(12, 42, 185, 17);
-		lblDescription.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowReportGUI.Reason")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblDescription.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowNotification.Description"));
 		contentPane.add(lblDescription);
 		
 		JButton btnGoBack = new JButton();

@@ -93,7 +93,7 @@ public class ShowSaleGUI extends JFrame {
 		
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 		
-		jButtonClose.setBounds(new Rectangle(16, 295, 114, 30));
+		jButtonClose.setBounds(new Rectangle(510, 295, 82, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!isBought) {
@@ -111,15 +111,15 @@ public class ShowSaleGUI extends JFrame {
 					BLFacade facade = MainGUI.getBusinessLogic();
 					User u = facade.getUser(name);
 					System.out.println("Saldoa: " + u.getBalance());
-					if(u.getBalance() >= sale.getPrice()) {
+					//if(u.getBalance() >= sale.getPrice()) {
 						facade.addSaleToCart(u, sale);
 						System.out.println("Sartu da:" + u.doesSaleExist(s.getTitle()));
 						jButtonCart.setEnabled(false);
 						jButtonBuy.setEnabled(false);
 						System.out.println("Kendu da");
-					}else {
-						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
-					}
+					//}else {
+					//	jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ShowSaleGUI.BalanceError") + " " + u.getBalance());
+					//}
 				}
 			}
 		});
@@ -237,7 +237,7 @@ public class ShowSaleGUI extends JFrame {
 			jButtonBuy.setVisible(false);
 		}
 			
-		jButtonBuy.setBounds(178, 240, 105, 31);
+		jButtonBuy.setBounds(33, 295, 105, 31);
 		jButtonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
