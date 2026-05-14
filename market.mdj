@@ -83143,7 +83143,7 @@
 							]
 						}
 					],
-					"documentation": "#REPORT SALE FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **show sale** implementaziotik **sale** bat aukertazen du, sakatuz.\n2. *Buyer* **sale** barruan egongo den salaketa botoia sakatzen du.\n3. *Buyer* **report**-aren burukoa/izenburua idazten du.\n4. *Buyer* **report**-aren deskripzioa idazten du.\n5. *Buyer* salaketa burutzeko botoia sakatu.\n6. *Sistemak* **report** bat sortzen du datu basean.\n7. *Sistemak* notifikazio bat sortuko du reportatutako **sale** -aren **User** -ari.\n8. *Sistemak* **report** sortu dela adierazten du.\n\n##ALTERNATIVE FLOW\n\n1. Ez dago burukorik.\n2. Ez dago deskripziorik.",
+					"documentation": "#REPORT SALE FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **show sale** implementaziotik **sale** bat aukertazen du, sakatuz.\n2. *Buyer* **sale** barruan egongo den salaketa botoia sakatzen du.\n3. *Buyer* **report**-aren **header** idazten du.\n4. *Buyer* **report**-aren **description** idazten du.\n5. *Buyer* salaketa burutzeko botoia sakatu.\n6. *Sistemak* **report** bat sortzen du datu basean.\n7. *Sistemak* notifikazio bat sortuko du reportatutako **sale** -aren **User** -ari.\n8. *Sistemak* **report** sortu dela adierazten du.\n\n##ALTERNATIVE FLOW\n\n1. Ez dago **header**.\n2. Ez dago **description**.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -93539,7 +93539,7 @@
 							}
 						}
 					],
-					"documentation": "#ADD TO CART FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **query sales** implementaziotik **sale** bat aukeratzen du.\n2. *Buyer* **sale** barruan egongo den saskira gehitzeko botoia sakatzen du.\n3. *Sistemak* **cart** bat sortzen du\n4. *Sistemak* **sale** aren **cart** zerrendan gehitu sortutakoa.\n5. *Sistemak* **sale** horren **seller** -aren **sale** guztiak erakutsi.\n\n##ALTERNATIVE FLOW\n1. *Buyer* beste **sale** gehiago gehitu ditzake **cart** -ean.\n2. *Buyer* atzerako botoia sakatzean *car* hustu egingo da.\n ",
+					"documentation": "#ADD TO CART FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **query sales** implementaziotik **sale** bat aukeratzen du.\n2. *Buyer* **sale** barruan egongo den saskira gehitzeko botoia sakatzen du.\n3. *Sistemak* **cart** bat sortzen du\n4. *Sistemak* **sale** aren **cart** zerrendan gehitu sortutakoa.\n5. *Sistemak* **sale** horren **seller** -aren **sale** guztiak erakutsi.\n\n##ALTERNATIVE FLOW\n1. *Buyer* beste **sale** gehiago gehitu ditzake **cart** -ean. ",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -120491,7 +120491,7 @@
 							]
 						}
 					],
-					"documentation": "## BUY CART FLOW OF EVENTS\n\n#BASIC FLOW\n\n1. *Buyer* **cart** barruan egongo den erosteko botoia sakatzen du.\n2. *Sistemak* saldo nahikoa duen ikusten du.\n3. *Sistemak* **cart** objektua *buyer* -aren **carts** listan gehitzen du.\n4. *Sistemak* saldotik **cart**-aren prezioa deskontatzen du.\n5. *Sistemak* transakzioa **user**-aren transactions listan gordetzen du.\n6. *Sistemak* notifikazio bat sortuko du erositako **cart** barruan dauden **sale**-en **User** -ari.\n7. *Sistemak* erosketa ondo joan dela adierazten du.\n\n#ALTERNATIVE FLOW\n\n1. Ez dago saldo nahikorik erosketa burutzeko.",
+					"documentation": "## BUY CART FLOW OF EVENTS\n\n#BASIC FLOW\n\n1. *Buyer* **cart** barruan egongo den erosteko botoia sakatzen du.\n2. *Sistemak* **balance** nahikoa duen ikusten du.\n3. *Sistemak* **cart** objektua *buyer* -aren **carts** listan gehitzen du.\n4. *Sistemak* saldotik **cart**-aren **price** deskontatzen du.\n5. *Sistemak* transakzioa **user**-aren transactions listan gordetzen du.\n6. *Sistemak* notifikazio bat sortuko du erositako **cart** barruan dauden **sale**-en **User** -ari.\n7. *Sistemak* erosketa ondo joan dela adierazten du.\n\n#ALTERNATIVE FLOW\n\n1. Ez dago saldo nahikorik erosketa burutzeko.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
