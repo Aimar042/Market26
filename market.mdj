@@ -33036,7 +33036,7 @@
 											"top": 876,
 											"width": 122,
 											"height": 13,
-											"text": "Show Reclamations"
+											"text": "Show Reclamation"
 										},
 										{
 											"_type": "LabelView",
@@ -33072,7 +33072,7 @@
 									"parentStyle": true,
 									"left": 211.5,
 									"top": 869,
-									"width": 132.80810546875,
+									"width": 132,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGdND4aDhgI3vc="
@@ -39525,8 +39525,8 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 128,
-											"top": -16,
+											"left": 272,
+											"top": 112,
 											"height": 13
 										},
 										{
@@ -39537,8 +39537,8 @@
 											},
 											"font": "Arial;13;1",
 											"parentStyle": true,
-											"left": 691,
-											"top": 556,
+											"left": 763,
+											"top": 620,
 											"width": 95,
 											"height": 13,
 											"text": "Query requests"
@@ -39552,8 +39552,8 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 128,
-											"top": -16,
+											"left": 272,
+											"top": 112,
 											"width": 119.1962890625,
 											"height": 13,
 											"text": "(from Requirements)"
@@ -39567,16 +39567,16 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 128,
-											"top": -16,
+											"left": 272,
+											"top": 112,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 686,
-									"top": 549,
+									"left": 758,
+									"top": 613,
 									"width": 105.37353515625,
 									"height": 25,
 									"stereotypeLabel": {
@@ -39613,8 +39613,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": -3,
+											"left": 141,
+											"top": 61,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role1: User",
@@ -39631,8 +39631,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": 12,
+											"left": 141,
+											"top": 76,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role2: BLFacade",
@@ -39649,8 +39649,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": 27,
+											"left": 141,
+											"top": 91,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role3: DataAccess",
@@ -39667,8 +39667,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": 42,
+											"left": 141,
+											"top": 106,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role4: EntityManager",
@@ -39685,8 +39685,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": 57,
+											"left": 141,
+											"top": 121,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role5: QueryRequestsGUI",
@@ -39703,8 +39703,8 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 69,
-											"top": 72,
+											"left": 141,
+											"top": 136,
 											"width": 162.21435546875,
 											"height": 13,
 											"text": "+Role6: Request",
@@ -39714,8 +39714,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 64,
-									"top": -8,
+									"left": 136,
+									"top": 56,
 									"width": 172.21435546875,
 									"height": 98
 								},
@@ -39731,8 +39731,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 64,
-									"top": -8,
+									"left": 136,
+									"top": 56,
 									"width": 10,
 									"height": 10
 								},
@@ -39748,8 +39748,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 64,
-									"top": -8,
+									"left": 136,
+									"top": 56,
 									"width": 10,
 									"height": 10
 								},
@@ -39765,8 +39765,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 64,
-									"top": -8,
+									"left": 136,
+									"top": 56,
 									"width": 10,
 									"height": 10
 								},
@@ -39782,8 +39782,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 64,
-									"top": -8,
+									"left": 136,
+									"top": 56,
 									"width": 10,
 									"height": 10
 								}
@@ -39791,8 +39791,8 @@
 							"font": "Arial;13;0",
 							"parentStyle": false,
 							"containerChangeable": true,
-							"left": 664,
-							"top": 544,
+							"left": 736,
+							"top": 608,
 							"width": 149,
 							"height": 35,
 							"nameCompartment": {
@@ -39838,8 +39838,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 606,
-									"top": 526,
+									"left": 652,
+									"top": 557,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -39860,8 +39860,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 608,
-									"top": 511,
+									"left": 656,
+									"top": 543,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -39882,8 +39882,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 603,
-									"top": 555,
+									"left": 643,
+									"top": 586,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -39904,8 +39904,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 575,
-									"top": 522,
+									"left": 577,
+									"top": 536,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -39926,8 +39926,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 579,
-									"top": 509,
+									"left": 582,
+									"top": 524,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -39948,8 +39948,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 568,
-									"top": 549,
+									"left": 565,
+									"top": 561,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -39970,8 +39970,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 638,
-									"top": 529,
+									"left": 727,
+									"top": 579,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -39991,8 +39991,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 637,
-									"top": 515,
+									"left": 728,
+									"top": 566,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -40012,8 +40012,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 640,
-									"top": 557,
+									"left": 723,
+									"top": 607,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -40061,7 +40061,7 @@
 								"$ref": "AAAAAAGcHfSpF9ezDnc="
 							},
 							"lineStyle": 1,
-							"points": "548:541;663:553",
+							"points": "548:550;748:607",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGdzka1oGpzBEI="
@@ -40096,597 +40096,6 @@
 							},
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAGdzka1oGp9IJc="
-							}
-						},
-						{
-							"_type": "UMLUseCaseView",
-							"_id": "AAAAAAGdzkdWq+8/tPQ=",
-							"_parent": {
-								"$ref": "AAAAAAGMFadi28k7/uU="
-							},
-							"model": {
-								"$ref": "AAAAAAGdzkdWqu890ak="
-							},
-							"subViews": [
-								{
-									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAGdzkdWq+9AJHM=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGdzkdWq+9BRHw=",
-											"_parent": {
-												"$ref": "AAAAAAGdzkdWq+9AJHM="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -96,
-											"top": -16,
-											"height": 13
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGdzkdWq+9CoJU=",
-											"_parent": {
-												"$ref": "AAAAAAGdzkdWq+9AJHM="
-											},
-											"font": "Arial;13;1",
-											"parentStyle": true,
-											"left": 857,
-											"top": 644,
-											"width": 84,
-											"height": 13,
-											"text": "Show request"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGdzkdWq+9D80E=",
-											"_parent": {
-												"$ref": "AAAAAAGdzkdWq+9AJHM="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -96,
-											"top": -16,
-											"width": 119.1962890625,
-											"height": 13,
-											"text": "(from Requirements)"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGdzkdWrO9Ey1c=",
-											"_parent": {
-												"$ref": "AAAAAAGdzkdWq+9AJHM="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -96,
-											"top": -16,
-											"height": 13,
-											"horizontalAlignment": 1
-										}
-									],
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": 852,
-									"top": 637,
-									"width": 95.236328125,
-									"height": 25,
-									"stereotypeLabel": {
-										"$ref": "AAAAAAGdzkdWq+9BRHw="
-									},
-									"nameLabel": {
-										"$ref": "AAAAAAGdzkdWq+9CoJU="
-									},
-									"namespaceLabel": {
-										"$ref": "AAAAAAGdzkdWq+9D80E="
-									},
-									"propertyLabel": {
-										"$ref": "AAAAAAGdzkdWrO9Ey1c="
-									}
-								},
-								{
-									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAGdzkdWrO9FjAg=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -48,
-									"top": -8,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAGdzkdWrO9GzzI=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -48,
-									"top": -8,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAGdzkdWrO9Hcgw=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -48,
-									"top": -8,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAGdzkdWrO9IF9o=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -48,
-									"top": -8,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLExtensionPointCompartmentView",
-									"_id": "AAAAAAGdzkdWrO9JkXs=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkdWq+8/tPQ="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkdWqu890ak="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -48,
-									"top": -8,
-									"width": 10,
-									"height": 10
-								}
-							],
-							"font": "Arial;13;0",
-							"parentStyle": false,
-							"containerChangeable": true,
-							"left": 832,
-							"top": 632,
-							"width": 134,
-							"height": 35,
-							"nameCompartment": {
-								"$ref": "AAAAAAGdzkdWq+9AJHM="
-							},
-							"suppressAttributes": true,
-							"suppressOperations": true,
-							"attributeCompartment": {
-								"$ref": "AAAAAAGdzkdWrO9FjAg="
-							},
-							"operationCompartment": {
-								"$ref": "AAAAAAGdzkdWrO9GzzI="
-							},
-							"receptionCompartment": {
-								"$ref": "AAAAAAGdzkdWrO9Hcgw="
-							},
-							"templateParameterCompartment": {
-								"$ref": "AAAAAAGdzkdWrO9IF9o="
-							},
-							"extensionPointCompartment": {
-								"$ref": "AAAAAAGdzkdWrO9JkXs="
-							}
-						},
-						{
-							"_type": "UMLAssociationView",
-							"_id": "AAAAAAGdzkeBbQhu1Ug=",
-							"_parent": {
-								"$ref": "AAAAAAGMFadi28k7/uU="
-							},
-							"model": {
-								"$ref": "AAAAAAGdzkeBbQhqr5s="
-							},
-							"subViews": [
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbghvRnM=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhqr5s="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 634,
-									"top": 599,
-									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 1
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbghwXm0=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhqr5s="
-									},
-									"visible": null,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 628,
-									"top": 613,
-									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 30,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 1
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbghxsyE=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhqr5s="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 645,
-									"top": 572,
-									"height": 13,
-									"alpha": -1.5707963267948966,
-									"distance": 15,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 1
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbghy17A=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhrBKw="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 802,
-									"top": 637,
-									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 30,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 2
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbghzZgk=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhrBKw="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 797,
-									"top": 649,
-									"height": 13,
-									"alpha": 0.7853981633974483,
-									"distance": 40,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 2
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbgh0byI=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhrBKw="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 812,
-									"top": 611,
-									"height": 13,
-									"alpha": -0.5235987755982988,
-									"distance": 25,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"edgePosition": 2
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbgh1iKo=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhsqVU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 566,
-									"top": 572,
-									"height": 13,
-									"alpha": -0.5235987755982988,
-									"distance": 30,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									}
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbgh2adY=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhsqVU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 563,
-									"top": 585,
-									"height": 13,
-									"alpha": -0.7853981633974483,
-									"distance": 40,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									}
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzkeBbgh3yEM=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhsqVU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 572,
-									"top": 545,
-									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 25,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									}
-								},
-								{
-									"_type": "UMLQualifierCompartmentView",
-									"_id": "AAAAAAGdzkeBbwh4B4Y=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhrBKw="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLQualifierCompartmentView",
-									"_id": "AAAAAAGdzkeBbwh5TJw=",
-									"_parent": {
-										"$ref": "AAAAAAGdzkeBbQhu1Ug="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzkeBbQhsqVU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"width": 10,
-									"height": 10
-								}
-							],
-							"font": "Arial;13;0",
-							"parentStyle": false,
-							"head": {
-								"$ref": "AAAAAAGcHfSpF9ezDnc="
-							},
-							"tail": {
-								"$ref": "AAAAAAGdzkdWq+8/tPQ="
-							},
-							"lineStyle": 1,
-							"points": "831:634;640:592;548:555",
-							"showVisibility": true,
-							"nameLabel": {
-								"$ref": "AAAAAAGdzkeBbghvRnM="
-							},
-							"stereotypeLabel": {
-								"$ref": "AAAAAAGdzkeBbghwXm0="
-							},
-							"propertyLabel": {
-								"$ref": "AAAAAAGdzkeBbghxsyE="
-							},
-							"showEndOrder": "hide",
-							"tailRoleNameLabel": {
-								"$ref": "AAAAAAGdzkeBbghy17A="
-							},
-							"tailPropertyLabel": {
-								"$ref": "AAAAAAGdzkeBbghzZgk="
-							},
-							"tailMultiplicityLabel": {
-								"$ref": "AAAAAAGdzkeBbgh0byI="
-							},
-							"headRoleNameLabel": {
-								"$ref": "AAAAAAGdzkeBbgh1iKo="
-							},
-							"headPropertyLabel": {
-								"$ref": "AAAAAAGdzkeBbgh2adY="
-							},
-							"headMultiplicityLabel": {
-								"$ref": "AAAAAAGdzkeBbgh3yEM="
-							},
-							"tailQualifiersCompartment": {
-								"$ref": "AAAAAAGdzkeBbwh4B4Y="
-							},
-							"headQualifiersCompartment": {
-								"$ref": "AAAAAAGdzkeBbwh5TJw="
-							}
-						},
-						{
-							"_type": "UMLExtendView",
-							"_id": "AAAAAAGdzke3yCfPStY=",
-							"_parent": {
-								"$ref": "AAAAAAGMFadi28k7/uU="
-							},
-							"model": {
-								"$ref": "AAAAAAGdzke3yCfN0OU="
-							},
-							"subViews": [
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzke3ySfQNnw=",
-									"_parent": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzke3yCfN0OU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 811,
-									"top": 612,
-									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"edgePosition": 1
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzke3ySfRKC4=",
-									"_parent": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzke3yCfN0OU="
-									},
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 832,
-									"top": 599,
-									"width": 53.49169921875,
-									"height": 13,
-									"alpha": 3.613779675463021,
-									"distance": 39.01281840626232,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"edgePosition": 1,
-									"text": "«extend»"
-								},
-								{
-									"_type": "EdgeLabelView",
-									"_id": "AAAAAAGdzke3ySfSJic=",
-									"_parent": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"model": {
-										"$ref": "AAAAAAGdzke3yCfN0OU="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": false,
-									"left": 826,
-									"top": 585,
-									"height": 13,
-									"alpha": -1.5707963267948966,
-									"distance": 15,
-									"hostEdge": {
-										"$ref": "AAAAAAGdzke3yCfPStY="
-									},
-									"edgePosition": 1
-								}
-							],
-							"font": "Arial;13;0",
-							"parentStyle": false,
-							"head": {
-								"$ref": "AAAAAAGdzkaKJFGT0LA="
-							},
-							"tail": {
-								"$ref": "AAAAAAGdzkdWq+8/tPQ="
-							},
-							"lineStyle": 1,
-							"points": "866:631;773:580",
-							"showVisibility": true,
-							"nameLabel": {
-								"$ref": "AAAAAAGdzke3ySfQNnw="
-							},
-							"stereotypeLabel": {
-								"$ref": "AAAAAAGdzke3ySfRKC4="
-							},
-							"propertyLabel": {
-								"$ref": "AAAAAAGdzke3ySfSJic="
 							}
 						},
 						{
@@ -68602,7 +68011,7 @@
 							]
 						}
 					],
-					"documentation": "#CREATE RECLAMATION FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **show purchaseds** implementaziotik **sale** bat aukeratzen du.\n2. *Buyer* erreklamazio botoia sakatu.\n3. *Buyer* erreklamazioaren zergatia aukeratu/idatzi.\n4. *Buyer* deskripzioa/azalpena idatzi.\n5. *Buyer* erreklamazioa egiteko botoia sakatu.\n6. *Sistemak* **reclamation** bat sortu **status** = irekita izanez, eta datu basean gorde.\n7. *Sistemak* **User**-aren erreklamazioen listan gordetzen du.\n8. *Sistemak* notifikazio bat sortuko du erreklamatutako **sale** -aren **User** -ari\n9. *Sistemak* dena ondo joan dela adierazi.\n\n##ALTERNATIVE FLOW\n\n1. Deskripzioa falta.\n2. Zergatia falta.",
+					"documentation": "#CREATE RECLAMATION FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Buyer* **show purchaseds** implementaziotik **sale** bat aukeratzen du.\n2. *Buyer* erreklamazio botoia sakatu.\n3. *Buyer* erreklamazioaren **reason** eta **header** idatzi.\n4. *Buyer* erreklamazioa egiteko botoia sakatu.\n5. *Sistemak* **reclamation** bat sortu **status** = irekita izanez, eta datu basean gorde.\n6. *Sistemak* **User**-aren erreklamazioen listan gordetzen du.\n7. *Sistemak* notifikazio bat sortuko du erreklamatutako **sale** -aren **User** -ari\n8. *Sistemak* dena ondo joan dela adierazi.\n\n##ALTERNATIVE FLOW\n\n1. Zergatia falta.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -73032,7 +72441,7 @@
 							]
 						}
 					],
-					"documentation": "#MANAGE RECLAMATION FLOW OF EVENTS\n\n\n##BASIC FLOW\n\n1. *Admin* **Reclamation** deskripzioa ikusi eta erabaki.\n2. *Admin* **Reclamation** -aren *status* atributua aldatu.\n3. *Admin* bukatzeko sakatu.\n4. *Sistemak* **reclamation**-aren status aldaketa datu basean gorde.\n5. *Sistemak* notifikazio bat sortuko du kudeatutako **Reclamation** -aren **User** -ari.\n6. *Sistemak* dena ondo juan dela adierazi.\n\n\n##ALTERNATIVE FLOW\n\n1. **Admin** **Reclamation** -aren *status* aldagaia berdin utzi du.",
+					"documentation": "#MANAGE RECLAMATION FLOW OF EVENTS\n\n\n##BASIC FLOW\n\n1. *Admin* **Reclamation** deskripzioa ikusi eta erabaki.\n2. *Admin* **Reclamation**-aren **status** atributua aldatzeko botoia sakatzen du.\n3. *Admin* bukatzeko sakatu.\n4. *Sistemak* **reclamation**-aren status aldaketa datu basean gorde.\n5. *Sistemak* notifikazio bat sortuko du kudeatutako **Reclamation** -aren **User** -ari.\n6. *Sistemak* dena ondo juan dela adierazi.\n\n\n##ALTERNATIVE FLOW\n\n1. **Admin** **Reclamation** -aren **status** aldagaia berdin utzi du.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -75809,7 +75218,7 @@
 							]
 						}
 					],
-					"documentation": "#ADD MONEY FLOW OF EVENTS\n\n##BASIC FLOW\n1. *User* saldoran gehitu nahi duen diru kopurua aukeratu edo idazten du.\n2. *User* ordaintzeko txartelaren datuak sartzen ditu.\n3. *Sistemak* txartel datuak balidatzen ditu, hau da, \"existitzen\" den ikusten du.\n4. *Sistemak* adierazitako saldoa gehitzen du.\n5. *Sistemak* dena ongi joan dela adierazi eta lehioa isteko eskatu.\n\n##ALTERNATIVE FLOW\n1. Idatzitakoa ez da zenbaki bat.\n2. Idatzitako diru kopurua maximo bat pasa du.\n3. Sartutako txartela ez da existitzen edo daturen bat gaizki dago.\n",
+					"documentation": "#ADD MONEY FLOW OF EVENTS\n\n##BASIC FLOW\n1. *User* saldoran gehitu nahi duen diru kopurua idazten du.\n2. *User* ordaintzeko txartelaren datuak sartzen ditu.\n3. *Sistemak* txartel datuak balidatzen ditu, hau da, \"existitzen\" den ikusten du.\n4. *Sistemak* adierazitako **balance** gehitzen du.\n5. *Sistemak* dena ongi joan dela adierazi.\n\n##ALTERNATIVE FLOW\n1. Idatzitakoa ez da zenbaki bat.\n2. Idatzitako diru kopurua maximo bat pasa du.\n3. Sartutako txartela ez da existitzen edo daturen bat gaizki dago.\n",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -78541,7 +77950,7 @@
 							]
 						}
 					],
-					"documentation": "#WITHDRAW MONEY FLOW OF EVENTS\n\n##BASIC FLOW\n1. *User* atera nahi duen saldo kopurua aukeratu edo idazten du.\n2. *User* nora atera nahi duen adierazi ( txartel bat, kontu bat...)\n3. *User* aukeratutakoaren datuak sartu.\n4. *Sistemak* datu horiek konprobatu.\n5. *Sistemak* dirua saldotik kendu, eta transakzioa egin.\n\n##ALTERNATIVE FLOW\n1. Idatzitakoa ez da zenbaki bat.\n2. Idatzitako diru kopurua gehiegizkoa da.\n3. Datuak gaizki daude.",
+					"documentation": "#WITHDRAW MONEY FLOW OF EVENTS\n\n##BASIC FLOW\n1. *User* atera nahi duen saldo kopurua idazten du.\n3. *User* txartelaren datuak sartu.\n4. *Sistemak* datu horiek egiaztatu.\n5. *Sistemak* dirua **balance**-tik kendu, eta **transaction** egin.\n\n##ALTERNATIVE FLOW\n1. Idatzitakoa ez da zenbaki bat.\n2. Idatzitako diru kopurua gehiegizkoa da.\n3. Datuak gaizki daude.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -83281,7 +82690,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGMFaB678SNc/w="
 					},
-					"name": "Show Reclamations",
+					"name": "Show Reclamation",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -83324,7 +82733,7 @@
 							}
 						}
 					],
-					"documentation": "#SHOW RECLAMATIONS FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Admin* bistaratzeko botoia sakatu\n2. *Sistemak* lista batean **Reclamation** guztiak erakutsi\n3. *Admin* reclamation bat kudeatu nahi badu extends *Manage Reclamation*\n\n##ALTERNATIVE FLOW\n\n1. Ez daude **reclamation** erakusteko",
+					"documentation": "#SHOW RECLAMATIONS FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Admin* aurretik **reclamation** bat aukeratu\n2. *Sistemak* **reclamation** -aren informazioa erakutsi.\n3. *Admin* **reclamation** kudeatu nahi badu extends **Manage Reclamation**\n\n##ALTERNATIVE FLOW\n\n1. Ez dago informaziorik **reclamation** buruz",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -85308,6 +84717,7 @@
 							]
 						}
 					],
+					"documentation": "#QUERY REPORTS FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Admin* bistaratzeko botoia sakatzen du.\n2. *Sistemak* lista batean **report** guztiak erakutsi.\n3. *Admin* **report** ikusi nhai badu, extends **Show Report**.\n\n\n##ALTERNATIVE FLOW\n\n1. Ez daude **report** -ik.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -85398,7 +84808,8 @@
 								"$ref": "AAAAAAGdUf8UHzkIr28="
 							}
 						}
-					]
+					],
+					"documentation": "#SHOW REPORT FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Admin* aurretik **report** bat aukeratu\n2. *Sistemak* **report** -aren informazioa erakutsi.\n3. *Admin* **report** kudeatu nahi badu extends **Manage Report**\n\n##ALTERNATIVE FLOW\n\n1. Ez dago informaziorik **report** buruz"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -87255,6 +86666,7 @@
 							]
 						}
 					],
+					"documentation": "#QUERY RECLAMATIONS FLOW OF EVENTS\n\n##BASIC FLOW\n\n1. *Admin* bistaratzeko botoia sakatzen du.\n2. *Sistemak* lista batean **reclamation** guztiak erakutsi.\n3. *Admin* **reclamation** ikusi nhai badu, extends **Show Reclamation**.\n\n\n##ALTERNATIVE FLOW\n\n1. Ez daude **reclamation** -ik.",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -89860,6 +89272,7 @@
 							]
 						}
 					],
+					"documentation": "#MANAGE REPORT FLOW OF EVENTS\n\n\n##BASIC FLOW\n\n1. *Admin* **report** deskripzioa ikusi eta erabaki.\n3. *Admin* ezabatzeko botoia sakatu.\n4. *Sistemak* **report**-a ezabatu egiten du.\n5. *Sistemak* notifikazio bat sortuko du kudeatutako **report** -aren **User** -ari.\n6. *Sistemak* dena ondo juan dela adierazi.\n",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
